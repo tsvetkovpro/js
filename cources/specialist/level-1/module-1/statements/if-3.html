@@ -1,0 +1,27 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+
+<html>
+<head>
+	<title>Условное присвоение</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=windows-1251">
+</head>
+
+<body>
+	<h1>Условное присвоение</h1>
+	
+	<script type="text/javascript">
+		var a = 10;
+		var b;
+		
+		if (a > 1)
+			b = "a больше единицы";
+		else
+			b = "a НЕ больше единицы";
+		
+		var b = (a > 1) ? "a больше 1" : "a НЕ больше 1";
+		
+		alert(b);
+	</script>
+
+</body>
+</html>

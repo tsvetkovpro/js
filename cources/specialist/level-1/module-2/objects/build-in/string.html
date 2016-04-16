@@ -1,0 +1,50 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+
+<html>
+<head>
+	<title>Объект String</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=windows-1251">
+</head>
+
+<body>
+	<h1>Объект String</h1>
+	<pre>
+	<script type="text/javascript">
+		var str1 = new String("Это строка строка текста");
+		document.writeln(str1);
+		document.writeln("Длина строки: " + str1.length);
+		document.writeln(str1.bold());
+		document.writeln("Символ 2: " + str1.charAt(1));
+		document.writeln(String.fromCharCode(65));
+		document.writeln("Слово строка находится: " 
+			+ str1.indexOf("строка"));
+		document.writeln("Слово строка находится: " 
+			+ str1.lastIndexOf("строка"));
+		
+		str1 = str1.replace("строка", "НОВАЯ СТРОКА")
+		document.writeln(str1);
+		document.writeln(str1.substr(4, 8));
+		document.writeln(str1.substring(4, 8));
+		document.writeln(str1.substring(4));
+		document.writeln(str1.toLowerCase());
+		document.writeln(str1.toUpperCase());
+		
+		//Шуйков Сергей Юрьевич
+		//      |      |
+		//      n1     n2
+		// fio.indexOf(" ")
+		
+		
+		/*
+		document.writeln(str1.big());
+		
+		
+		document.writeln(str1.fontcolor("red"));
+		document.writeln(str1.fontsize(5));
+		document.writeln(str1.split(" "));
+		document.writeln(str1.toLowerCase());
+		document.writeln(str1.toUpperCase());*/
+	</script>
+	</pre>
+</body>
+</html>

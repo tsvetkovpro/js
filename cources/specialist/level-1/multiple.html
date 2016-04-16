@@ -1,0 +1,56 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+
+<html>
+<head>
+	<title>Демонстрация цикла for</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=windows-1251">
+	<style type="text/css">
+		table { border-collapse: collapse }
+		td { border: 1px solid black; width: 30px; height: 30px }
+	</style>
+</head>
+
+<body>
+	<h1>Демонстрация цикла for</h1>
+	
+	<script type="text/javascript">
+		var n = 9;					// Количество рядов и ячеек в ряду
+		
+		// Отрисовка таблицы
+		document.write("<table>");
+		// Цикл рядов
+		for (var tr = 1; tr <= n; tr++)
+		{
+			if (tr == 1)
+				document.write('<tr bgcolor="red">');
+			else
+				document.write("<tr>");
+			// Цикл ячеек
+			for (var td = 1; td <= n; td++)
+			{
+				if (td == 1)
+					document.write('<td bgcolor="red">');
+				else	
+					document.write("<td>");
+				
+				document.write(tr*td);
+				document.write("</td>");
+			}
+			// Конец ряда
+			document.write("</tr>");
+		}
+		// Конец таблицы
+		document.write("</table>");
+	</script>
+	
+	<!--table>
+		<tr>
+			<td></td>
+		</tr>
+	</table-->
+	
+	
+	
+
+</body>
+</html>

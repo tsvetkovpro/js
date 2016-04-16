@@ -1,0 +1,33 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+
+<html>
+<head>
+	<title>Рекурсивный вызов функций</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=windows-1251">
+</head>
+
+<body>
+	<h1>Рекурсивный вызов функций</h1>
+	<h2>Пример вычисления факториала</h2>
+	<pre>
+		<strong>Факториал</strong>
+		
+		5! = 5 * 4 * 3 * 2 * 1 = 120
+		
+		0! = 1
+		n! = n * (n-1)!
+	</pre>
+	
+	<script type="text/javascript">
+		 function factorial(n)
+		 {
+			if (n == 0) return 1;
+			return n * factorial(n-1);
+		 }
+		 
+		 var result = factorial(5)
+		 document.write("5! = " + result);
+	</script>
+
+</body>
+</html>

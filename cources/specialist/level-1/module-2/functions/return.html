@@ -1,0 +1,29 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+
+<html>
+<head>
+	<title>Возврат значений из функций</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=windows-1251">
+</head>
+
+<body>
+	<h1>Возврат значений из функций</h1>
+	
+	<script type="text/javascript">
+		 function sayHello(userName)
+		 {
+			//return;
+			return "Привет " + userName;
+		 }
+		 
+		var a = sayHello("Вася")+"!";
+		document.write(a);
+		
+		alert(sayHello("Петя"));
+		
+		
+		
+	</script>
+
+</body>
+</html>
