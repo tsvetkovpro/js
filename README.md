@@ -19,12 +19,12 @@
 &nbsp;
 
 ##### Spec:
-* [JavaScript. Уровень 1. Основы веб - программирования]
-* [JavaScript. Уровень 2. Расширенные возможности]
-* [JavaScript. Уровень 3а. jQuery]
-* [JavaScript. Уровень 3б. AJAX]
-* [JavaScript. Уровень 3в. Node.js]
-* [JavaScript. Уровень 3г. HTML5 API ]
+* [Уровень 1. Основы веб - программирования](link/specialist/level-1/ch1.md)
+* [Уровень 2. Расширенные возможности]
+* [Уровень 3а. jQuery]
+* [Уровень 3б. AJAX]
+* [Уровень 3в. Node.js]
+* [Уровень 3г. HTML5 API ]
 
 &nbsp;
 
