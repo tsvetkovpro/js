@@ -1,0 +1,39 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+
+<html>
+<head>
+	<title>Создание объектов - коллекций</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=windows-1251">
+</head>
+
+<body>
+	<h1>Создание объектов - коллекций</h1>
+	
+	<script type="text/javascript">
+		var myBook = new Object();
+		myBook.title = "Книга";
+		//myBook["title"] = "Книга";
+		myBook.price = 200;
+		
+		alert(myBook["title"]);
+		alert(myBook.price);
+		
+		
+		myBook.show = function ()
+		{
+			/*for (var i in myBook)
+			{
+				document.write(i + ": " + myBook[i] + "<br>");
+				//           title         Книга 
+				//           price          200
+			}*/
+			document.write(myBook.title + " - "+ 
+						myBook.price+ "<br>");
+			
+		}
+		
+		myBook.show()
+	</script>
+
+</body>
+</html>

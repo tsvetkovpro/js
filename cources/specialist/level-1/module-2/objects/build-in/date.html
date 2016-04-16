@@ -1,0 +1,31 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+
+<html>
+<head>
+	<title>Объект Date</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=windows-1251">
+</head>
+
+<body>
+	<h1>Объект Date</h1>
+	<pre>
+	<script type="text/javascript">
+		var d1 = new Date(2010, 0, 1, 5, 7, 37);
+		
+		d1.setHours(26);
+		
+		document.writeln(d1.toLocaleString());
+		document.writeln(d1.toLocaleDateString());
+		document.writeln(d1.toLocaleTimeString());
+		
+		// Дни недели
+		var days = new Array("воскресение", "понедельник", "вторник", "среда", "четверг", "пятница", "суббота");
+		
+		// yyyy, mm, dd, hh, mm, ss, ms
+		var newYear = new Date(2010, 0, 1);
+		document.writeln("Следующий новый год будет в " + days[newYear.getDay()]);
+		
+	</script>
+	</pre>
+</body>
+</html>

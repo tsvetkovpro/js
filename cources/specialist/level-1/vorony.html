@@ -1,0 +1,72 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+
+<html>
+<head>
+	<title>Условное присвоение</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=windows-1251">
+</head>
+
+<body>
+	<h1>Условное присвоение</h1>
+	
+	<script type="text/javascript">
+		function vorony(num)
+		{
+			var str;
+			
+			switch (num)
+			{
+				case 0:
+					str ="На ветке нет ни одной вороны";
+					break;
+				case 1:
+					str = "На ветке одна ворона"
+					break;
+				case 2:
+					str = "На ветке две вороны"
+					break;
+				case 3:
+					str = "На ветке три вороны"
+					break;
+				case 4:
+					str = "На ветке четыре вороны"
+					break;
+				case 5:
+					str = "На ветке пять ворон"
+					break;
+				case 6:
+					str = "На ветке шесть ворон"
+					break;
+				case 7:
+					str = "На ветке семь ворон"
+					break;
+				case 8:
+					str = "На ветке восемь ворон"
+					break;
+				case 9:
+					str = "На ветке девять ворон"
+					break;
+				case 10:
+					str = "На ветке десять ворон";
+					break;
+				default:
+					str = "На ветке много ворон";
+			}
+			
+			return str;
+		}
+	
+	
+	
+		
+		var a = prompt("Введите число ворон: ", "");
+		a = parseInt(a);
+		
+		var s = vorony(a);
+		
+		document.write(s);
+		
+	</script>
+
+</body>
+</html>

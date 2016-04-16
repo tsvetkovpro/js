@@ -1,0 +1,111 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+
+<html>
+<head>
+	<title>Объект Array</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=windows-1251">
+</head>
+
+<body>
+	<h1>Объект Array</h1>
+	<pre>
+	<script type="text/javascript">
+		// Создание массива
+		var firstArray = new Array(); 
+		firstArray[0] = "red";
+		document.writeln(firstArray.length);
+
+		var secondArray = new Array("red", "green", "blue"); 
+		document.writeln(secondArray.length);
+		
+		for(var i = 0; i < secondArray.length; i++)
+			document.writeln(secondArray[i]);
+			
+		document.writeln(secondArray);
+		
+		var thirdArray = new Array(5);
+		document.writeln(thirdArray);
+		
+		// Удаление элемента массива
+		var myColors = new Array("red", "green", "blue");
+		document.writeln(myColors);
+		//delete myColors[1];
+		// myColors[1] = undefined;
+		//document.writeln(myColors);
+		var lastElement = myColors.pop();
+		document.writeln(myColors);
+		document.writeln(lastElement);
+		myColors.push("yellow")
+		document.writeln(myColors);
+		
+		var firstElement = myColors.shift();
+		document.writeln(myColors);
+		document.writeln(firstElement);
+		
+		myColors.unshift("pink");
+		document.writeln(myColors);
+		
+		var splitted = myColors.splice(1,1);
+		document.writeln(myColors);
+		document.writeln(splitted[0]);
+		var s = myColors.join("~");
+		document.writeln(s);
+		
+		
+		
+		// Манипуляция с элементами массивов
+		var str = "Саша,Маша,Петя,Даша";
+		var users = str.split(",");
+		
+		
+		for(var i = 0; i < users.length; i++)
+			document.writeln(users[i]);
+			
+		document.writeln(users.reverse());
+		users.sort();
+		document.writeln(users);
+		var arr = new Array(40,4,5,31,50,1,10,2,3,30);
+		arr.sort(compareNumbers);
+		document.writeln(arr);
+
+
+		/*
+
+		document.writeln(users[1]);
+		document.writeln(users.join("~"));
+		
+		// Произвольная сортировка массива
+		
+		// Укажем функцию стравнения
+		arr.sort(fastCompareNumbers);
+		document.writeln(arr);		
+		*/
+		/*
+		** Функция сравнения чисел
+		** возвращает:	 0 - числа равны
+		**				 1 - левое число больше
+		**				-1 - правое число больше
+		*/
+		function compareNumbers(n1, n2)
+		{
+			if (n1 == n2) return 0;
+			if (n1 > n2) 
+				return 1;
+			else
+				return -1;
+		}
+		
+		
+		
+		
+		
+		// Быстрая функция сравнения - всего одна операция!
+		function fastCompareNumbers(n1, n2)
+		{
+			return n1 - n2;
+		}
+				
+	</script>
+	</pre>
+</body>
+</html>

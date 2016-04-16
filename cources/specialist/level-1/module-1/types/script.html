@@ -1,0 +1,42 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+
+<html>
+<head>
+	<title>Пример вставки сценария</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=windows-1251">
+</head>
+
+<body>
+	<h1>Пример вставки сценария</h1>
+	<p>
+		<a href="http://www.w3.org/TR/html4/interact/scripts.html">Спецификация W3C</a>
+	</p>
+	<!-- 
+		Старый стиль - использование атрибута LANGUAGE
+		В текущей версии HTML считается нежелательным
+	-->
+	<script language="javascript">
+		// Так писать не надо!
+	</script>
+	
+	<!--
+		Правильная вставка сценария
+	-->
+	
+	<script type="text/javascript">
+		<!--  to hide script contents from old browsers
+		function square(i) 
+		{
+			document.write("The call passed ", i ," to the function.","<BR>");
+			return i * i;
+		}
+		document.write("The function returned ",square(5),".");
+		// end hiding contents from old browsers  -->
+	</script>
+	
+	<noscript>
+		Ваш браузер не поддерживает сценарии
+	</noscript>
+
+</body>
+</html>

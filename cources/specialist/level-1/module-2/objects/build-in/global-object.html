@@ -1,0 +1,32 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+
+<html>
+<head>
+	<title>Объект Global</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=windows-1251">
+</head>
+
+<body>
+	<h1>Объект Global</h1>
+	<pre>
+	<script type="text/javascript">
+		var aURL = encodeURI("http://www.pint.com/cgi-bin/search?term=O''Neill &amp; Sons");
+		document.writeln("Encoded URI: "+ aURL);
+		document.writeln("Decoded URI: "+ decodeURI(aURL));
+		var aURL = escape("http://www.pint.com/cgi-bin/search?term=O''Neill &amp; Sons");
+		document.writeln("Encoded URI: "+ aURL);
+		document.writeln("Decoded URI: "+ unescape(aURL));
+		
+		// width : 100px;
+		var str = "123px";
+		document.writeln(parseInt(str));
+		
+		var s = "alert('Hello')";
+		eval(s);
+		
+		
+		
+	</script>
+	</pre>
+</body>
+</html>

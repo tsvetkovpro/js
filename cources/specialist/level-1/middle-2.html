@@ -1,0 +1,42 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+
+<html>
+<head>
+	<title>Объект Array</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=windows-1251">
+</head>
+
+<body>
+	<h1>Объект Array</h1>
+	<pre>
+	<script type="text/javascript">
+		var arr = new Array();
+		do
+		{
+			var a = prompt("Введите число");
+			a = parseInt(a);
+			
+			if (a) arr.push(a);
+		}
+		while( a )
+		
+		var sum = 0;
+		for(var i=0; i < arr.length; i++)
+		{
+			sum += arr[i];
+			document.writeln(arr[i]);
+		}
+		
+		if (arr.length > 0)
+		{
+			var middle = sum/arr.length;
+			document.writeln("Среднее = "+middle);
+		}
+		
+		
+		
+		
+	</script>
+	</pre>
+</body>
+</html>

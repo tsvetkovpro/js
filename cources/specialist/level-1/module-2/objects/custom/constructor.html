@@ -1,0 +1,44 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+
+<html>
+<head>
+	<title>Создание класса в констукторе</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=windows-1251">
+</head>
+
+<body>
+	<h1>Создание класса в констукторе</h1>
+	
+	<script type="text/javascript">
+		// Констуктор класса MyBook
+		function Book(title, price)
+		{
+
+		// Определение свойств
+			this.title = title;
+			this.price = price;
+			// Определение метода
+			this.show = function ()
+			{
+				document.write("Название: " + this.title + "<br>");
+				document.write("Цена: " + this.price + "<br>");
+			}
+		}
+		//. . .
+		
+		
+		
+		
+		var book = new Book("Книга", 200);
+		var book2 = new Book("Книга 2", 300)
+		book.show(); 
+		book2.show();
+		
+		
+		for(var i in navigator)
+			document.write(i+": "+navigator[i]+"<br>")
+		
+	</script>
+
+</body>
+</html>
