@@ -1,27 +1,26 @@
 ##Level 1 The Labyrinth of Loops
 ```
-1. While-loop - while() {}
-2. For-loop - for (; ; ) {}
+Understand and build loops for repeated code with 'while' and 'for' syntax.
 ```
 
 ##Level 2 Conditional Canyon
 ```
-1.
+Use conditions to execute different branches of code with if-else blocks.
 ```
 
 ##Level 3 Built-In's Bluff
 ```
-1.
+Learn to use the basic JavaScript dialog box functions 'prompt', 'alert', and 'confirm'.
 ```
 
 ##Level 4 The Desert of Declarations
 ```
-1.
+Understand functions and building custom functionality.
 ```
 
 ##Level 5 The Array Archipelago
 ```
-1.
+Learn to build and manipulate the array data structure.
 ```
 
 
