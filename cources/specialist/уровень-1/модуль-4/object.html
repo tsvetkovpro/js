@@ -1,0 +1,84 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+
+<html>
+<head>
+    <title>Объекты</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=windows-1251">
+</head>
+
+<body>
+<h1>Объекты</h1>
+
+<script type="text/javascript">
+    var myObject = {'name': "Stas", "age": 30, "male": 2};
+    for (var cur in myObject) {
+        console.log(cur + " :" + myObject[cur]);
+    }
+
+    var book1 = {};
+    book1.title = 'myTitle';
+    book1.PubYear = 'myPubYear';
+    book1.price = 20;
+
+    var book2 = {"title": "book2", "123": "1999", "price": 2200};
+
+
+    function printObjectValue (objectName) {
+        for (var cur in objectName) {
+            console.log(cur + " :" + objectName[cur]);
+        }
+    }
+
+    printObjectValue(book1);
+    printObjectValue(book2);
+
+    console.log("\n");
+
+
+    var book3 = {
+        title: "The remain of the day",
+        123: "1985",
+        price: 1111,
+        show: function(){
+            for(var cur in this){
+                console.log(cur + ": " + this[cur]);
+            }
+        }
+    };
+
+    book3.show();
+
+
+
+
+
+</script>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

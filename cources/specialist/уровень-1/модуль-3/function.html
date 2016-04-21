@@ -1,0 +1,109 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+
+<html>
+<head>
+    <title>Функции</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=windows-1251">
+</head>
+
+<body>
+<h1>Функции</h1>
+
+<script type="text/javascript">
+    function sayHello(param) {
+        return console.log(param);
+    }
+    sayHello("hello world!!");
+
+    var cnt = 1;
+    var s1 = "В пруду плавает ";
+    var s2 = " лебедей";
+    countItems(s1, cnt, s2);
+    var num = 3;
+    function countItems(str1, num, str2) {
+        var x = '';
+        if(num % 100 < 11 || num % 100 > 14) {
+            switch (num % 10) {
+                case 1: x = 'ь'; break;
+                case 2:
+                case 3:
+                case 4: x = 'я';
+            }
+        }
+        console.log(str1 + num + str2 + x);
+    }
+
+    function sum (a, b) {
+        return console.log(a * b);
+    }
+    sum(3, 3);
+
+    function sum1 (a, b) {
+        var c = a + b;
+        return c;
+    }
+    console.log(sum1(3, 3));
+
+    function power (base, exp) {
+        var result = 1;
+        for (var i = 0; i < exp; i++) {
+            result *= base;
+        }
+        return  result;
+    }
+    console.log(power(2, 10));
+    console.log(power(3, 5));
+
+    function helloMy () {
+        return function () {
+            console.log("Hello");
+        };
+    }
+    var x = helloMy();
+    console.log(x());
+
+    function compare( X ) {
+        return function (Y){
+            if ( Y == X ) {
+                return null;
+            }
+            return Y > X;
+        }
+    }
+
+    var x1 = compare(10);
+    console.log(x1(9));
+    console.log(x1(10));
+    console.log(x1(11));
+
+
+</script>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
