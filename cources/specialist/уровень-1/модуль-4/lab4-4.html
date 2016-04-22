@@ -1,0 +1,61 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+    <title></title>
+    <meta http-equiv="Content-Type" content="text/html; charset=windows-1251">
+</head>
+<body>
+<h1></h1>
+<script type="text/javascript">
+    var a = [5, 12];
+    var b = [];
+    a[99] = 7;
+    for (var i = 0; i < a.length; i++) {
+        if (a[i]) {
+            b.push(Math.pow(a[i], 2));
+        }
+    }
+    console.log(a);
+    console.log("Array b: " + b);
+    console.log("\n");
+
+
+    // но лучше for in
+
+    var o = [5, 12, 14];
+    var o2 = [];
+    o[10] = 100;
+    for (var i in o) {
+        o2.push(Math.pow(o[i], 2));
+    }
+    console.log("Array o: " + o);
+    console.log("Array o2: " + o2);
+</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

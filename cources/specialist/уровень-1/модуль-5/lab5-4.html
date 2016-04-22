@@ -1,0 +1,63 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+
+<html>
+<head>
+    <title></title>
+    <meta http-equiv="Content-Type" content="text/html; charset=windows-1251">
+</head>
+
+<body>
+<h1></h1>
+
+<script type="text/javascript">
+    var re = /(\w+)\s(\w+)/;
+    var str = 'Джон Смит'; // кирилицу не распознаёт
+    var newstr = str.replace(re, '$2, $1');
+    console.log(newstr);
+
+    var re = /(\w+)\s(\w+)/;
+    var str = 'John Smith';
+    var newstr = str.replace(re, '$2, $1');
+    console.log(newstr);
+
+    var re = /([а-яА-Я\w]+)\s([а-яА-Я\w]+)/;
+    var str = 'Джон Смит';
+    var newstr = str.replace(re, '$2, $1');
+    console.log(newstr);
+
+
+
+    var url = 'http://xxx.domain.com';
+    console.log(/[^.]+/.exec(url)[0].substr(7)); // напечатает 'xxx'
+
+
+</script>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

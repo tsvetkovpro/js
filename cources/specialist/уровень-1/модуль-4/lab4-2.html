@@ -1,0 +1,59 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+    <title></title>
+    <meta http-equiv="Content-Type" content="text/html; charset=windows-1251">
+</head>
+<body>
+<h1></h1>
+<script type="text/javascript">
+    var book1 = {};
+    book1.title = "JavaScript";
+    book1.year = "2011";
+    book1.price = 1500;
+    book1.show = function () {
+        console.log("Книга " + this.title + " стоит " + this.price);
+    };
+
+    function showBook () {
+        console.log("Книга " + this.title + " стоит " + this.price);
+    }
+    var book2 = {
+        title: "Js-2",
+        Year: "2013",
+        price: 720,
+        show: showBook
+    };
+
+    book1.show();
+    book2.show();
+
+</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

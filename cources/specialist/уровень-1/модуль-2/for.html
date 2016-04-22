@@ -1,0 +1,72 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+
+<html>
+<head>
+	<title>Цикл for</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=windows-1251">
+</head>
+
+<body>
+	<h1>Цикл for</h1>
+	
+	<script type="text/javascript">
+		for (var i = 1; i <= 10; i++) {
+			console.log(i);
+		};
+
+		var num = 2;
+		var exp = 10;
+		var result = 1;
+		for(var cnt = 1; cnt <= exp; cnt++) {
+			result *= num;
+			console.log(result);
+		}
+		console.log("\n" + result);
+
+		// lab 2
+		var lines = 4;
+		var star, space;
+		var stars, spaces;
+		for (var curLine = 1; curLine <= lines; curLine++) {
+			space = lines - curLine;
+			spaces = '';
+			for (var i = 0; i < space; i++) {
+				spaces += " ";
+			}
+			star = curLine * 2 - 1;
+			stars = '';
+			for (var i = 0; i < star; i++) {
+				stars += "*";
+			}
+			console.log(spaces + stars);
+		}
+	</script>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,59 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+    <title></title>
+    <meta http-equiv="Content-Type" content="text/html; charset=windows-1251">
+</head>
+<body>
+<h1></h1>
+
+<script type="text/javascript">
+    var lines = 4;
+    var star, space;
+    for (var curLine = 1; curLine <= lines; curLine++) {
+        space = lines - curLine;
+        star = curLine * 2 - 1;
+        drawLine(space, star, " ", "*");
+    }
+
+    function drawLine (cntTabs, cntSymbols, tab, symbol) {
+        var tabs = symbols = "";
+        for (var i = 0; i < cntTabs; i++) {
+            tabs += tab;
+        }
+        for (var i = 0; i < cntSymbols; i++) {
+            symbols += symbol;
+        }
+        console.log(tabs + symbols);
+    }
+
+</script>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

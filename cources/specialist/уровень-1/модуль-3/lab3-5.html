@@ -1,0 +1,75 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+    <title></title>
+    <meta http-equiv="Content-Type" content="text/html; charset=windows-1251">
+</head>
+<body>
+<h1></h1>
+
+<script type="text/javascript">
+    drawItems ("dog!", 4, "cat!", 4, 6, 25);
+    function drawItems (name1, item1, name2, item2, items, lines) {
+        var ITEMS_PER_LINE = items;
+        var LINES = lines;
+        var ITEMS = ITEMS_PER_LINE * LINES;
+        var num_in_line = 0;
+        var output = "";
+        var id = 0;
+
+        while (id < ITEMS) {
+            for (var i = 0; i < item1; i++ ) {
+                output += name1;
+                id++;
+                setWhiteSpace();
+            }
+            for (var i = 0; i < item2; i++ ) {
+                output += name2;
+                id++;
+                setWhiteSpace();
+            }
+        }
+
+        console.log(output);
+
+        function setWhiteSpace () {
+            num_in_line++;
+            if (num_in_line == ITEMS_PER_LINE) {
+                output += "\n";
+                num_in_line = 0;
+            } else {
+                output += "\t";
+            }
+        }
+
+    }
+</script>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

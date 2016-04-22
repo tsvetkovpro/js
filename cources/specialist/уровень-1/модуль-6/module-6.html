@@ -1,0 +1,81 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+
+<html>
+<head>
+    <title></title>
+    <meta http-equiv="Content-Type" content="text/html; charset=windows-1251">
+</head>
+
+<body>
+<h1></h1>
+
+<script type="text/javascript">
+    function User (name) {
+        this.name = name;
+        this.age = null;
+        this.say = function (word) {
+            console.log("Hello, " + word + " from " + this.name);
+        };
+    }
+
+    var user1 = new User ("Ivan");
+    console.log(User);
+    console.log(user1);
+    console.log(user1.say("priverr"));
+
+
+    console.log(user1.constructor);
+
+
+    var s = "mail@mail.ru";
+    var emails = ['mail', 'yandex', 'gmail'];
+    var re = new RegExp(emails.join("|"), "i");
+    console.log(re.test(s));
+    console.log(re);
+
+
+    Object.prototype.z = 30;
+    var oMy = {x: 10, y: 20};
+    for (var prop in oMy) {
+        console.log(prop + ": " + oMy[prop]);
+    }
+
+    console.log("\n");
+    for (var prop in oMy) {
+        if (oMy.hasOwnProperty(prop)) {
+            console.log(prop + ": " + oMy[prop]);
+        }
+    }
+
+
+
+</script>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
