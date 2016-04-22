@@ -1,0 +1,54 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+
+<html>
+<head>
+    <title>Date</title>
+    <meta charset="utf-8">
+</head>
+
+<body>
+<h1></h1>
+
+<script type="text/javascript">
+    function getDate(str) {
+        var found = str.match(/(\d\d?)-(\d\d?)-(\d{4})/);
+        if (found == null) {
+            throw  new Error ("No date found in " + str + "!");
+        }
+        return new Date(Number(found[3]), Number(found[2]) - 1, Number(found[1]));
+    } try {
+        var result = getDate("02-01-2015");
+        console.log(result);
+    } catch (e) {
+        console.log(e.message);
+    }
+</script>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
