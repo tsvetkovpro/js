@@ -1,0 +1,30 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Использование изображений</title>
+<script type="text/javascript">
+	function changeImage(){
+		document.square.src = 'i/green.png';
+	}
+	var flag = false;
+	function loopImage(){
+		if(flag) {
+			document.square.src = 'i/red.png';
+		} else {
+			document.square.src = 'i/green.png';
+		}
+		flag = !flag;
+	}
+</script>
+</head>
+<body>
+
+<h1>Использование изображений</h1>
+
+<img src="i/red.png" name="square" width="200" height="200">
+<br>
+<a href="javascript:changeImage()">Сменить картинку</a><br>
+<a href="javascript:loopImage()">Менять картинки циклически</a>
+</body>
+</html>
