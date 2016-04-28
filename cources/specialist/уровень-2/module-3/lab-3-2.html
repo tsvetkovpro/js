@@ -12,6 +12,23 @@ var row = 10;
 
 function createDOM() {
 	/* Создайте в элементе div таблицу с помощью методов DOM */
+    var div = document.getElementById('d'); // выбрал элемент по его id
+    if (div.innerHTML != '') {
+        div.innerHTML = '';
+        console.log('1');
+    }
+    var t = document.createElement('table');
+    div.appendChild(t);
+    for (var i = 1; i <= row; i++) {
+        var tr = document.createElement('tr');
+        t.appendChild(tr);
+        for (var j = 1; j <= cell; j++) {
+            var td = document.createElement('td');
+            var txt = document.createTextNode(i*j);
+            td.appendChild(txt);
+            tr.appendChild(td);
+        }
+    }
 }
 </script>
 </head>

@@ -28,7 +28,27 @@
 				1.2 Если это узел-элемент - выведите его название и ...
 					вызовите эту функцию для каждого из дочерних узлов	
 		*/
-		
+
+		function showChildNodes (node, doc) {
+			if (node.nodeType == 3) {
+				doc.write('<li><em>' + node.nodeValue + '</em></li>');
+			}
+			if (node.nodeType == 1) {
+				doc.write('<li><b>' + node.nodeName + '</b></li><ul>');
+				for (var i = 0; i < node.childNodes.length; i++) {
+					showChildNodes (node.childNodes[i], doc);
+				}
+				doc.write('</ul></li>');
+			}
+		}
+
+		function showDom () {
+			var w = window.open('about:blank');
+			w.document.write('<html><body>');
+			showChildNodes(document.body, w.document);
+			w.document.write('</body></html>');
+
+		}
 		
 	</script>
 </head>
@@ -41,7 +61,7 @@
 	</div>
 	<div>
 		<h2>Запуск кода</h2>
-		<p>Для запуска кода щелкните <a href="javascript:showDOM()">здесь</a></p>
+		<p>Для запуска кода щелкните <a href="javascript:showDom()">здесь</a></p>
 	</div>
 
 </body>
