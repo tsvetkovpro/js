@@ -57,20 +57,26 @@
 			1. Оптимизируйте код
 			2. Сделайте так, чтобы выпадающие элементы div не исчезали сразу.	
 		*/
-		
+		var hideTimers = {};
 		/*
 		**	Функция показывает меню с указанным ID
 		*/
-		function showMenu(objID){
+
+		function setVisible (objID, visible) {
 			var obj = document.getElementById(objID);
-			obj.style.visibility = "visible";
+			obj.style.visibility = (visible) ? "visible" : "";
+		}
+
+		function showMenu(objID){
+			setVisible(objID, true);
+			clearTimeout(hideTimers[objID]);
 		}
 		/*
 		**	Функция убирает меню с указанным ID
 		*/
 		function hideMenu(objID){
-			var obj = document.getElementById(objID);
-			obj.style.visibility = "";
+			var cmd = "setVisible('" + objID + "', false)";
+			hideTimers[objID] = setTimeout(cmd, 200);
 		}		
 	</script>
 </head>

@@ -1,0 +1,40 @@
+﻿<!doctype html>
+
+<html>
+<head>
+	<title>Пример фотоальбома</title>
+	<meta charset="utf-8">
+	<script type="text/javascript" src="photos.js"></script>
+	<script type="text/javascript" src="photo.class.js"></script>
+	<script type="text/javascript" src="album.class.js"></script>
+	<script type="text/javascript">
+
+		// Объект фотольбома
+		  var photoAlbum;
+
+		  // Инициализация страницы
+		  function pageInit(){
+			photoAlbum = new Album(document, "photoDIV");
+			for (var i = 0; i < photos.length; i++){
+				var photo = new Photo("img/" + photos[i], document);
+				photoAlbum.add(photo);
+			}
+			photoAlbum.showNext();
+			
+		  }
+
+		  // Назначение обработчика
+		  window.onload = pageInit;		  
+	</script>	
+</head>
+
+<body style="text-align:center">
+	<h1>Пример фотоальбома</h1>
+	<div>
+		<button onclick="photoAlbum.showPrevious()">Предыдущая</button>
+		<button onclick="photoAlbum.showNext()">Следующая</button>
+	</div>
+
+
+</body>
+</html>

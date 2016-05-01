@@ -1,0 +1,27 @@
+html{
+	background:#fff;
+	cursor:default;
+	font:16px calibri, sans-serif;
+}
+
+/*Стили для блока*/
+.drag{
+	position:absolute;
+	left:100px;
+	top:100px;
+	width:200px;
+	background:#369;
+}
+.drag .top{
+	background:#369;
+	color:#fff;
+	padding:10px;
+	margin:2px;
+}
+.drag .bottom{
+	height:100px;
+	background:#fff;
+	overflow:auto;
+	margin:0 2px 2px;
+	padding:10px;
+}
