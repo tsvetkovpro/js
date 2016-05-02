@@ -15,11 +15,11 @@ console.log(x.valueOf() === y.valueOf());
 
 
 var a = [3, "blind", "mice"];
-console.log(a.valueOf());
+console.log(a.valueOf()); // [3, "blind", "mice"]
 
 
-var b = new Number(6);
-console.log(b.valueOf());
+var b = Number(6);
+console.log(b.valueOf()); // 6
 
 
 // ValueOF( ) on custom objects
@@ -32,7 +32,9 @@ var Tornado = function (category, affectedAreas, windGust) {
 
 var cities = [ ["Kansas City", 464310], ["Topeka", 127939], ["Lenexa", 49398] ];
 var twister = new Tornado( "F5", cities, 220 );
+console.log('\n');
 console.log(twister.valueOf());
+console.log('\n');
 
 
 
@@ -57,25 +59,25 @@ Tornado1.prototype.valueOf = function () {
     return sum;
 };
 
-console.log(twister1.valueOf());
+console.log(twister1.valueOf()); //  771692
 
 
 
-// Another USEFUL PrototypAL property is toString( )
+// Another USEFUL Prototypal property is toString( )
 // Default responses for Object’s toString method are often uninteresting…but overriding it is cool!
 
 var x1 = 4;
 var y1 = "4";
-console.log(x1.toString());
-console.log(y1.toString());
+console.log(x1.toString()); // 4
+console.log(y1.toString()); // 4
 
 var a1 = [3, "blind", "mice"];
-console.log(a1.toString());
+console.log(a1.toString()); // 3,blind,mic
 
 var double = function (param) {
     return param * 2;
 };
-console.log(double.toString());
+console.log(double.toString()); // function (param) {return param * 2;}
 
 
 
@@ -103,9 +105,9 @@ Tornado2.prototype.toString = function () {
     }
     return "This tornado has been classified as an " + this.category +
             ", with wind gusts up to " + this.windGust + "mph. Affected areas are: " +
-            list + ", potentially affecting a population of " +  ".";
-}
-console.log(twister2.toString());
+            list + ", potentially affecting a population of " + this.valueOf() +  ".";
+};
+console.log(twister2.toString()); // This tornado has been classified as an F5, with wind gusts up to 220mph. Affected areas are: Kansas City, Topeka, Lenexa, and Olathe, potentially affecting a population of .
 
 
 // Finding an object’s constructor and prototype
@@ -129,7 +131,7 @@ var Tornado4 = function (category, affectedAreas, windGust) {
     this.category = category;
     this.affectedAreas = affectedAreas;
     this.windGust = windGust;
-}
+};
 
 var cities4 = [ ["Kansas City", 464310], ["Topeka", 127939], ["Lenexa", 49398] ];
 var twister4 = new Tornado4( "F5", cities4, 220 );
