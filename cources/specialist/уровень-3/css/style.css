@@ -1,0 +1,135 @@
+#navigation {	
+	margin: 0 0 10px 0;
+	padding: 0;
+	list-style-type: none;	
+	position: relative;
+	z-index: 1;
+}
+
+#navigation ul {
+	margin: 0;
+	padding: 0;
+}
+
+#navigation li {
+	display: inline;
+	margin: 0;
+	padding: 0;
+}
+
+#navigation a {
+	color: black;
+	display: inline-block;
+	padding: 5px;
+}
+
+#marker {
+	top: 0;
+	background-color: yellow;
+	position: absolute;
+	z-index: -1;
+}
+#intro{
+	width: 450px;
+}
+
+body {
+	font-family: serif;
+	color: maroon;
+	background: silver;
+	font-size: 14px;
+}
+
+p {
+	padding: 5px;
+}
+
+
+
+#container{
+	margin:0 auto;
+	text-align: left;
+	width: 650px;
+}
+
+#header{
+	height: 60px;
+	color: #800000;
+}
+
+#header h1
+{
+	padding:0;
+	margin:0;
+}
+
+#content{
+	background-color: #eee;
+	padding: 0 15px 10px 15px;
+
+} 
+
+#footer{
+	background-color: #eee;
+	padding:15px;
+	clear: both;
+}
+
+h2 {
+	border-bottom:2px dotted #800000;
+	color: #800000;
+	padding-top: 10px;
+	margin-top: 0;
+}
+
+table {
+	border-collapse:collapse;
+	font-size:12px;
+	margin:0 20px 20px 20px;
+	width:500px;
+}
+
+th {
+	background-color: white;
+	color: maroon;
+	font-size: 14px;
+	font-weight: bold;
+	text-align: left;
+	padding: 3px 8px;
+}
+
+td {
+	padding: 6px;
+}
+#trainers {
+  margin-bottom: 10px;
+}
+
+#trainers h3 {
+  margin:0;
+  padding:5px 0 5px 10px;
+  background-color:#94C5EB;
+  border-bottom:1px solid #fff;
+  color: #00314F;
+  font-weight:normal;
+}
+
+#trainers div {
+  height:120px;
+  background-color: #F4F4EE;
+  border-bottom:1px solid #fff;
+  position: relative;
+}
+
+#trainers img {
+  margin:10px;
+  background-color: #F4F4EE;
+}
+
+#trainers p {
+  position: absolute;
+  left: 120px;
+  top: 10px;
+  margin: 0 10px 0 0;
+  padding: 0;
+}

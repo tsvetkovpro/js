@@ -94,6 +94,14 @@ var cities2 = [ ["Kansas City", 464310], ["Topeka", 127939], ["Lenexa", 49398] ]
 var twister2 = new Tornado2( "F5", cities2, 220 );
 cities2.push( ["Olathe", 130045] );
 
+Tornado2.prototype.valueOf = function() {
+    var sum = 0;
+    for (var i = 0; i < this.affectedAreas.length; i++) {
+        sum += this.affectedAreas[i][1];
+    }
+    return sum;
+}
+
 Tornado2.prototype.toString = function () {
     var list = "";
     for (var i = 0; i < this.affectedAreas.length; i++) {
