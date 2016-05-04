@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="ru">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>Начало</title>
+    <link rel="stylesheet" href="../css/style.css" type="text/css"/>
+    <script src="../lib/jquery.js" type="text/javascript"></script>
+    <script>
+        $(function() {
+            $('div#box ul li:even').css('color', 'green');
+        });
+
+        $(function() {
+            $('div#box2 ul li:even').css({
+                'color': 'black',
+                'background': 'white'
+            });
+        });
+
+        $(function() {
+            $('div#box3 ul.first').children('li').css({
+                'color': '#5D9CEC',
+                'background': '#656D78'
+            });
+        });
+
+        $(function() {
+            var x = $('p.paragraph')
+                    .children('a')
+                    .eq(1)
+                    .text('NEw')
+                    .text();
+            console.log(x);
+        });
+
+
+        // функция в качестве параметра
+        $(function() {
+            var x = $('div#box4 li')
+                    .html(function(idx, old){
+                       return old + ' !!!';
+                    })
+                    .css({
+                        'color': '#B83B5E',
+                        'background': '#F9ED69'
+                    });
+            console.log(x);
+        });
+
+
+        // добавить в выборку после
+        $(function () {
+            var p = $('p');
+            var a = p.add('a');
+            console.log(p); // Object[p.paragraph, p.paragraph, p.paragraph, p.paragraph, p.paragraph]
+            console.log(a); // Object[p.paragraph, a #, p.paragraph, a #, p.paragraph, a #, p.paragraph, a #, p.paragraph, a #]
+        });
+
+        $(function(){
+            var x = $('p.paragraph1')
+                    .children()
+                    .css({
+                        'text-decoration': 'none',
+                        'color': '#FFCE54'
+                    });
+            console.log(x);
+        });
+
+
+
+    </script>
+    <style></style>
+</head>
+<body>
+<div id='box'>
+    <ul>
+        <li>Первый пункт</li>
+        <li>Второй пункт</li>
+        <li>Третий пункт</li>
+        <li>Четвертый пункт</li>
+    </ul>
+</div>
+
+
+<div id='box2'>
+    <ul>
+        <li>Первый пункт</li>
+        <li>Второй пункт</li>
+        <li>Третий пункт</li>
+        <li>Четвертый пункт</li>
+    </ul>
+</div>
+
+
+<div id='box3'>
+    <ul class="first">
+        <li>Первый пункт</li>
+        <li>Второй пункт</li>
+        <li>Третий пункт</li>
+        <li>Четвертый пункт</li>
+    </ul>
+
+    <ul>
+        <li>Первый пункт</li>
+        <li>Второй пункт</li>
+        <li>Третий пункт</li>
+        <li>Четвертый пункт</li>
+    </ul>
+</div>
+
+<p class="paragraph"><a href="#">Link 1</a></p>
+<p class="paragraph"><a href="#">Link 2</a></p>
+<p class="paragraph"><a href="#">Link 3</a></p>
+<p class="paragraph"><a href="#">Link 4</a></p>
+<p class="paragraph"><a href="#">Link 5</a></p>
+
+<br />
+
+<p class="paragraph1"><a href="#">Link 1</a></p>
+<p class="paragraph1"><a href="#">Link 2</a></p>
+<p class="paragraph1"><a href="#">Link 3</a></p>
+<p class="paragraph1"><a href="#">Link 4</a></p>
+<p class="paragraph1"><a href="#">Link 5</a></p>
+
+<div id='box4'>
+    <ul class="first">
+        <li>Первый пункт</li>
+        <li>Второй пункт</li>
+        <li>Третий пункт</li>
+        <li>Четвертый пункт</li>
+    </ul>
+</div>
+</body>
+</html>
