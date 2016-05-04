@@ -5,8 +5,58 @@
 		<title>События</title>
 		<script src="../lib/jquery.js" type="text/javascript"></script>
 		<script>
+			/*$(function(){
+				$('button').click(function(){
+					console.log(this); // - это DOM, jQuery - $(this)
+					console.log($(this));
+				});
+			});*/
+
+
+			// Рекомендуется так:
 			$(function(){
+				$('p.123').on('click', function(){
+					console.log('Click on link');
+				});
 			});
+
+			$(function(){
+				function toggle($obj){
+					$obj
+							.siblings('button')
+								.removeAttr('disabled')
+								.end() // заканчиваем работать с этим контекстом и выскакиваем
+							.attr('disabled', 'disabled');
+				}
+				$('#show').on('click', function(){
+					$('div#box').show();
+					toggle($(this));
+				});
+				$('#hide').on('click', function(){
+					$('div#box').hide();
+					toggle($(this));
+				});
+			});
+
+			$(function(){
+				$('#one').on('click', function() {
+					if($('#box').is(':visible')) {
+						$('#box').hide();
+						$(this).text('Показать');
+					} else {
+						$('#box').show();
+						$(this).text('Скрыть');
+					}
+				});
+			});
+
+			// вместо этого можно toggle
+			$(function(){
+				$('#oneToggle').on('click', function(){
+					$('#box').toggle();
+				});
+			});
+
 		</script>
 		<style>
 			div#box{width: 50%; margin: auto; border: 3px dotted green; text-align: center;}
@@ -14,6 +64,7 @@
 		</style>
 	</head>
 	<body>
+	<p class="123"><a href="#">Ссылка</a></p>
 	<div id="buttons">
 		<button id="hide">Hide</button>
 		<button id="show">Show</button>
@@ -21,5 +72,8 @@
 	<div id="box">
 		<h1>Привет всем!</h1>
 	</div>
+	</div>
+		<button id="one">Скрыть</button>
+		<button id="oneToggle">Скрыть-Toggle</button>
 	</body>
 </html>
