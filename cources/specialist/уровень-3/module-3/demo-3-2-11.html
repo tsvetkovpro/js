@@ -6,41 +6,12 @@
     <script src="../lib/jquery.js" type="text/javascript"></script>
     <script>
         $(function () {
-            $('button#one').on('click', function () {
+            $('button#one').on('click', function() {
                 var content = $('div.content');
-                content.animate({ // метод css меняем на animate
-                    'font-size': '+=1.2', // текущий размер увеличиваем на 5
-                    // нет такого функционала у метода animate'color': 'blue'
-                    'width': '+=100'
-                }, 3000);
+                var pos = $(window).width() / 2 - content.outerWidth() / 2;
+                content.css('left', pos);
+                console.log(pos);
             });
-
-            $('button#two').on('click', function () {
-                var content = $('div.content2');
-                content.animate(
-                        {'font-size': '+=1.2', 'width': '+=100'},
-                        {
-                            duration: 3000, // это уже не параметр для animate, а одно из его свойств
-                            complete: function() {console.log('stoped! ' + this);},
-                            step: function() {console.log('step! ' + $(this).css('font-size'));}
-                        }
-                );
-            });
-
-            $('button#three').on('click', function () {
-                var content = $('div.content3');
-                content
-                        .animate(
-                                {'font-size': '+=3'},
-                                {duration: 500}
-                        )
-                        .animate(
-                                {'top': 500},
-                                {duration: 3000, queue: true}
-                        );
-            });
-
-
         });
     </script>
     <style>
@@ -48,19 +19,19 @@
             width: 400px;
             background: #6cff85;
             padding: 2em;
-            position: relative
+            position: relative;
         }
         .content2 {
             width: 400px;
             background: #425dff;
             padding: 2em;
-            position: relative
+            position: relative;
         }
         .content3 {
             width: 400px;
             background: #f355ff;
             padding: 2em;
-            position: relative
+            position: relative;
         }
     </style>
 </head>

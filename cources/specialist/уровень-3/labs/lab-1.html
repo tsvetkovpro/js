@@ -23,15 +23,18 @@
          <a class="doc" href="xml.pdf">описание</a>
          */
 
-
         $(function() {
+
+            // 1
             $('table#courses').find('tr:even').css('color', 'green');
+            var ajaxString = $('tbody tr:first td').eq(1).text();
+            $('div#news p:last-child span').text(ajaxString);
 
-            var x = $('table#courses td').eq(6).text();
-            var spanText = $('div#news p').eq(2).find('span').text(x);
 
-            var kod = $('table#courses tr').find('td:first').text();
-            console.log(kod);
+            // 2
+            var kodCource = $('table.data tr').find('td:first').text();
+
+            console.log(kodCource);
 
         });
 

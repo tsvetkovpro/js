@@ -6,16 +6,21 @@
 		<script src="../lib/jquery.js" type="text/javascript"></script>
 		<script>
 			$(function(){
-				$('#toggle').click(function() {
-					if ($('#box').is(':visible')) {
-						$('#box').hide();
-					} else {
-						$('#box').show();
-					}
-				});
 				/*$('#toggle').click(function() {
-					$('#box').toggle();
+					if ($('#box').is(':visible')) {
+						$('#box').fadeOut(); //slideUp();
+					} else {
+						$('#box').fadeIn(); //slideDown();
+					}
 				});*/
+				$.fx.speeds._default = 2000; // переопределяем jQuery
+				$.fx.speeds.veryFast = 100; // добавляем своё свойство
+				$.fx.speeds.verySlow = 10000;
+				$('#toggle').click(function() {
+					$('#box').slideToggle('fast'); // объединённый slideUp slideDown  //fadeToggle();
+					//$('#box').slideToggle('slow'); // объединённый slideUp slideDown  //fadeToggle();
+				});
+				console.log($.fx.speeds);
 			});
 		</script>
 		<style>

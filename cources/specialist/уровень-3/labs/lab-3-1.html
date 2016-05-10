@@ -17,7 +17,27 @@
 		- Привяжите событие "mouseleave" к элементу <div>, при котором 
 			- список <ul> ПЛАВНО показывается
 			- цвета	элемента <div> и третьего элемента списка возвращаются к первоначальному состоянию
-	*/	
+	*/
+
+		$(function() {
+			var div = $('div#container');
+			div.on('mouseenter', function() {
+				$(this).css('background-color', 'yellow')
+						.find('li')
+						.eq(2).css('background-color', 'red');
+			});
+
+			div.on('click', function () {
+				$('ul').fadeOut();
+			});
+
+			div.on('mouseleave', function()	{
+				$(this).css('background-color', '')
+						.find('li')
+						.eq(2).css('background', '')
+			});
+
+		});
 	</script>
 	<style> 
 		.mylist{}
