@@ -1,49 +1,78 @@
 ﻿<!doctype html>
 <html>
 <head>
-	<meta charset=utf-8>
-	<title>Лабораторная работа 3-2</title>
-	<script src="../lib/jquery.js" type="text/javascript"></script>
-	<script>
-	/** ЗАДАНИЕ 1
-		- Создать свой метод inOut, который эмулирует функционал методов slideToggle и fadeToggle
-			Сами методы slideToggle и fadeToggle в коде не использовать!
-		- Метод должен вызываться примерно так:
-			$('div.container').inOut();
-		- Метод inOut должен отрабатываться при нажатии кнопки "Нажми меня" примерно так:
-			$('button').on('click', function(){
+    <meta charset=utf-8>
+    <title>Лабораторная работа 3-2</title>
+    <script src="../lib/jquery.js" type="text/javascript"></script>
+    <script>
+        /** ЗАДАНИЕ 1
+         - Создать свой метод inOut, который эмулирует функционал методов slideToggle и fadeToggle
+         Сами методы slideToggle и fadeToggle в коде не использовать!
+         - Метод должен вызываться примерно так:
+         $('div.container').inOut();
+         - Метод inOut должен отрабатываться при нажатии кнопки "Нажми меня" примерно так:
+         $('button').on('click', function(){
 				$('div.container').inOut();
 			});
-		 
-		- Подсказки:
-			- использовать animate
-			- jQuery допускает использование строки "toggle", как значения для св-в "height" и "opacity"
-			- предусмотреть возможность изменения скорости
-	*/
-	</script>
-	<style>
-	body { width: 400px; margin: 100px auto; }
 
-	.container {
-		width: 400px;
-		background: yellow;
-		position: relative;
-		overflow: hidden;
-		padding: 1em;
-	}
-	</style>
+         - Подсказки:
+         - использовать animate
+         - jQuery допускает использование строки "toggle", как значения для св-в "height" и "opacity"
+         - предусмотреть возможность изменения скорости
+         */
+        var arr = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+        var mY = $.grep(arr, function (v, k) {
+            return v > 5;
+        }, false);
+        console.log(mY);
+
+
+        var users = [
+            {first: 'Ivan', last: 'Petrov'},
+            {first: 'Sergey', last: 'Ivanov'},
+            {first: 'In', last: '3'},
+            {first: 'Ivn', last: '4'},
+        ];
+        var mY2 = $.grep(users, function (v, k) {
+            return v.last === '3';
+        });
+        console.log(mY2);
+
+
+
+
+    </script>
+    <style>
+        body {
+            width: 400px;
+            margin: 100px auto;
+        }
+
+        .container {
+            width: 400px;
+            background: #718dff;
+            position: relative;
+            overflow: hidden;
+            padding: 1em;
+        }
+    </style>
 </head>
 <body>
 
 
 <div class="container">
-	<h2>Какой-то текст</h2>
-	<p>
-		Неспроста свинцовый сосуд мгновенно открывает квазиупругую колбу. Карусель быстра и кратковременна. Часто бывает, что ядерная лапка груба и продуманна. Очевидно, феноменальная шестерня брезентового комплекта бережно увеличивает тайную лампу. Изящное значение резко и метастабильно. Платиновая инерция перегоревшего изолятора образовывает разделение. Свет преднамерен и замысловат. Шланг предумышленен. Деревянное открытие периодично. Базальтовый проектировщик груб. Замкнутый болт наполняет шип. Нагруженность эпизодична и кратковременна.
-	</p>
+    <h2>Какой-то текст</h2>
+    <p>
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Beatae corporis, cumque deleniti deserunt dolore
+        expedita fugit ipsum numquam officia officiis optio pariatur placeat, praesentium quisquam recusandae sint ullam
+        vitae? Perspiciatis rem tenetur veritatis. Consectetur consequatur dolorem dolorum eius eveniet in incidunt
+        ipsa, nemo optio, quaerat quis rem reprehenderit sed sequi?
+    </p>
 </div>
 
-<p><button>Нажми меня</button></p>
+<p>
+    <button>Нажми меня</button>
+</p>
 
 <script>
 

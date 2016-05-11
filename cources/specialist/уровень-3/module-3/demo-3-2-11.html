@@ -9,8 +9,25 @@
             $('button#one').on('click', function() {
                 var content = $('div.content');
                 var pos = $(window).width() / 2 - content.outerWidth() / 2;
-                content.css('left', pos);
+                var posH = $(window).height() / 2 - content.outerHeight() / 2;
+                content.animate({ // css меняем на animate
+                    'left': pos,
+                    'position': 'absolute'
+                })
+                        .animate(
+                                {'top': posH},
+                                {duration: 200, queue: false}
+                        );
                 console.log(pos);
+            });
+
+
+            // как создать свою функцию, чтобы она работала как метод jQuery
+            // $.fn - чтобы был мой метод, который будет применяться к объектам
+            // $.fn.myMethod = function () {} - после это мой метод станет встроенным
+            // и я могу написать  $('button#two').myMethod
+            $('button#two').on('click', function() {
+                $('div.content2').animate('opacity', 'toggle');
             });
         });
     </script>
@@ -55,14 +72,14 @@
     </p>
 </div>
 
-<div class=content3>
+<!--<div class=content3>
     <h1>Какой-то текст</h1>
     <p>
         Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corporis deleniti dolores eius error fugiat hic
         laborum odit ratione unde veniam? Culpa delectus earum est illum ipsam maiores, reiciendis ullam! Dolorum
         eligendi fuga ipsam molestias mollitia quibusdam sunt totam veritatis voluptatum.
     </p>
-</div>
+</div>-->
 
 <p>
     <button id="one">Изменить</button>
