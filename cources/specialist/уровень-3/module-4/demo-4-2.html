@@ -6,11 +6,31 @@
 	<script src="../lib/handlebars.js" type="text/javascript"></script>
 </head>
 <body>
+
+<ul id="users">
+
+</ul>
 <script id="myTemplate" type="text/x-handlebars-template">
-	
+	{{#each this}}
+	<li>
+		<h3>{{name}}</h3>
+		<p>Email: {{email}}</p>
+	</li>
+	{{/each}}
 </script>
 
 <script>
+	(function () {
+		var user = [
+			{'name': 'Ivan Petrov', 'email': 'ivan@petrov.ru'},
+			{'name': 'Petr Ivanov', 'email': 'petr@ivanov.ru'}
+		];
+
+		var temp = Handlebars.compile(document.getElementById('myTemplate').innerHTML);
+		document.getElementById('users').innerHTML = temp(user);
+
+		console.log(temp(user));
+	})();
 </script>
 </body>
 </html>

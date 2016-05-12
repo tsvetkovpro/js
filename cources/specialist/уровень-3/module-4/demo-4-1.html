@@ -4,9 +4,52 @@
 	<meta charset=utf-8>
 	<title>Слайд-шоу</title>
 	<style>
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		#show {
+			display: none;
+			margin-top: 1em;
+		}
+		#show button {
+			padding: 1em;
+			margin-right: 1em;
+			cursor: pointer;
+		}
+		body{
+			width: 400px;
+			margin: 100px auto 0;
+		}
+		.view {
+			width: inherit;
+			height: 200px;
+			overflow: scroll;
+		}
+		.view ul {
+			list-style: none;
+			width: 10000px;
+		}
+		.view li {
+			float: left;
+		}
 	</style>
 </head>
 <body>
+
+<div class="view">
+	<ul>
+		<li><img src="img/red.gif" alt=""></li>
+		<li><img src="img/green.gif" alt=""></li>
+		<li><img src="img/yellow.gif" alt=""></li>
+		<li><img src="img/blue.gif" alt=""></li>
+	</ul>
+</div>
+
+<div id="show">
+	<button id="prev">Назад</button>
+	<button id="next">Вперёд</button>
+</div>
 
 <script src="../lib/jquery.js" type="text/javascript"></script>
 <script src="slide-show.js"></script>
