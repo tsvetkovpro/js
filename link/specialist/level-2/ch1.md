@@ -57,3 +57,6 @@
 9. Использование фазы всплытия событий
 10. Отмена всплытия события 
 ```
+
+
+* [Материалы в pdf](https://github.com/tsvetkovpro/js/tree/master/cources/specialist/%D1%83%D1%80%D0%BE%D0%B2%D0%B5%D0%BD%D1%8C-2/pdf)

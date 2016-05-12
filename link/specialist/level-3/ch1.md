@@ -48,3 +48,5 @@ DOM: отношения элементов
 Создание шаблонизатора
 Использование шаблонизатора Handlebars
 ```
+
+* [Материалы в pdf](https://github.com/tsvetkovpro/js/blob/master/cources/specialist/%D1%83%D1%80%D0%BE%D0%B2%D0%B5%D0%BD%D1%8C-3/pdf/%D0%A0%D0%B0%D0%B1%D0%BE%D1%87%D0%B0%D1%8F%20%D1%82%D0%B5%D1%82%D1%80%D0%B0%D0%B4%D1%8C%20jQuery.pdf)
