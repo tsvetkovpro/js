@@ -1,0 +1,88 @@
+<meta charset="utf-8">
+<script>
+	function getRandomInt (min, max) {
+		return Math.floor(Math.random() * (max - min + 1)) + min;
+	}
+
+	function getCard () {
+		var cards = ['6', '7', '8', '9', '10', 'J', 'Q', 'K', 'A'];
+		return cards[getRandomInt(0, cards.length - 1)];
+	}
+
+	function getSum (hand) {
+		var sum = 0;
+
+		// сначала считаем все карты кроме тузов
+		for (var i = 0; i < hand.length; i++ ) {
+			var card = hand[i];
+			if (card != 'A') {
+				if (card == 'J' || card == 'Q' || card == 'K') {
+					sum = sum + 10;
+				} else {
+					sum = sum + parseInt(card);
+				}
+			}
+		}
+
+		// туз счтается как 1, если текущая сумма больше 10, иначе - как 11
+		for (var i = 0; i < hand.length; i++) {
+			var card = hand[i];
+			if (card == 'A') {
+				if (sum > 10) {
+					sum = sum + 1;
+				} else {
+					sum = sum + 11;
+				}
+			}
+		}
+		return sum;
+	}
+
+	function getStatus () {
+		return 'Дилер: ' + dealer.join(' ') + ' Игрок: ' + player.join(' ') + '.';
+	}
+
+
+	var dealer = [getCard()];
+	var player = [getCard(), getCard()];
+
+
+	var answer = '';
+	do {
+		answer = prompt(getStatus() + ' Хотите ещё карту? 1 - Да, иначе - нет');
+
+		// сдаём карту игроку либо прекращаем игру
+		if(answer == '1') {
+			player.push(getCard());
+
+			// проверяем нет ли перебора или выигрыша
+			sum = getSum(player);
+			if (sum > 21) {
+				alert('Перебор ' + getStatus());
+				break;
+			} else if (sum == 21) {
+				alert('BlackJack ' + getStatus());
+				break;
+			}
+		}
+
+		alert(getStatus());
+	} while (answer == '1');
+
+
+
+
+
+
+
+
+
+
+
+/*	for (var i = 0; i < 10; i++) {
+		dealer = [getCard()];
+		player = [getCard(), getCard()];
+		console.log('Дилер: ' + dealer.join(' ') + ' Игрок: ' + player.join(' '));
+		console.log('\n');
+	}*/
+</script>

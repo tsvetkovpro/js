@@ -28,6 +28,12 @@
 
 &nbsp;
 
+##### Примеры из пройденных он-лайн курсов:
+* [Geekbrains - Основы программирования](link/others/geekbrains-ru/ch1.md)
+
+
+&nbsp;
+
 #### Ресурсы
 - [Awesome JavaScript](https://github.com/sorrycc/awesome-javascript) - A collection of awesome browser-side JavaScript libraries, resources and shiny things.
 - [Современный учебник JavaScript](http://learn.javascript.ru/) - учебник по JavaScript, начиная с основ, включающий в себя много тонкостей и фишек JavaScript/DOM.

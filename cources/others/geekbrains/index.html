@@ -1,0 +1,92 @@
+<meta charset="utf-8">
+<script>
+/*	var a = prompt("Enter A:");
+	var b = prompt("Enter B:");
+	a = parseInt(a);
+	b = parseInt(b);
+	alert(a + b);*/
+
+
+	// загадки
+	/*var a2 = prompt("Сижу верхом, не ведамо на ком!");
+	if (a2 == 'шапка') {
+		alert ('Верный ответ!');
+	} else {
+		alert ('НЕ верный ответ!');
+	}
+	alert ('Конец');*/
+/*
+	var score = 0;
+	var answer = '';
+
+	answer = prompt("Загадка 1");
+	if (answer == '1') {
+		alert('Верно');
+		score = score + 1;
+	} else {
+		alert('Не верно');
+	}
+
+	answer = prompt("Загадка 2");
+	if (answer == '2') {
+		alert('Верно');
+		score = score + 1;
+	} else {
+		alert('Не верно');
+	}
+
+	alert("Верных ответов:" + score);
+*/
+
+/*	var angle = prompt('A:');
+	angle = parseInt(angle);
+
+	if ( ( (angle >= 15) && (angle <= 30) ) || ( (angle >= 45) && (angle <= 60) ) ) {
+		alert ("Цель поражена");
+	} else {
+		alert ("Промашка");
+	}*/
+
+/*	var money = parseInt(prompt('Сумма вклада:'));
+	var interest = parseInt(prompt('Процентная ставка, %:'));
+	var years = parseInt(prompt('Количество лет:'));
+
+	for (var i = 1; i <= years; i++) {
+		money = money + money * interest / 100;
+		console.log("Прошло лет: " + i + ", сумма на счету: " + Math.floor(money));
+	}*/
+
+
+	// красное - черное - зеро вероятность выпадения
+	var arr = [];
+	var rounds = 100;
+	var n = 0;
+	var i = 0;
+	var max_length = 0;
+	var length = 0;
+
+	for (i = 0; i <= rounds; i++) {
+		n = Math.round(Math.random() * 36);
+		if ( n != 0) {
+			n = (n % 2) * 2 - 1;
+		}
+		arr.push(n);
+	}
+	console.log(arr);
+
+	for (i = 0; i < arr.length; i++) {
+		if (arr[i] == 1) {
+			length = 0;
+			while (i < arr.length && arr[i] == 1) {
+				i++;
+				length++;
+			}
+			if (length > max_length) {
+				max_length = length;
+			}
+		}
+	}
+
+	console.log('Максимально длинная красная последовательность: ' + max_length);
+
+</script>
