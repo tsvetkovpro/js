@@ -138,7 +138,7 @@ long text.
 Regards, ${admin.fullNa}
 `;
 sp();
-console.log(veryLongText)
+console.log(veryLongText);
 
 
 
