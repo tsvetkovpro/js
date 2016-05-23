@@ -40,10 +40,13 @@ console.log(active);
 let [a2, b2, c2] = activeUsers();
 console.log(cssInConsole, outputInConsole, `${a2} ${b2} ${c2}`);
 
+let [a21, b21, c21] = activeUsers();
+console.log(cssInConsole, outputInConsole, `${a21} ${b21} ${c21}`);
+
 
 
 // Using for...of to Loop Over Arrays
-// The for...of statement iterates over property values, and it’s a better way to loop over arrays and other iterable objects.
+// The for...of statement  iterates over property values, and it’s a better way to loop over arrays and other iterable objects.
 
 let names = ["name13", "name23", "name33"];
 
