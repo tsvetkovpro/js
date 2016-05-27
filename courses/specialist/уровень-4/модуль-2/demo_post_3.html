@@ -1,0 +1,64 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ru" lang="ru" dir="ltr">
+<head>
+	<title>Передача данных методом POST</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="Content-Language" content="ru" />
+	<link rel="stylesheet" type="text/css" href="demo_post_3.css" />
+	<script type="text/javascript" src="xmlhttprequest.js"></script>
+	<script type="text/javascript" src="ulresultfunctions.js"></script>
+	<script type="text/javascript">
+		function searchBook()
+		{
+			// Параметры поиска
+			var title = document.getElementById("txtTitle").value;
+			var author = document.getElementById("txtAuthor").value;
+			// Формирование строки поиска
+			var searchString = "title=" + encodeURIComponent(title) + "&" + "author=" + encodeURIComponent(author);
+			alert("searchString: " + searchString);
+			
+			// Запрос к серверу
+			var req = getXmlHttpRequest();
+			req.onreadystatechange = function()
+				{
+					if (req.readyState != 4) return;
+					var responseText = new String(req.responseText);
+					var books = responseText.split('\n');
+					clearList();
+					for (var i = 0; i < books.length; i++)
+						addListItem(books[i]);
+				}
+				
+			// Метод POST
+			req.open("POST", "searchbook.php", true);
+
+			// Установка заголовков
+			req.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+			req.setRequestHeader("Content-Length", searchString.length);
+			
+			// Отправка данных
+			req.send(searchString);			
+			
+		}
+	</script>
+</head>
+<body>
+	<h1>Передача данных методом POST</h1>
+	<form onsubmit="return false">
+		<fieldset>
+			<legend>Поиск книг</legend>
+			<div>
+				<label for="txtAuthor">Автор</label>
+				<input id="txtAuthor" type="text" name="author" />
+			</div>
+			<div>
+				<label for="txtTitle">Название</label>
+				<input id="txtTitle" type="text" name="title" />
+			</div>		
+			<button onclick="searchBook()">Поиск</button>
+		</fieldset>
+	</form>
+	<ul id="ulResult"></ul>
+</body>
+</html>
+

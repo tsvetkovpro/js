@@ -1,0 +1,30 @@
+﻿/*
+** Таблица стилей для примеров
+*/
+form
+{
+	background-color: #eee;
+	width: 38em;
+	padding: 1em;
+	border: 1px solid gray;
+}
+
+form div label
+{
+	display: block;
+	width: 5em;
+	float: left;
+}
+
+form div input
+{
+	width: 30em;
+}
+
+
+form button
+{
+	display: block;
+	margin: auto;
+	margin-top: 1em;
+}

@@ -1,0 +1,35 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ru" lang="ru" dir="ltr">
+<head>
+	<title>Кеширование при запросе GET</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="Content-Language" content="ru" />
+	<script type="text/javascript" src="xmlhttprequest.js"></script>
+	<script type="text/javascript">
+		// Запрос данных
+		function showServerTime()
+		{
+			var req = getXmlHttpRequest();
+			req.onreadystatechange = function()
+				{
+					if (req.readyState != 4) return;
+					var spanTime = document.getElementById("spanTime");
+					spanTime.firstChild.nodeValue = req.responseText;
+				}
+			req.open("GET", "gettime.php", true);
+			req.send(null);
+		}
+		
+		// Автозапуск
+		window.onload = function()
+			{
+				setInterval("showServerTime()", 1000);
+			}
+	</script>
+</head>
+<body>
+	<h1>Кеширование при запросе GET</h1>
+	<h2>На сервере <span id="spanTime">&nbsp;</span></h2>
+</body>
+</html>
+
