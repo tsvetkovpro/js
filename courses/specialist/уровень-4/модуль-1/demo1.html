@@ -1,0 +1,28 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ru" lang="ru" dir="ltr">
+<head>
+	<title>Пример запроса данных с сервера</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="Content-Language" content="ru" />
+	<script type="text/javascript" src="xmlhttprequest.js"></script>
+	<script type="text/javascript">
+		function showDemoSample()
+		{
+			// Адрес текущей страницы
+			var url = location.href;
+			// Объект XMLHttpRequest
+			var request = getXmlHttpRequest();
+			// Запрос на сервер
+			request.open("GET", url, false);
+			request.send(null);
+			// Чтение ответа
+			alert(request.responseText);
+		}
+	</script>
+</head>
+<body>
+	<h1>Пример запроса данных с сервера</h1>
+	<p><button onclick="showDemoSample()">Пробуем!</button></p>
+</body>
+</html>
+

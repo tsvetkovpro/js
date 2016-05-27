@@ -1,0 +1,61 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ru" lang="ru" dir="ltr">
+<head>
+	<title>Лабораторная работа 1</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="Content-Language" content="ru" />
+	<script type="text/javascript">
+		/*
+		** Задание 1: Напишите функцию создания объекта XmlHttpRequest
+		**     function getXmlHttpRequest()
+		*/
+		function getXmlHttpRequest(){
+			if(window.XMLHttpRequest)
+				return new XMLHttpRequest();
+			else
+				return null;
+		}
+
+		
+		/*
+		** Задание 2: Напишите Функцию (функции) запроса к серверу (getbooktxt.php), 
+		** которая АСИНХРОННО запрашивает нужную книгу по номеру (getbooktxt.php?num=1)
+		** и выводит строку с названием этой книги в элемент divResult HTML страницы
+		**     function getBookByNumber(number)
+		*/
+		function getBookByNumber(number){
+			var req = getXmlHttpRequest();
+			req.onreadystatechange = function(){
+				if(req.readyState != 4) return;
+				var result = document.getElementById('divResult');
+				result.firstChild.nodeValue = req.responseText;
+			};
+			req.open('GET', 'getbooktxt.php?num='+number, true);
+			req.send(null);
+		}
+			
+		
+		/*
+		** Задание 3: Напишите код обработчика нажатия на кнопку
+		** Эта функция должна прочитать введенное значение в поле txtNum
+		** и вызвать функцию getBookByNumber(value)
+		**     function showBook()
+		*/ 
+		function showBook(){
+			var txt = document.getElementById('txtNum');
+			getBookByNumber(txt.value);
+		}
+	</script>
+</head>
+<body>
+	<h1>Лабораторная работа 1</h1>
+	<form onsubmit="return false">
+		<label for="txtNum">Введите номер книги:</label>
+		<input id="txtNum" type="text" />
+		<!-- Задание 4: не забудьте поставить обработчик нажатия -->
+		<button onclick="showBook()">Поиск</button>
+	</form>
+	<div id="divResult">&nbsp;</div>
+</body>
+</html>
+
