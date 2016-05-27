@@ -1,0 +1,27 @@
+﻿/*
+** Таблица стилей для примеров
+*/
+form
+{
+	width: 15em;
+	float: left;
+	padding-right: 1em;
+	border-right: 1px dotted gray;
+}
+
+form label
+{
+	display: block;
+}
+
+form select
+{
+	width: 100%;
+}
+
+form button
+{
+	display: block;
+	margin: auto;
+	margin-top: 1em;
+}

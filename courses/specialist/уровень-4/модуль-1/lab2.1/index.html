@@ -1,0 +1,59 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ru" lang="ru" dir="ltr">
+<head>
+	<title>Книги по категориям</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="Content-Language" content="ru" />
+	<link rel="stylesheet" type="text/css" href="mod_2_1.css" />
+	<script type="text/javascript" src="xmlhttprequest.js"></script>
+	<script type="text/javascript">
+		/*
+		** Задание 1: Заполните элемент selCategory списом категорий книг.
+		** Для этого напишите функцию fillCategories и вызовите ее из 
+		** события window.onload. Список категорий вы можете получить
+		** из скрипта getcategories.php в виде текстового документа со строками,
+		** разделенными \n - символ новой строки
+		** Формат строк: "код:назввание", например "1:Web"
+		*/
+		function fillCategories(){
+			var req = getXmlHttpRequest();
+			req.onreadystatechange = function(){
+				if(req.readyState != 4) return;
+				var selCat = document.getElementById('selCategory');
+				var txt = req.responseText;
+				var cats = txt.split("\n");
+				for(var i=0; i<cats.length; i++){
+					if(cats[i] == '') continue;
+					var chunks = cats[i].split(":");
+					var opt = document.createElement('option');
+					opt.setAttribute('value', chunks[0]);
+					var optTxt = document.createTextNode(chunks[1]);
+					opt.appendChild(optTxt);
+					selCat.appendChild(opt);
+				}
+				selCat.size = selCat.options.length;	
+			};
+			req.open('GET', 'getcategories.php', true);
+			req.send(null);
+		}
+		
+		// При завершении загрузки страницы
+		window.onload = function()
+		{
+			fillCategories()
+		}
+		
+	</script>
+</head>
+<body>
+	<h1>Книги по категориям</h1>
+	<form onsubmit="return false">
+		<div>
+			<label for="selCategory">Категория</label>
+			<select id="selCategory"></select>
+			<button onclick="">Показать</button>
+		</div>
+	</form>
+</body>
+</html>
+
