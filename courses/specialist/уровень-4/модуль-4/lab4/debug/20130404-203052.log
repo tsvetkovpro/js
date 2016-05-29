@@ -1,0 +1,98 @@
+XMLRPC_parse: Received the following raw request:
+<?xml version="1.0" encoding="utf-8"?>
+<methodCall>
+<methodName>eshop.getDeliveryMethods</methodName>
+<params>
+</params>
+</methodCall>
+
+XMLRPC_parse: Returning the following parsed request:
+Array
+(
+    [methodCall] => Array
+        (
+            [methodName] => eshop.getDeliveryMethods
+            [params] => 
+
+        )
+
+)
+
+
+XMLRPC_response: Received the following data to return:
+
+Array
+(
+    [array] => Array
+        (
+            [data] => Array
+                (
+                    [value] => Array
+                        (
+                            [0] => Array
+                                (
+                                    [string] => Без доставки
+                                )
+
+                            [1] => Array
+                                (
+                                    [string] => Доставка курьером
+                                )
+
+                            [2] => Array
+                                (
+                                    [string] => Доставка почтой
+                                )
+
+                            [3] => Array
+                                (
+                                    [string] => Доставка UPS
+                                )
+
+                            [4] => Array
+                                (
+                                    [string] => Доставка Fedex
+                                )
+
+                        )
+
+                )
+
+        )
+
+)
+
+
+XMLRPC_response: Sent the following response:
+
+<?xml version="1.0" ?>
+<methodResponse>
+	<params>
+		<param>
+			<value>
+				<array>
+					<data>
+						<value>
+							<string>Без доставки</string>
+						</value>
+						<value>
+							<string>Доставка курьером</string>
+						</value>
+						<value>
+							<string>Доставка почтой</string>
+						</value>
+						<value>
+							<string>Доставка UPS</string>
+						</value>
+						<value>
+							<string>Доставка Fedex</string>
+						</value>
+					</data>
+				</array>
+			</value>
+		</param>
+	</params>
+</methodResponse>
+
+
+

@@ -1,0 +1,32 @@
+﻿form
+{
+	width: 40em;
+}
+
+form label
+{
+	width: 5em;
+	display: block;
+	float: left;
+}
+form input 
+{
+	width: 38em;
+}
+
+form textarea
+{
+	width: 45em;
+}
+
+form button
+{
+	display: block;
+	margin: auto;
+	margin-top: 1em;
+}
+
+#divResult
+{
+	margin-top: 2em;
+}

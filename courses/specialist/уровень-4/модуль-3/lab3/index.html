@@ -1,0 +1,244 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ru" lang="ru" dir="ltr">
+<head>
+	<title>Пользователи на сайте</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="Content-Language" content="ru" />
+	<link rel="stylesheet" type="text/css" href="mod_3.css" />
+	<script type="text/javascript" src="xmlhttprequest.js"></script>
+	<script type="text/javascript" src="json2.js"></script>
+	<script type="text/javascript">
+		// Класс UserInfo
+		function UserInfo()
+		{
+			this.name = "";
+			this.login = "";
+			this.password = "";
+		}
+		
+		// Класс Билет сессии
+		function Ticket()
+		{
+			this.id = "";
+			this.valid = false;
+		}
+	
+		/*
+		** Задание 1. Напишите сценарий отображения формы frmLogin при нажатии
+		** на кнопку "Вход" в блоке divUsers.
+		*/
+		function showLoginForm()
+		{
+			document.body.style.backgroundColor = "gray";
+			var frmLogin = document.getElementById("frmLogin");
+			frmLogin.style.display = "block";
+		}
+		
+		
+		/*
+		** Задание 2. Напишите функцию проверки пользователя и поставьте ее на 
+		**	обработчик onclick кнопки в форме авторизации пользователя.
+		**	Для проверки пользователя создайте объект класса UserInfo 
+		**	и передайте объект JSON в сценарий user_auth.php
+		**	Этот сценарий вернет объект класса Ticket.
+		**	Свойство Ticket.valid показывает пройденную авторизацию
+		**	Сохраните билет (Ticket) в глобальной переменной
+		*/
+
+		// Билет пользователя
+		var ticket;
+		
+		// Функция проверки пользователя
+		function validateUser()
+		{
+			// Формирование объекта UserInfo
+			var txtLogin = document.getElementById("txtLogin");
+			var txtPassword = document.getElementById("txtPassword");
+			var userInfo = new UserInfo();
+			userInfo.login = txtLogin.value;
+			userInfo.password = txtPassword.value;
+			
+			// Передача данных серверу
+			var jsonUserInfo = JSON.stringify(userInfo);
+			var req = getXmlHttpRequest();
+			req.onreadystatechange = function()
+			{
+				if (req.readyState != 4) return;
+				// Чтение полученного билета
+				ticket = JSON.parse(req.responseText);
+				// Проверка билета
+				if (ticket.valid)
+				{
+					// Билет правильный
+					var frmLogin = document.getElementById("frmLogin");
+					frmLogin.style.display = "";
+					document.body.style.backgroundColor = "";
+					
+					// Гашение кнопки ВХОД
+					var btnEnter = document.getElementById("divUsers").getElementsByTagName("button")[0];
+					btnEnter.style.display = "none";
+					
+					// Отображение списка пользователей online
+					showOnLineUsers();
+				}
+				else
+				{
+					// Сообщение об ошибке
+					var divMessage = document.getElementById("divMessage");
+					divMessage.style.display = "block";
+				}
+			}
+			req.open("POST", "user_auth.php", true);
+			req.setRequestHeader("Content-Type", "text/plain");
+			req.setRequestHeader("Content-Length", jsonUserInfo.length);			
+			req.send(jsonUserInfo);		
+		}
+
+		/*
+		** Задание 3. На основе полученного билета (Ticket) покажите пользователю 
+		**	сообщение об ошибке, установив свойство CSS display = "block"
+		**	объекту divMessage (не забудьте создать функцию гашения
+		**	это сообщения, присвоив пустую строку в свойство CSS display! Это
+		**	нужно сделать по нажатию кнопки в слое divMessage)
+		**	Если же билет правильный, сохраните его в глобальной переменной
+		**	и переходите к заданию 4
+		**  Не забудьте погасить кнопку ВХОД в объекте divUsers
+		*/
+		
+		// Функция гашения сообщения об ошибке
+		function hideErrorMessage()
+		{
+			var divMessage = document.getElementById("divMessage");
+			divMessage.style.display = "";			
+		}
+		
+		/*
+		** Задание 4. Напишите функцию запроса пользователей, которые находятся в режиме online
+		**	Для этого передайте билет сценарию get_online_users.php
+		**	Этот сценарий возвращает массив объектов UserInfo
+		**	На основе этого массива выведите список пользователей online в
+		**	список объекта divUsers.
+		**	Установите таймер на вызов этой же функции в диапазоне 30 - 60 сек...
+		*/
+		function showOnLineUsers()
+		{
+			var divUsers = document.getElementById("divUsers");
+			var ul = divUsers.getElementsByTagName("ul")[0];
+
+			// Запрос пользователей ONLINE
+			var jsonTicket = JSON.stringify(ticket);
+			var req = getXmlHttpRequest();
+			req.onreadystatechange = function()
+			{
+				if (req.readyState != 4) return;
+				
+				// Получение списка пользователей
+				users = JSON.parse(req.responseText);
+				
+				// Очистка списка пользователей
+				while (ul.hasChildNodes())
+					ul.removeChild(ul.lastChild);
+				
+				// Отображение списка пользователей
+				for (var i = 0; i < users.length; i++)
+				{
+					var li = document.createElement("li");
+					li.id = users[i].id;
+					var liText = document.createTextNode(users[i].name);
+					li.appendChild(liText);
+					ul.appendChild(li);
+				}
+				
+				// Таймер на исполнение следующего цикла
+				window.setTimeout("showOnLineUsers()", 3000);
+			}
+			req.open("POST", "get_online_users.php", true);
+			req.setRequestHeader("Content-Type", "text/plain");
+			req.setRequestHeader("Content-Length", jsonTicket.length);			
+			req.send(jsonTicket);
+		}
+		
+		
+	</script>
+</head>
+<body>
+	<h1>Пользователи на сайте</h1>
+	
+	<!-- Форма входа -->
+	<form id="frmLogin" onsubmit="return false" class="block">
+		<h2>Авторизация пользователя</h2>
+		<div>
+			<label for="txtLogin">Логин</label>
+			<input id="txtLogin" type="text" />
+		</div>
+		<div>
+			<label for="txtPassword">Пароль</label>
+			<input id="txtPassword" type="password" />
+		</div>
+		<button onclick="validateUser()">Вход</button>
+		<div id="divMessage" class="block">
+			<h2>Ошибка</h2>
+			<div>Неправильный логин или пароль!</div>
+			<button onclick="hideErrorMessage()">Закрыть</button>
+		</div>
+	</form>
+	
+	<!-- Панель списка пользователей -->
+	<div id="divUsers" class="block">
+		<h2>Пользователи на сайте</h2>
+		<button onclick="showLoginForm()">Вход</button>
+		<ul></ul>
+	</div>
+	
+	<!-- Задания -->
+	<dl>
+		<dt><h2>Задания</h2></dt>
+		
+		<dt><h3>Задание 1</h3></dt>
+		<dd>
+			Напишите сценарий отображения формы frmLogin при нажатии
+			на кнопку "Вход" в блоке divUsers.
+		</dd>
+		
+		<dt><h3>Задание 2</h3></dt>
+		<dd>
+			Напишите функцию проверки пользователя и поставьте ее на 
+			обработчик onclick кнопки в форме авторизации пользователя.
+			Для проверки пользователя создайте объект класса UserInfo 
+			и передайте объект JSON в сценарий user_auth.php
+			Этот сценарий вернет объект класса Ticket.
+			Свойство Ticket.valid показывает пройденную авторизацию
+			Сохраните билет (Ticket) в глобальной переменной
+		</dd>		
+
+		<dt><h3>Задание 3</h3></dt>
+		<dd>
+			На основе полученного билета (Ticket) покажите пользователю 
+			сообщение об ошибке, установив свойство CSS display = "block"
+			объекту divMessage (не забудьте создать функцию гашения
+			это сообщения, присвоив пустую строку в свойство CSS display! Это
+			нужно сделать по нажатию кнопки в слое divMessage)
+			Если же билет правильный, сохраните его в глобальной переменной
+			и переходите к заданию 4
+			Не забудьте погасить кнопку ВХОД в объекте divUsers
+		</dd>	
+
+		<dt><h3>Задание 4</h3></dt>
+		<dd>
+			Напишите функцию запроса пользователей, которые находятся в режиме online
+			Для этого передайте сценарию get_online_users.php
+			Этот сценарий возвращает массив объектов UserInfo
+			На основе этого массива выведите список пользователей online в
+			список объекта divUsers
+			Установите таймер на вызов этой же функции в диапазоне 30 - 60 сек...
+		</dd>	
+
+		<dt><h3>Задание 5 (дополнительно)</h3></dt>
+		<dd>
+			Самостоятельно дома напишите сценарий PHP и необходимые AJAX функции
+			для обмена сообщениями между пользователями, находящимся в online
+		</dd>	
+	</dl>
+</body>
+</html>
+

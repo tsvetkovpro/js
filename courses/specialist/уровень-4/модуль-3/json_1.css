@@ -1,0 +1,20 @@
+﻿.book 
+{
+	width: 200px;
+	float: left;
+	margin: 10px;
+	padding: 10px;
+	border: 1px dotted gray;
+}
+
+.book h2, h3
+{
+	margin: 5px;
+	font-size: 11pt;
+}
+
+.book img
+{
+	width: 180px;
+	height: 280px;
+}

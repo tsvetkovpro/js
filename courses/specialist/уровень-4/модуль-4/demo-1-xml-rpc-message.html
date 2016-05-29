@@ -1,0 +1,43 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ru" lang="ru" dir="ltr">
+<head>
+	<title>XML-RPC сообщение</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="Content-Language" content="ru" />
+	<script type="text/javascript" src="js-xml-rpc/xmlrpc.js"></script>
+	<script type="text/javascript">
+		function showXMLRPCMessage()
+		{
+			// Массив
+			var a = ["chicken","duck","goose", "привет"];
+			
+			// Объект
+			var obj = new Object(); 
+			obj.x = 20; 
+			obj.y = "cow"; 
+			obj.z = 3.14; 
+
+			// Дата
+			var date = new Date(); 
+
+			// Формируем сообщение (второй парамет - кодирвка XML сообщения. См. исходный код)
+			var msg = new XMLRPCMessage("system.myMethod", "utf-8"); 
+			msg.addParameter("Строка текста"); 
+			msg.addParameter(8); 
+			msg.addParameter(false); 
+			msg.addParameter(a); 
+			msg.addParameter(obj); 
+			msg.addParameter(date);		
+			
+			alert(msg.xml());
+		}
+	</script>
+</head>
+<body>
+	<h1>XML-RPC сообщение</h1>
+	<div>
+		<button onclick="showXMLRPCMessage()">XML-RPC сообщение</button>
+	</div>
+</body>
+</html>
+

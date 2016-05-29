@@ -1,0 +1,147 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ru" lang="ru" dir="ltr">
+<head>
+	<title>Получение и отправка объектов</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="Content-Language" content="ru" />
+	<link rel="stylesheet" type="text/css" href="gbook.css" />
+	<script type="text/javascript" src="xmlhttprequest.js"></script>
+	<script type="text/javascript" src="xslt.js"></script>
+	<script type="text/javascript" src="js-xml-rpc/xmlrpc.js"></script>
+	<script type="text/javascript">
+		var xslMessagesToHtml;
+	
+		// Класс сообщения
+		function Message()
+		{
+			this.id = "";
+			this.author = "";
+			this.email = "";
+			this.body = "";
+		}
+		
+		// Функция отображает сообщения
+		function showMessages()
+		{
+			// Формируем сообщение
+			var msg = new XMLRPCMessage("gbook.getLastMessages", "utf-8"); 
+			msg.addParameter(10); 
+			var rawData = msg.xml();
+
+			// Запрос сервера
+			var req = getXmlHttpRequest();
+			req.onreadystatechange = function()
+				{
+					if (req.readyState != 4) return;
+					//Получаем DOM документ
+					var dom = req.responseXML;
+					if (!isError(dom))
+					{
+						// Элемент, в котором отображается гостевая книга
+						var divGBook = document.getElementById("divGBook");
+						
+						// Удалдение отображенных сообщений
+						while (divGBook.hasChildNodes()) 
+							divGBook.removeChild(divGBook.lastChild);
+					
+						// Получим результат XSLT преобразования
+						var result = xsltTransform(dom, xslMessagesToHtml);
+						
+						// Добавим их в элемент divGBook
+						// Криво, я знаю... Но MOZILLA не поддерживает некоторые операции с HTML пробразованиями!
+						// http://developer.mozilla.org/en/docs/Using_the_Mozilla_JavaScript_interface_to_XSL_Transformations#transforming_HTML
+						divGBook.innerHTML = result;
+						alert(result);
+					}
+				}
+			req.open("POST", "demo-4-gbook-server.php", true);
+			req.setRequestHeader("Content-Type", "text/xml");
+			req.setRequestHeader("Content-Length", rawData.length);
+			req.send(rawData);	
+			
+		}
+	
+	
+		// Функция дабавляет новое сообщение
+		function addMessage()
+		{
+			var message = new Message();
+			message.author = document.getElementById("txtName").value;
+			message.email = document.getElementById("txtEmail").value;
+			message.body = document.getElementById("txtMessage").value;
+			
+			if (!(message.author || message.email || message.body))
+			{
+				alert("Необходимо заполнить все поля!");
+				return;
+			}
+			
+			// Формируем сообщение
+			var msg = new XMLRPCMessage("gbook.addMessage", "utf-8"); 
+			msg.addParameter(message); 
+			var rawData = msg.xml();
+			
+			// Запрос сервера
+			var req = getXmlHttpRequest();
+			req.onreadystatechange = function()
+				{
+					if (req.readyState != 4) return;
+					//Получаем DOM документ
+					var dom = req.responseXML;
+					if (!isError(dom)) showMessages();
+				}
+			req.open("POST", "demo-4-gbook-server.php", true);
+			req.setRequestHeader("Content-Type", "text/xml");
+			req.setRequestHeader("Content-Length", rawData.length);
+			req.send(rawData);			
+		}
+		
+		// Функция проверяет и показывает сообщение об ошибке
+		function isError(xmlDOM)
+		{
+			if (xmlDOM.getElementsByTagName("fault").length > 0)
+			{
+				var errorString = xmlDOM.getElementsByTagName("string")[0].firstChild.nodeValue;
+				alert("Ошибка!\n" + errorString);
+				return true;
+			}
+			else
+			{
+				return false;
+			}
+		}
+		
+		// Инициализация страницы
+		window.onload = function()
+		{
+			// Загрузка XSL
+			var req = getXmlHttpRequest();
+			req.open("GET", "messages.xsl", false);
+			req.send(null);
+			xslMessagesToHtml = req.responseXML;
+			// Отображение сообщений
+			showMessages();
+		}
+		
+	</script>
+</head>
+<body>
+	<h1>Получение и отправка объектов</h1>
+	<form onsubmit="return false">
+		<div>
+			<label for="txtName">Ваше имя</label>
+			<input id="txtName" type="text" />
+		</div>
+		<div>
+			<label for="txtEmail">Ваш E-mail</label>
+			<input id="txtEmail" type="text" />
+		</div>
+		<div>
+			<textarea id="txtMessage"></textarea>
+		</div>
+		<button onclick="addMessage()">Сохранить</button>
+	</form>
+	<div id="divGBook"></div>
+</body>
+</html>
+

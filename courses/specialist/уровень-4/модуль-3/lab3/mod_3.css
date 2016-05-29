@@ -1,0 +1,79 @@
+﻿/* Оформление блоков на странице */
+.block
+{
+	border: 1px solid navy;
+}
+
+.block h2
+{
+	margin: 0px;
+	padding: 2px;
+	font-size: small;
+	font-family: sans-serif;
+	text-align: center;
+	background-color: navy;
+	color: white;
+
+}
+
+/* Форма входа */
+#frmLogin
+{
+	position: absolute;
+	top: 10%;
+	left: 30%;
+	width: 15em;
+	background-color: white;
+	display: none;
+}
+
+#frmLogin div
+{
+	margin: 1ex;
+	padding-bottom: 1em;
+}
+
+#frmLogin div label
+{
+	display: block;
+	float: left;
+	width: 4em;
+}
+
+/* Кнопки */
+#frmLogin button, #divUsers button
+{
+	display: block;
+	margin: auto;
+	margin-top: 1em;
+	margin-bottom: 1em;
+}
+
+/* Сообщение */
+#divMessage
+{
+	position: absolute;
+	top: 1em;
+	left: 1em;
+	width: 12em;
+	background-color: white;
+	display: none;
+}
+
+#divMessage h2
+{
+	background-color: red;
+}
+
+/* Панель списка пользователей */
+#divUsers
+{
+	float: right;
+	width: 50%;
+}
+
+/* Задания */
+dl
+{
+	margin-right: 55%;
+}

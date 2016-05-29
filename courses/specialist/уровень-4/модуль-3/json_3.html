@@ -1,0 +1,153 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ru" lang="ru" dir="ltr">
+<head>
+	<title>Простая гостевая книга</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="Content-Language" content="ru" />
+	<link rel="stylesheet" type="text/css" href="json_3.css" />
+	<script type="text/javascript" src="xmlhttprequest.js"></script>
+	<script type="text/javascript" src="json2.js"></script>
+	<script type="text/javascript">
+		// Частота проверок гостевой книги (mSec)
+		var checkInterval = 2000;
+		// Таймер проверки
+		var checkTimer;
+	
+		// Дата и время последнего изменения гостевой книги,
+		// по умолчанию - дата в прошлом
+		var lastUpdate = new Date("01/01/1900");
+		
+		// Функция возвращает дату и время последней модифиации гостевой книги
+		function getLastModified()
+		{
+			// Выполним запрос HEAD к скрипту гостевой книги...
+			var req = getXmlHttpRequest();
+			req.open("HEAD", "getlastmsgs.php", false);
+			req.send(null);
+			// Создадим объект Date на основе ответа Last-Modified
+			return new Date(req.getResponseHeader("Last-Modified"));
+		}
+
+		// Создание элемента с тектом
+		function createElement(tag, text)
+		{
+			var element = document.createElement(tag);
+			var elementText = document.createTextNode(text);
+			element.appendChild(elementText);
+			return element;
+		}
+		
+		
+		// Функция проверяет измнения в гостевой книги
+		function checkUpdates()
+		{
+			var lastModified = getLastModified();
+			if (lastUpdate < lastModified)
+			{
+				// Запрос новых данных из гостевой книги
+				var req = getXmlHttpRequest();
+				req.onreadystatechange = function()
+				{
+					if (req.readyState != 4) return;
+					var records = JSON.parse(req.responseText);
+					// Элемент для отображения
+					var divResult = document.getElementById("divResult");
+					// Удаление старых записей
+					while (divResult.hasChildNodes()) divResult.removeChild(divResult.lastChild);
+					// Отображение записей гостевой книги
+					for (var i = 0; i < records.length; i++)
+					{
+						// Элемент для размещения записи
+						var divRecord = document.createElement("div");
+						divRecord.className = "divRecord";
+						// Ссылка на автора
+						var aAuthor = createElement("a", records[i].author);
+						aAuthor.href = "mailto:" + records[i].email;
+						divRecord.appendChild(aAuthor);
+						// Текст сообщения
+						var pMessage = createElement("p", records[i].message);
+						divRecord.appendChild(pMessage);
+						divResult.appendChild(divRecord);
+						// Время  последнего отображения 
+						lastUpdate = lastModified;
+					}
+				}
+				req.open("GET", "getlastmsgs.php", true);
+				req.send(null);
+			}
+			// Таймер на следующую проверку
+			checkTimer = window.setTimeout("checkUpdates()", checkInterval);
+		}
+		
+///////////////////////////////////////////////////////////////////////////////////////////////////
+		
+		// Класс записи
+		function Record(author, email, message)
+		{
+			this.author = author;
+			this.email = email;
+			this.message = message;
+		}
+
+		// Добавление новой записи
+		function addRecord()
+		{
+			// Элементы управления
+			var txtName = document.getElementById("txtName");
+			var txtEmail = document.getElementById("txtEmail");
+			var txtMessage = document.getElementById("txtMessage");
+			
+			// Проверка заполнения элементов
+			if (txtName.value == "" || txtEmail.value == "" || txtMessage.value == "")
+			{
+				alert("Необходимо заполнить все поля...");
+				return;
+			}
+			
+			// Создание объъекта записи
+			var record = new Record(txtName.value, txtEmail.value, txtMessage.value);
+			// Сериализация в JSON
+			var jsonData = JSON.stringify(record);
+			alert(jsonData);
+			// Передача данных
+			var req = getXmlHttpRequest();
+			req.onreadystatechange = function()
+				{
+					if (req.readyState != 4) return;
+					// Завершение передачи... Сброс таймера и показ сообщения
+					window.clearTimeout(checkTimer);
+					checkUpdates();
+				}
+			req.open("POST", "addrecord.php", true);
+			req.setRequestHeader("Content-Type", "text/plain");
+			req.setRequestHeader("Content-Length", jsonData.length);			
+			req.send(jsonData);				
+		}
+		
+		// Загрузка страницы
+		window.onload = function()
+		{
+			checkUpdates();
+		}
+	</script>
+</head>
+<body>
+	<h1>Простая гостевая книга</h1>
+	<form onsubmit="return false">
+		<div>
+			<label for="txtName">Ваше имя</label>
+			<input id="txtName" type="text" />
+		</div>
+		<div>
+			<label for="txtEmail">Ваш E-mail</label>
+			<input id="txtEmail" type="text" />
+		</div>
+		<div>
+			<textarea id="txtMessage"></textarea>
+		</div>
+		<button onclick="addRecord()">Сохранить</button>
+	</form>
+	<div id="divResult"></div>
+</body>
+</html>
+

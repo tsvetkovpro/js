@@ -1,0 +1,54 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<html>
+<head>
+	<title>Untitled</title>
+  <script type="text/javascript" src="xmlrpc.js"></script>
+  <script type="text/javascript" src="jsrsClient.js"></script>
+  <script type="text/javascript">
+  
+  function makeRPCCall(){
+      // pass multiple parms as array
+      var msg = [];
+      msg[0] = document.forms[0].elements["rpcserver"].value;
+      msg[1] = escape(document.forms[0].elements["rpctext"].value);
+      document.forms[0].elements["rpcresponse"].value = "Forwarding message thru xmlrpc-socket...";
+      jsrsExecute("xmlrpc-socket.php", myCallback, "doRPC", msg);
+  }
+  
+  function myCallback(response){
+    document.forms[0].elements["rpcresponse"].value = response;
+  } 
+  
+  function init(){
+    var msg = new XMLRPCMessage();
+    msg.setMethod("speller.spellCheck");
+    msg.addParameter("misissippi");
+    document.forms[0].elements[0].value = msg.xml();
+    
+  }
+  
+  onload=init;
+  
+  
+  </script>
+</head>
+
+<body>
+
+<form method="post" action="#" onsubmit="return false;">
+<table><tr><td valign="top">
+<p>XML-RPC Message:<br /><textarea name="rpctext" cols="30" rows="15" wrap="virtual"></textarea></p>
+</td><td valign="top">
+<p>XML-RPC Response:<br /><textarea name="rpcresponse" cols="30" rows="15">Click "Make RPC" to send the XML-RPC message to the server specified below.</textarea></p>
+</td></tr>
+<tr><td colspan="2" valign="top">
+<p>Remote RPC Server:<br /><input type="text" name="rpcserver" size="50" value="http://www.stuffeddog.com/speller/speller-rpc.cgi"></p>
+<p><input type="button" value="Make RPC" onclick="makeRPCCall();"></p>
+</td></tr></table>
+
+</form>
+<!--  -->
+<!-- http://www.oreillynet.com/meerkat/xml-rpc/server.php -->
+</body>
+</html>

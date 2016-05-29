@@ -1,0 +1,60 @@
+﻿/*
+** Таблица стилей для примеров
+*/
+form
+{
+	background-color: #eee;
+	width: 38em;
+	padding: 1em;
+	border: 1px solid gray;
+}
+
+form div label
+{
+	display: block;
+	width: 10em;
+	float: left;
+	text-align: right;
+}
+
+form input, select
+{
+	margin-left: 1ex;
+	margin-right: 1ex;
+}
+
+#txtOrderSum
+{
+	width: 4em;
+	text-align: right;
+}
+
+
+form button
+{
+	display: block;
+	margin: auto;
+	margin-top: 1em;
+}
+
+#divOrder table
+{
+	width: 100%;
+	border: 1px solid gray;
+	background-color: #fff;
+}
+
+#divOrder thead,  #divOrder tfoot
+{
+	background-color: #ffc;
+}
+
+#divOrder tfoot td
+{
+	font-weight: bold;
+}
+
+#divOrder tr.even
+{
+	background-color: #eee;
+}

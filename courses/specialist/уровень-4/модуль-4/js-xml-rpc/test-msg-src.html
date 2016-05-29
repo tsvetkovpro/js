@@ -1,0 +1,44 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<html>
+<head>
+	<title>XML-RPC Test Message (JS Source)</title>
+</head>
+
+<body>
+
+<xmp>
+
+<script type="text/javascript" src="xmlrpc.js"></script>
+
+  function init(){
+    
+    var a = ["chicken","duck","goose"];
+
+    var obj = new Object();
+    obj.x = 20;
+    obj.y = "cow";
+    obj.z = 3.14;
+    
+    var date = new Date();
+    
+    var msg = new XMLRPCMessage("server.myMethod");
+    msg.addParameter("mississippi");
+    msg.addParameter(7);
+    msg.addParameter(false);
+    msg.addParameter(a);
+    msg.addParameter(obj);
+    msg.addParameter(date);
+    
+    document.forms[0].elements[0].value = msg.xml();
+    
+  }
+  
+  onload=init;
+  
+</script>
+  
+</xmp>
+
+</body>
+</html>

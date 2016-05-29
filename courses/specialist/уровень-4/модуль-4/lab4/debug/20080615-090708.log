@@ -1,0 +1,162 @@
+XMLRPC_parse: Received the following raw request:
+<?xml version="1.0" encoding="utf-8"?>
+<methodCall>
+<methodName>eshop.calculateOrder</methodName>
+<params>
+<param>
+<value><string>1000</string></value>
+</param>
+<param>
+<value><string>0</string></value>
+</param>
+</params>
+</methodCall>
+
+XMLRPC_parse: Returning the following parsed request:
+Array
+(
+    [methodCall] => Array
+        (
+            [methodName] => eshop.calculateOrder
+            [params] => Array
+                (
+                    [param] => Array
+                        (
+                            [0] => Array
+                                (
+                                    [value] => Array
+                                        (
+                                            [string] => 1000
+                                        )
+
+                                )
+
+                            [1] => Array
+                                (
+                                    [value] => Array
+                                        (
+                                            [string] => 0
+                                        )
+
+                                )
+
+                        )
+
+                )
+
+        )
+
+)
+
+
+XMLRPC_response: Received the following data to return:
+
+Array
+(
+    [struct] => Array
+        (
+            [member] => Array
+                (
+                    [0] => Array
+                        (
+                            [name] => Стоимость заказа
+                            [value] => Array
+                                (
+                                    [double] => 1000
+                                )
+
+                        )
+
+                    [1] => Array
+                        (
+                            [name] => Без доставки
+                            [value] => Array
+                                (
+                                    [double] => 0
+                                )
+
+                        )
+
+                    [2] => Array
+                        (
+                            [name] => НДС
+                            [value] => Array
+                                (
+                                    [double] => 180
+                                )
+
+                        )
+
+                    [3] => Array
+                        (
+                            [name] => Налог с продаж
+                            [value] => Array
+                                (
+                                    [double] => 50
+                                )
+
+                        )
+
+                    [4] => Array
+                        (
+                            [name] => Обработка заказа
+                            [value] => Array
+                                (
+                                    [double] => 100
+                                )
+
+                        )
+
+                )
+
+        )
+
+)
+
+
+XMLRPC_response: Sent the following response:
+
+<?xml version="1.0" ?>
+<methodResponse>
+	<params>
+		<param>
+			<value>
+				<struct>
+					<member>
+						<name>Стоимость заказа</name>
+						<value>
+							<double>1000</double>
+						</value>
+					</member>
+					<member>
+						<name>Без доставки</name>
+						<value>
+							<double>0</double>
+						</value>
+					</member>
+					<member>
+						<name>НДС</name>
+						<value>
+							<double>180</double>
+						</value>
+					</member>
+					<member>
+						<name>Налог с продаж</name>
+						<value>
+							<double>50</double>
+						</value>
+					</member>
+					<member>
+						<name>Обработка заказа</name>
+						<value>
+							<double>100</double>
+						</value>
+					</member>
+				</struct>
+			</value>
+		</param>
+	</params>
+</methodResponse>
+
+
+

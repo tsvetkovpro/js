@@ -1,0 +1,199 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ru" lang="ru" dir="ltr">
+<head>
+	<title>Расчет суммы товаров электронного магазина</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="Content-Language" content="ru" />
+	<link rel="stylesheet" type="text/css" href="lab4.css" />
+	<script type="text/javascript" src="xmlhttprequest.js"></script>
+	<script type="text/javascript" src="xslt.js"></script>
+	<script type="text/javascript" src="xmlrpc.js"></script>
+	<script type="text/javascript">
+		// XSLT документы
+		var xslDelivery, xslOrder; 
+	
+		// Функция преобразует xml DOM документ в строку
+		function showXML(xml)
+		{
+			if (window.XMLSerializer)
+			{
+				// Это Mozilla
+				var serializer = new XMLSerializer();
+				return serializer.serializeToString(xml);
+			}
+			else if (window.ActiveXObject)
+			{
+				// Это Internet Explorer
+				return xml.xml;
+			}
+			else
+			{
+				return "Сериализация в строку не поддерживается!";
+			}
+		}
+		
+		// Функция проверяет и показывает сообщение об ошибке
+		function isError(xmlDOM)
+		{
+			try
+			{
+				if (xmlDOM.getElementsByTagName("fault").length > 0)
+				{
+					var errorString = xmlDOM.getElementsByTagName("string")[0].firstChild.nodeValue;
+					alert("Ошибка!\n" + errorString);
+					return true;
+				}
+				else return false;
+			}
+			catch (e)
+			{
+				alert("Ошибка обработки XML!\n" + xmlDOM);
+				return true;
+			}
+		}
+	
+		/*
+		Задание 1. Напишите функцию getDeliveryMethods() для получения способов доставки
+		эта фукнция должна обратится к серверу XML-RPC lab4-server.php
+		и вызвать метод eshop.getDeliveryMethods (параметров нет)
+		Сервер вернет XML-RPC ответ (примерное содержание - файл messages/getDeliveryMethods.xml)
+		Выведите это сообщение на экран с помощью функции showXML()
+		Не забудьте добавить вызов этой функции в window.onload
+		*/
+		function getDeliveryMethods()
+		{
+			// Формируем сообщение
+			var msg = new XMLRPCMessage("eshop.getDeliveryMethods", "utf-8");
+			var rawData = msg.xml();
+			//alert(rawData);
+			
+			// Запрос сервера
+			var req = getXmlHttpRequest();
+			req.onreadystatechange = function()
+				{
+					if (req.readyState != 4) return;
+					//Получаем DOM документ
+					var dom = req.responseXML;
+					// Если нет ошибок...
+					if (!isError(dom)) showDelivery(dom);
+				}
+			req.open("POST", "lab4-server.php", true);
+			req.setRequestHeader("Content-Type", "text/xml");
+			req.setRequestHeader("Content-Length", rawData.length);
+			req.send(rawData);				
+		}
+		
+		
+		/* 
+		Задание 2. Напишите функцию showDelivery(), которая, используя
+		преобразование delivery.xsl, сформирует список выбора способа доставки
+		Результат преобразования выведите в элемент divDelivery
+		*/
+		function showDelivery(xmlDOM)
+		{
+			var html = xsltTransform(xmlDOM, xslDelivery);
+			//alert(html);
+			var divDelivery = document.getElementById("divDelivery");
+			divDelivery.innerHTML += html;
+		}
+		
+		
+		/*
+		Задание 3. Напишите функцию calculateOrder(), которая сформирует
+		XML-PRC сообщение и вызовет метод eshop.calculateOrder, передавая
+		следующие параметры:
+			sum 		- число, сумма заказа
+			deviveryId	- код способа доставки (значение value списка доставки)
+		Метод вернет детализацию расчета общей суммы заказа. Выведите это сообщение
+		на экран с помощью функции showXML()
+		*/
+		function calculateOrder()
+		{
+			// Параметры запроса
+			var sum, deviveryId;
+			try
+			{
+				sum = document.getElementById("txtOrderSum").value;
+				selDelivery = document.getElementById("selDelivery");
+				deviveryId = selDelivery.options[selDelivery.selectedIndex].value;
+			}
+			catch (e)
+			{
+				alert("Параметры не определены!\n" + e);
+				return false;
+			}
+			
+			// Формируем сообщение
+			var msg = new XMLRPCMessage("eshop.calculateOrder", "utf-8");
+			msg.addParameter(sum); 
+			msg.addParameter(deviveryId); 
+			var rawData = msg.xml();
+			//alert(rawData);
+			
+			// Запрос сервера
+			var req = getXmlHttpRequest();
+			req.onreadystatechange = function()
+				{
+					if (req.readyState != 4) return;
+					//Получаем DOM документ
+					var dom = req.responseXML;
+					// Если нет ошибок...
+					if (!isError(dom)) showOder(dom);
+				}
+			req.open("POST", "lab4-server.php", true);
+			req.setRequestHeader("Content-Type", "text/xml");
+			req.setRequestHeader("Content-Length", rawData.length);
+			req.send(rawData);			
+		}
+		
+		/*
+		Задание 4. Напишите функцию showOder(), которая, используя преобразование
+		order.xsl, сформирует таблицу с результирующей таблицей. 
+		Результат преобразования выведите в элемент страницы divOrder
+		*/
+		function showOder(xmlDOM)
+		{
+			var html = xsltTransform(xmlDOM, xslOrder);
+			//alert(html);
+			var divOrder = document.getElementById("divOrder");
+			divOrder.innerHTML = html;			
+		}
+	
+		// Инициализация страницы
+		window.onload = function()
+		{
+			// Загрузка преобразований
+			var req = getXmlHttpRequest();
+			req.open("GET", "delivery.xsl", false);
+			req.send(null);
+			xslDelivery = req.responseXML;
+			
+			req.open("GET", "order.xsl", false);
+			req.send(null);
+			xslOrder = req.responseXML;			
+			
+			// Получим способы доставки
+			getDeliveryMethods();
+		}
+	</script>
+</head>
+<body>
+	<h1>Расчет суммы заказа электронного магазина</h1>
+	<form onsubmit="return false">
+		<!-- Сумма заказа -->
+		<div>
+			<label for="txtName">Сумма заказа</label>
+			<input id="txtOrderSum" type="text" value="1000" />
+			<span>руб.</span>
+		</div>
+		<!-- Доставка -->
+		<div id="divDelivery">
+			<label for="selDelivery">Доставка</label>
+		</div>
+		<!-- Расчет стоимости заказа -->
+		<div id="divOrder"></div>
+		<button onclick="calculateOrder()">Расчитать</button>
+	</form>
+</body>
+</html>
+
