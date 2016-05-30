@@ -1,0 +1,70 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<SOAP-ENV:Envelope 
+		xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" 
+		xmlns:ns1="urn:BooksService" xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+		xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/" 
+		SOAP-ENV:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
+  <SOAP-ENV:Body>
+    <ns1:getBooksResponse>
+      <books xsi:type="ns1:ArrayOfBooks">
+        <book xsi:type="ns1:Book">
+          <id xsi:type="xsd:int">1</id>
+          <author xsi:type="xsd:string">Дейв Крейн, Эрик Паскарелло, Даррен Джеймс</author>
+          <title xsi:type="xsd:string">Ajax в действии</title>
+          <image xsi:type="xsd:string">1000372094.jpg</image>
+          <category xsi:type="xsd:int">2</category>
+        </book>
+        <book xsi:type="ns1:Book">
+          <id xsi:type="xsd:int">2</id>
+          <author xsi:type="xsd:string">Кристиан Дари, Богдан Бринзаре, Филип Черчез-Тоза, Михай Бусика</author>
+          <title xsi:type="xsd:string">AJAX и PHP. Разработка динамических веб-приложений</title>
+          <image xsi:type="xsd:string">1000389766.jpg</image>
+          <category xsi:type="xsd:int">2</category>
+        </book>
+        <book xsi:type="ns1:Book">
+          <id xsi:type="xsd:int">3</id>
+          <author xsi:type="xsd:string">Дейв Крейн, Бер Бибо, Джордон Сонневельд</author>
+          <title xsi:type="xsd:string">Ajax на практике</title>
+          <image xsi:type="xsd:string">1000653244.jpg</image>
+          <category xsi:type="xsd:int">2</category>
+        </book>
+        <book xsi:type="ns1:Book">
+          <id xsi:type="xsd:int">4</id>
+          <author xsi:type="xsd:string">Николас Закас, Джереми Мак-Пик, Джо Фосетт</author>
+          <title xsi:type="xsd:string">Ajax для профессионалов</title>
+          <image xsi:type="xsd:string">1000478162.jpg</image>
+          <category xsi:type="xsd:int">2</category>
+        </book>
+        <book xsi:type="ns1:Book">
+          <id xsi:type="xsd:int">5</id>
+          <author xsi:type="xsd:string">Дэниел Вулстон</author>
+          <title xsi:type="xsd:string">Ajax и платформа .NET 2.0 для профессионалов</title>
+          <image xsi:type="xsd:string">1000569827.jpg</image>
+          <category xsi:type="xsd:int">2</category>
+        </book>
+        <book xsi:type="ns1:Book">
+          <id xsi:type="xsd:int">6</id>
+          <author xsi:type="xsd:string">Бретт Маклафлин</author>
+          <title xsi:type="xsd:string">Изучаем Ajax</title>
+          <image xsi:type="xsd:string">1000561693.jpg</image>
+          <category xsi:type="xsd:int">2</category>
+        </book>
+        <book xsi:type="ns1:Book">
+          <id xsi:type="xsd:int">7</id>
+          <author xsi:type="xsd:string">Дино Эспозито</author>
+          <title xsi:type="xsd:string">Знакомство с технологией Microsoft ASP.NET 2.0 AJAX</title>
+          <image xsi:type="xsd:string">1000533556.jpg</image>
+          <category xsi:type="xsd:int">2</category>
+        </book>
+        <book xsi:type="ns1:Book">
+          <id xsi:type="xsd:int">24</id>
+          <author xsi:type="xsd:string">Новый автор 2</author>
+          <title xsi:type="xsd:string">новое название</title>
+          <image xsi:type="xsd:string">new_file.jpg</image>
+          <category xsi:type="xsd:int">2</category>
+        </book>
+      </books>
+    </ns1:getBooksResponse>
+  </SOAP-ENV:Body>
+</SOAP-ENV:Envelope>

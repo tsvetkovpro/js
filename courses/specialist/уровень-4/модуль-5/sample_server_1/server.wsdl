@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions name="SampleServer1" 
+		targetNamespace="urn:SampleServer1" 
+		xmlns:typens="urn:SampleServer1" 
+		xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
+		xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" 
+		xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" 
+		xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" 
+		xmlns="http://schemas.xmlsoap.org/wsdl/">
+	
+	<!-- Сообщения метода getTime -->
+	<message name="getTime"/>
+	<message name="getTimeResponse">
+		<part name="getTimeResult" type="xsd:string"/>
+	</message>
+	
+	<!-- Сообщения метода sayHello -->
+	<message name="sayHello">
+		<part name="userName" type="xsd:string"/>
+	</message>
+	<message name="sayHelloResponse">
+		<part name="sayHelloResult" type="xsd:string"/>
+	</message>
+	
+	<!-- Привязка сообщений к методам -->
+	<portType name="ServerPortType">
+		<operation name="getTime">
+			<input message="typens:getTime"/>
+			<output message="typens:getTimeResponse"/>
+		</operation>
+		<operation name="sayHello">
+			<input message="typens:sayHello"/>
+			<output message="typens:sayHelloResponse"/>
+		</operation>
+	</portType>
+
+	<!-- Формат методов -->
+	<binding name="ServerBinding" type="typens:ServerPortType">
+		<soap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+		<operation name="getTime">
+			<soap:operation soapAction="urn:SampleServer1-getTime"/>
+			<input>
+				<soap:body namespace="urn:SampleServer1" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</input>
+			<output>
+				<soap:body namespace="urn:SampleServer1" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</output>
+		</operation>
+		<operation name="sayHello">
+			<soap:operation soapAction="urn:SampleServer1-sayHello"/>
+			<input>
+				<soap:body namespace="urn:SampleServer1" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</input>
+			<output>
+				<soap:body namespace="urn:SampleServer1" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</output>
+		</operation>
+	</binding>
+
+	<!-- Определение службы -->
+	<service name="SampleServer1Service">
+		<port name="ServerPort" binding="typens:ServerBinding">
+			<soap:address location="http://localhost:80/AJAX/demo/module5/sample_server_1/server.php"/>
+		</port>
+	</service>
+</definitions>

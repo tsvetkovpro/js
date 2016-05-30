@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ns1="urn:BooksService" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/" SOAP-ENV:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
+  <SOAP-ENV:Body>
+    <ns1:registerSessionResponse>
+      <registerSessionResponse xsi:type="xsd:string">2f2bf405ad6af40c1d4bb64a3bf9cb94</registerSessionResponse>
+    </ns1:registerSessionResponse>
+  </SOAP-ENV:Body>
+</SOAP-ENV:Envelope>

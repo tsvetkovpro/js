@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<SOAP-ENV:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:tns="urn:BooksService" xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/">
+  <SOAP-ENV:Body>
+    <req:addBook xmlns:req="urn:BooksService">
+      <newBook xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="tns:Book">
+        <id xmlns:tns="urn:BooksService" xmlns:tnsa="http://schemas.xmlsoap.org/soap/encoding/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">2689</id>
+        <author>string</author>
+        <title>string</title>
+        <image>string</image>
+        <category>1</category>
+      </newBook>
+    </req:addBook>
+  </SOAP-ENV:Body>
+</SOAP-ENV:Envelope>

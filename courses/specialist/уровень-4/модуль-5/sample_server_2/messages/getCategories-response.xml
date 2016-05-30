@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<SOAP-ENV:Envelope 
+		xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" 
+		xmlns:ns1="urn:BooksService" 
+		xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+		xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/" 
+		SOAP-ENV:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
+  <SOAP-ENV:Body>
+    <ns1:getCategoriesResponse>
+      <categories xsi:type="ns1:ArrayOfCategories">
+        <category xsi:type="ns1:Category">
+          <id xsi:type="xsd:int">1</id>
+          <title xsi:type="xsd:string">Web</title>
+          <parent xsi:type="xsd:int">0</parent>
+        </category>
+        <category xsi:type="ns1:Category">
+          <id xsi:type="xsd:int">2</id>
+          <title xsi:type="xsd:string">AJAX</title>
+          <parent xsi:type="xsd:int">1</parent>
+        </category>
+        <category xsi:type="ns1:Category">
+          <id xsi:type="xsd:int">3</id>
+          <title xsi:type="xsd:string">.Net</title>
+          <parent xsi:type="xsd:int">1</parent>
+        </category>
+        <category xsi:type="ns1:Category">
+          <id xsi:type="xsd:int">4</id>
+          <title xsi:type="xsd:string">XML</title>
+          <parent xsi:type="xsd:int">1</parent>
+        </category>
+        <category xsi:type="ns1:Category">
+          <id xsi:type="xsd:int">5</id>
+          <title xsi:type="xsd:string">ASP.Net</title>
+          <parent xsi:type="xsd:int">3</parent>
+        </category>
+        <category xsi:type="ns1:Category">
+          <id xsi:type="xsd:int">6</id>
+          <title xsi:type="xsd:string">Программирование .Net</title>
+          <parent xsi:type="xsd:int">3</parent>
+        </category>
+        <category xsi:type="ns1:Category">
+          <id xsi:type="xsd:int">7</id>
+          <title xsi:type="xsd:string">PHP</title>
+          <parent xsi:type="xsd:int">1</parent>
+        </category>
+      </categories>
+    </ns1:getCategoriesResponse>
+  </SOAP-ENV:Body>
+</SOAP-ENV:Envelope>

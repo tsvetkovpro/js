@@ -1,0 +1,27 @@
+﻿#container
+{
+	position: relative;
+}
+
+#tablePlaceholder 
+{
+	margin-right: 220px;
+	border-right: solid 1px gray;
+}
+
+#basketPlaceholder
+{
+	width : 200px;
+	position: absolute;
+	right: 0px;
+}
+
+#sessId
+{
+	position: absolute;
+	top: 0px; right: 0px;
+	padding: 4px;
+	color: #ddd;
+	border: 1px solid #ddd;
+	background-color: #fff;
+}

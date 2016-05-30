@@ -1,0 +1,296 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<definitions name="BooksService" 
+		targetNamespace="urn:BooksService" 
+		xmlns:tns="urn:BooksService" 
+		xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
+		xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" 
+		xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" 
+		xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" 
+		xmlns="http://schemas.xmlsoap.org/wsdl/">
+	
+	<!-- Типы данных -->
+	<types>
+		<xsd:schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="urn:BooksService">
+			<!-- Класс "категория" -->
+			<xsd:complexType name="Category">
+				<xsd:sequence>
+					<xsd:element name="id" type="xsd:int" minOccurs="1" maxOccurs="1" />
+					<xsd:element name="title" type="xsd:string" minOccurs="1" maxOccurs="1" />
+					<xsd:element name="parent" type="xsd:int" minOccurs="1" maxOccurs="1" default="0" />					
+				</xsd:sequence>
+			</xsd:complexType>
+			
+			<!-- Массив категорий -->
+			<xsd:complexType name="ArrayOfCategories">
+				<xsd:sequence>
+					<xsd:element minOccurs="0" maxOccurs="unbounded" name="category" type="tns:Category"/>
+				</xsd:sequence>
+			</xsd:complexType>
+			
+			<!-- Класс "книга" -->
+			<xsd:complexType name="Book">
+				<xsd:sequence>
+					<xsd:element name="id" type="xsd:int" minOccurs="1" maxOccurs="1" />
+					<xsd:element name="author" type="xsd:string" minOccurs="1" maxOccurs="1" />
+					<xsd:element name="title" type="xsd:string" minOccurs="1" maxOccurs="1" />
+					<xsd:element name="image" type="xsd:string" minOccurs="1" maxOccurs="1" />
+					<xsd:element name="category" type="xsd:int" minOccurs="1" maxOccurs="1" default="0" />					
+				</xsd:sequence>
+			</xsd:complexType>	
+			
+			<!-- Массив книг -->
+			<xsd:complexType name="ArrayOfBooks">
+				<xsd:sequence>
+					<xsd:element minOccurs="0" maxOccurs="unbounded" name="book" type="tns:Book"/>
+				</xsd:sequence>
+			</xsd:complexType>			
+		</xsd:schema>
+	</types>
+
+	<!-- Сообщения метода "Получить категории" -->
+	<message name="getCategories"/>
+	<message name="getCategoriesResponse">
+		<part name="categories" type="tns:ArrayOfCategories" />
+	</message>	
+	
+	<!-- Сообщения метода "Добавить книгу" -->
+	<message name="addBook">
+		<part name="newBook" type="tns:Book"/>
+	</message>
+	<message name="addBookResponse">
+		<part name="addBookResult" type="xsd:boolean"/>
+	</message>
+
+	<!-- Сообщения метода "Удалить книгу" -->
+	<message name="deleteBook">
+		<part name="bookId" type="xsd:int"/>
+	</message>
+	<message name="deleteBookResponse">
+		<part name="deleteBookResult" type="xsd:boolean"/>
+	</message>
+	
+	<!-- Сообщения метода "Получить книги по категории" -->
+	<message name="getBooks">
+		<part name="categoryId" type="xsd:int"/>
+	</message>
+	<message name="getBooksResponse">
+		<part name="books" type="tns:ArrayOfBooks"/>
+	</message>
+	
+	<!-- Сообщения метода "Заменить книгу" -->
+	<message name="replaceBook">
+		<part name="newBook" type="tns:Book"/>
+	</message>
+	<message name="replaceBookResponse">
+		<part name="replaceBookResult" type="xsd:boolean"/>
+	</message>
+	
+	<!-- Сообщения метода "Регистрация новой сессии" -->
+	<message name="registerSession" />
+	<message name="registerSessionResponse">
+		<part name="registerSessionResponse" type="xsd:string"/>
+	</message>	
+	
+	<!-- Сообщения метода "Добавление книги в корзину" -->
+	<message name="addToBasket">
+		<part name="sessionId" type="xsd:string"/>
+		<part name="bookId" type="xsd:int"/>
+	</message>
+	<message name="addToBasketResponse">
+		<part name="addToBasketResponse" type="xsd:boolean"/>
+	</message>		
+	
+	<!-- Сообщения метода "Список книг в корзине" -->
+	<message name="getBasket">
+		<part name="sessionId" type="xsd:string"/>
+	</message>
+	<message name="getBasketResponse">
+		<part name="getBasketResponse" type="tns:ArrayOfBooks"/>
+	</message>	
+	
+	<!-- Сообщения метода "Очистка корзины" -->
+	<message name="emptyBasket">
+		<part name="sessionId" type="xsd:string"/>
+	</message>
+	<message name="emptyBasketResponse">
+		<part name="emptyBasketResponse" type="xsd:boolean"/>
+	</message>	
+	
+	<!-- Привязка сообщений к методам -->
+	<portType name="ServerPortType">
+	
+		<!-- Получение списка категорий -->
+		<operation name="getCategories">
+			<documentation>Получение списка категорий</documentation>
+			<input message="tns:getCategories"/>
+			<output message="tns:getCategoriesResponse"/>
+		</operation>	
+
+		<!-- Добавление книги -->
+		<operation name="addBook">
+			<documentation>Добавление новой книги</documentation>
+			<input message="tns:addBook"/>
+			<output message="tns:addBookResponse"/>
+		</operation>
+		
+		<!-- Удаление книги -->
+		<operation name="deleteBook">
+			<documentation>Удаление книги</documentation>
+			<input message="tns:deleteBook"/>
+			<output message="tns:deleteBookResponse"/>
+		</operation>
+		
+		<!-- Получение списка книг -->
+		<operation name="getBooks">
+			<documentation>Получение всех книг по указанной категории</documentation>
+			<input message="tns:getBooks"/>
+			<output message="tns:getBooksResponse"/>
+		</operation>
+		
+		<!-- Замена книги -->
+		<operation name="replaceBook">
+			<documentation>Замена книги по ID</documentation>
+			<input message="tns:replaceBook"/>
+			<output message="tns:replaceBookResponse"/>
+		</operation>
+		
+		<!-- Регистрация новой сессии -->
+		<operation name="registerSession">
+			<documentation>Регистрация новой сессии</documentation>
+			<input message="tns:registerSession"/>
+			<output message="tns:registerSessionResponse"/>
+		</operation>	
+
+		<!-- Добавление книги в корзину -->
+		<operation name="addToBasket">
+			<documentation>Добавление книги в корзину</documentation>
+			<input message="tns:addToBasket"/>
+			<output message="tns:addToBasketResponse"/>
+		</operation>	
+
+		<!-- Список книг в корзине -->
+		<operation name="getBasket">
+			<documentation>Список книг в корзине</documentation>
+			<input message="tns:getBasket"/>
+			<output message="tns:getBasketResponse"/>
+		</operation>	
+		
+		<!-- Очистка корзины -->
+		<operation name="emptyBasket">
+			<documentation>Очистка корзины</documentation>
+			<input message="tns:emptyBasket"/>
+			<output message="tns:emptyBasketResponse"/>
+		</operation>			
+	</portType>
+	
+	<!-- Определение методов -->
+	<binding name="ServerBinding" type="tns:ServerPortType">
+		<soap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+		
+		<!-- Добавление книги -->
+		<operation name="addBook">
+			<soap:operation soapAction="urn:SampleServer2-addBook"/>
+			<input>
+				<soap:body namespace="urn:BooksService" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</input>
+			<output>
+				<soap:body namespace="urn:BooksService" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</output>
+		</operation>
+		
+		<!-- Удаление книги -->
+		<operation name="deleteBook">
+			<soap:operation soapAction="urn:SampleServer2-deleteBook"/>
+			<input>
+				<soap:body namespace="urn:BooksService" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</input>
+			<output>
+				<soap:body namespace="urn:BooksService" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</output>
+		</operation>
+		
+		<!-- Получение списка книг -->
+		<operation name="getBooks">
+			<soap:operation soapAction="urn:SampleServer2-getBooks"/>
+			<input>
+				<soap:body namespace="urn:BooksService" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</input>
+			<output>
+				<soap:body namespace="urn:BooksService" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</output>
+		</operation>
+		
+		<!-- Получение списка категорий -->
+		<operation name="getCategories">
+			<soap:operation soapAction="urn:SampleServer2-getCategories"/>
+			<input>
+				<soap:body namespace="urn:BooksService" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</input>
+			<output>
+				<soap:body namespace="urn:BooksService" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</output>
+		</operation>
+		
+		<!-- Замена книги -->
+		<operation name="replaceBook">
+			<soap:operation soapAction="urn:SampleServer2-replaceBook"/>
+			<input>
+				<soap:body namespace="urn:BooksService" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</input>
+			<output>
+				<soap:body namespace="urn:BooksService" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</output>
+		</operation>
+		
+		<!-- Регистрация сессии -->
+		<operation name="registerSession">
+			<soap:operation soapAction="urn:SampleServer2-registerSession"/>
+			<input>
+				<soap:body namespace="urn:BooksService" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</input>
+			<output>
+				<soap:body namespace="urn:BooksService" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</output>
+		</operation>		
+		
+		<!-- Добавление книги в корзину -->
+		<operation name="addToBasket">
+			<soap:operation soapAction="urn:SampleServer2-addToBasket"/>
+			<input>
+				<soap:body namespace="urn:BooksService" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</input>
+			<output>
+				<soap:body namespace="urn:BooksService" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</output>
+		</operation>
+
+		<!-- Список книг в корзине -->
+		<operation name="getBasket">
+			<soap:operation soapAction="urn:SampleServer2-getBasket"/>
+			<input>
+				<soap:body namespace="urn:BooksService" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</input>
+			<output>
+				<soap:body namespace="urn:BooksService" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</output>
+		</operation>
+
+		<!-- Очистка корзины -->
+		<operation name="emptyBasket">
+			<soap:operation soapAction="urn:SampleServer2-emptyBasket"/>
+			<input>
+				<soap:body namespace="urn:BooksService" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</input>
+			<output>
+				<soap:body namespace="urn:BooksService" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+			</output>
+		</operation>		
+	</binding>
+	
+	<!-- Определение сервиса -->
+	<service name="BooksServiceService">
+		<port name="ServerPort" binding="tns:ServerBinding">
+			<soap:address location="http://localhost:80/AJAX/solution/lab5/server/server.php"/>
+		</port>
+	</service>
+</definitions>

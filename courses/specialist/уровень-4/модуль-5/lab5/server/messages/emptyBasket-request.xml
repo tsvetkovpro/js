@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<SOAP-ENV:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/">
+  <SOAP-ENV:Body>
+    <req:emptyBasket xmlns:req="urn:BooksService">
+      <sessionId xsi:type="xsd:string">string</sessionId>
+    </req:emptyBasket>
+  </SOAP-ENV:Body>
+</SOAP-ENV:Envelope>

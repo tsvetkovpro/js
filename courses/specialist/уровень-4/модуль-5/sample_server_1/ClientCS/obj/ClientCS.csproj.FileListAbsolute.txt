@@ -1,0 +1,3 @@
+C:\Inetpub\wwwroot\AJAX\demo\module5\sample_server_1\ClientCS\bin\Debug\ClientCS.exe.config
+C:\Inetpub\wwwroot\AJAX\demo\module5\sample_server_1\ClientCS\obj\Debug\ClientCS.exe
+C:\Inetpub\wwwroot\AJAX\demo\module5\sample_server_1\ClientCS\obj\Debug\ClientCS.pdb

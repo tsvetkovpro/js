@@ -1,0 +1,67 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ru" lang="ru" dir="ltr">
+<head>
+	<title>Вызов SOAP метода</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="Content-Language" content="ru" />
+	<script type="text/javascript" src="xmlhttprequest.js"></script>
+	<script type="text/javascript" src="xmltools.js"></script>
+	<script type="text/javascript">
+		function callGetTime()
+		{
+			// Загрузка сообщения
+			var reqSOAPRequest = getXmlHttpRequest();
+			reqSOAPRequest.open("GET", "sample_server_1/messages/getTime-request.xml", false);
+			reqSOAPRequest.send(null);
+			var soapRequest = reqSOAPRequest.responseXML;
+			//alert(showXML(soapRequest));
+			
+			// Вызов SOAP метода
+			var req = getXmlHttpRequest();
+			req.open("POST", "sample_server_1/server.php", false);
+			req.setRequestHeader("SOAPAction", "urn:SampleServer1-getTime");
+			req.send(soapRequest);
+			
+			// Ответ сервера
+			var soapResponse = req.responseXML;
+			alert(showXML(soapResponse));
+			
+			// Расшифровка ответа
+			var time = soapResponse.getElementsByTagName("getTimeResult")[0].firstChild.nodeValue;
+			alert("Сейчас на сервере: " + time);
+		}
+		
+		function callSayHello(userName)
+		{
+			// Загрузка сообщения
+			var reqSOAPRequest = getXmlHttpRequest();
+			reqSOAPRequest.open("GET", "sample_server_1/messages/sayHello-request.xml", false);
+			reqSOAPRequest.send(null);
+			var soapRequest = reqSOAPRequest.responseXML;
+			soapRequest.getElementsByTagName("userName")[0].firstChild.nodeValue = userName;
+			
+			// Вызов SOAP метода
+			var req = getXmlHttpRequest();
+			req.open("POST", "sample_server_1/server.php", false);
+			req.setRequestHeader("SOAPAction", "urn:SampleServer1-sayHello");
+			req.send(soapRequest);
+			
+			// Ответ сервера
+			var soapResponse = req.responseXML;
+			//alert(showXML(soapResponse));
+			
+			// Расшифровка ответа
+			var result = soapResponse.getElementsByTagName("sayHelloResult")[0].firstChild.nodeValue;
+			alert(result);			
+		}
+	</script>
+</head>
+<body>
+	<h1>Вызов SOAP метода</h1>
+	<div>
+		<button onclick="callGetTime()">GetTime</button>
+		<button onclick="callSayHello(prompt('Ваше имя', 'Пользователь'))">SayHello</button>
+	</div>
+</body>
+</html>
+

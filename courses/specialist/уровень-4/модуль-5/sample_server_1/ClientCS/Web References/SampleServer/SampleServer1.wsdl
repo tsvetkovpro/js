@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:typens="urn:SampleServer1" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://schemas.xmlsoap.org/wsdl/" name="SampleServer1" targetNamespace="urn:SampleServer1" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types />
+  <wsdl:message name="getTime" />
+  <wsdl:message name="getTimeResponse">
+    <wsdl:part name="Body" type="xsd:string" />
+  </wsdl:message>
+  <wsdl:message name="sayHello">
+    <wsdl:part name="userName" type="xsd:string" />
+  </wsdl:message>
+  <wsdl:message name="sayHelloResponse">
+    <wsdl:part name="Body" type="xsd:string" />
+  </wsdl:message>
+  <wsdl:portType name="ServerPortType">
+    <wsdl:operation name="getTime">
+      <wsdl:input message="typens:getTime" />
+      <wsdl:output message="typens:getTimeResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="sayHello">
+      <wsdl:input message="typens:sayHello" />
+      <wsdl:output message="typens:sayHelloResponse" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="ServerBinding" type="typens:ServerPortType">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="rpc" />
+    <wsdl:operation name="getTime">
+      <soap:operation soapAction="urn:ServerAction" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="urn:SampleServer1" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="urn:SampleServer1" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="sayHello">
+      <soap:operation soapAction="urn:ServerAction" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="urn:SampleServer1" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="urn:SampleServer1" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="SampleServer1Service">
+    <wsdl:port name="ServerPort" binding="typens:ServerBinding">
+      <soap:address location="http://localhost:80/AJAX/demo/module5/sample_server_1/server.php" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

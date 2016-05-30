@@ -1,0 +1,239 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ru" lang="ru" dir="ltr">
+<head>
+	<title>Выбор книг в корзину</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="Content-Language" content="ru" />
+	<link rel="stylesheet" type="text/css" href="lab5.css" />
+	<script type="text/javascript" src="xmlhttprequest.js"></script>
+	<script type="text/javascript" src="xslt.js"></script>
+	<script type="text/javascript" src="xmltools.js"></script>
+	<script type="text/javascript">
+		/*
+		**	Задание 1.  Сохранение SOAP сообщений в виде XML файлов
+		** 	Откройте приложение Liquid XML Studio 2008 (Freeware)
+		**  Выберите в меню Tools --> Browse Web Service
+		**  Введите URL:	http://localhost/AJAX/labs/lab5/server/bookservice.wsdl
+		**  (убедитесь в правильности этого URL, просто открывая его в браузере)
+		**	Нажмите кнопку Test и убедитесь, что подключение к XML Web-сервису есть
+		**	Нажмите кнопку [Next >>]
+		**	Выберите метод registerSession и нажмите кнопку [Finish]
+		**	Скопируйте и сохраните текст SOAP-сообщения в папку server/messages
+		**	с именем "название_метода-request.xml", то есть "registerSession-request.xml"
+		**	Переключитесь в Liquid XML Studio 2008 (Freeware)
+		**	при необходимости в SOAP-сообщении укажите параметры и нажмите кнопку [Execute]
+		**	Скопируйте и сохраните текст SOAP-сообщения в папку server/messages
+		**	с именем "название_метода-response.xml", то есть "registerSession-response.xml"
+		**	Повторите эти шаги для методов:
+		**		addToBasket, getBasket, emptyBasket
+		*/		
+		
+		// URL сервера, взято из WSDL
+		var serverBase = "server/";
+		var server = serverBase + "server.php";
+		
+		// Текущий набор книг
+		var xmlBooks = null;
+		
+		// Идентификатор сессии пользователя
+		var sessionId = "";
+		
+		
+		
+		// Функция показывает книги указанной категории
+		function showBooks()
+		{
+			var selCategory = document.getElementById("selectPlaceholder").firstChild;
+			if (!selCategory) return;
+			// Загрузка сообщения getBooks-request
+			var msgGetBooks = loadXML(serverBase + "messages/getBooks-request.xml");
+			setParameter("categoryId", selCategory.value, msgGetBooks);
+			// Асинхронный запрос сервера
+			sendMessage(msgGetBooks, "urn:SampleServer2-getBooks", true, showBooksCallBack);
+		}
+		
+		// Функция обратного вызова при завершении метода showBooks
+		function showBooksCallBack(req)
+		{
+			// Считаем полученное сообщение
+			xmlBooks = req.responseXML;
+			// Загрузка преобразования
+			var xsltBooks = loadXML(serverBase + "xslt/getBooks.xsl");
+			// Отображение таблицы книг
+			document.getElementById("tablePlaceholder").innerHTML = xsltTransform(xmlBooks, xsltBooks);
+		}
+
+
+		/*
+		**	Задание 2. Регистрация новой сессии пользователя
+		**	Напишите код функции registerSession(), которая вызывая SOAP-метод registerSession,
+		**	регистрирует новую сессию пользователя. URI этого метода urn:SampleServer2-registerSession
+		**	Для этого загрузите сообщение registerSession-request.xml
+		**	(см. пример в функции showBooks()) и передайте его на сервер server/server.php
+		**	Результат (сообщение registerSession-response.xml) проанализируйте: найдите в нем элемент
+		**	<registerSessionResponse xsi:type="xsd:string">...</registerSessionResponse>
+		**	и сохраните переданный идентификатор в глобальной переменной sessionId
+		**	Для отладки выведите эту информацию в объект HTML <div id="sessId"></div>
+		**	Вызовите эту функцию из автозагрузки
+		*/
+		function registerSession()
+		{
+			// Загрузка сообщения registerSession-request
+			var msgRegSession = loadXML(serverBase + "messages/registerSession-request.xml");
+			// Асинхронный запрос сервера
+			sendMessage(msgRegSession, "urn:SampleServer2-registerSession", true, registerSessionCallack);
+		}
+		
+		// Фукнция обратного вызова регистрации сессии
+		function registerSessionCallack(req)
+		{
+			// Считаем полученное сообщение
+			var xmlSessionId = req.responseXML;
+			// Запомним ID сессии
+			sessionId = xmlSessionId.getElementsByTagName("registerSessionResponse")[0].firstChild.nodeValue;
+			var divSessId = document.getElementById("sessId");
+			divSessId.innerHTML = sessionId;
+		}
+		
+		/*
+		**	Задание 3. Добавление книг в корзину
+		**	Напишите код функции addToBasket(), которая вызывая SOAP-метод addToBasket,
+		**	добавляет книгу в корзину. URI этого метода urn:SampleServer2-addToBasket
+		**	Для этого загрузите сообщение addToBasket-request.xml
+		**	(см. пример в функции showBooks()) и передайте его на сервер server/server.php
+		**	В этом сообщении не забудьте установить параметры sessionId, bookId
+		**	Внимательно изучите XML файл с примером сообщения. 
+		**	Получите результат (см. сообщение addToBasket-response.xml) и прочитайте 
+		**	элемент addToBasketResponse. Если он равен "true" -- книга добавлена в корзину
+		** 	Выведите пользователю сообщение об этом. На следующей лабораторной работе
+		**	Вы отобразите корзину
+		*/
+		function addToBasket(bookId)
+		{
+			// Загрузка сообщения addToBasket-request
+			var msgAddToBasket = loadXML(serverBase + "messages/addToBasket-request.xml");
+			setParameter("sessionId", sessionId, msgAddToBasket);
+			setParameter("bookId", bookId, msgAddToBasket);
+			// Асинхронный запрос сервера
+			sendMessage(msgAddToBasket, "urn:SampleServer2-addToBasket", true, addToBasketCallback);
+		}
+		
+		// Функция обратного вызова добавления в корзину
+		function addToBasketCallback(req)
+		{
+			// Считаем полученное сообщение
+			var xmlResult = req.responseXML;
+			// Результат выполнения операции
+			var result = xmlResult.getElementsByTagName("addToBasketResponse")[0].firstChild.nodeValue;
+			if (result == "true")
+			{
+				// Книга в корзину добавлена!
+				showBasket()
+			}
+			else
+			{
+				// Ошибка
+				alert("Ошибка добавления книги");
+			}
+		}
+	
+		/*
+		**	Задание 4. Отображение корзины на экране
+		**	Напишите код функции showBasket(), которая вызывая SOAP-метод getBasket,
+		**	получает и показывает книги в корзине. URI этого метода urn:SampleServer2-getBasket
+		**	Для этого загрузите сообщение getBasket-request.xml и установите параметр sessionId
+		**	(см. пример в функции showBooks()) и передайте его на сервер server/server.php	
+		**	Получите результат (см. сообщение getBasket-response.xmll) и выполните 
+		**	XSL-преобразование с помощью таблицы getBasket.xsl
+		**	Результат преобразовния выведите в HTML элемент <div id="basketPlaceholder"></div>
+		*/
+		function showBasket()
+		{
+			// Загрузка сообщения getBasket-request
+			var msgGetBasket = loadXML(serverBase + "messages/getBasket-request.xml");
+			setParameter("sessionId", sessionId, msgGetBasket);
+			// Асинхронный запрос сервера
+			sendMessage(msgGetBasket, "urn:SampleServer2-getBasket", true, showBasketCallback);
+		}
+	
+		function showBasketCallback(req)
+		{
+			// Считаем полученное сообщение
+			var msgGetBasketResponse = req.responseXML;
+			// Загрузка преобразования
+			var xsltBooks = loadXML(serverBase + "xslt/getBasket.xsl");
+			// Отображение таблицы книг
+			document.getElementById("basketPlaceholder").innerHTML = xsltTransform(msgGetBasketResponse, xsltBooks);			
+		}
+		
+		/*
+		**	Задание 5. Очистка корзины
+		**	Напишите код функции emptyBasket(), которая вызывая SOAP-метод emptyBasket,
+		**	получает и показывает книги в корзине. URI этого метода urn:SampleServer2-emptyBasket
+		**	Для этого загрузите сообщение emptyBasket-request.xml и установите параметр sessionId
+		**	(см. пример в функции addToBasket()) и передайте его на сервер server/server.php	
+		**	Получите результат (см. сообщение emptyBasket-response.xml) и прочитайте 
+		**	элемент emptyBasketResponse. Если он равен "true" -- корзина очищена.
+		** 	Выведите пользователю сообщение об этом, и очистите элемент
+		**	<div id="basketPlaceholder"></div>
+		*/
+		function emptyBasket()
+		{
+			// Загрузка сообщения getBasket-request
+			var msgEmptyBasket = loadXML(serverBase + "messages/emptyBasket-request.xml");
+			setParameter("sessionId", sessionId, msgEmptyBasket);
+			// Асинхронный запрос сервера
+			sendMessage(msgEmptyBasket, "urn:SampleServer2-emptyBasket", true, emptyBasketCallback);		
+		}
+
+		function emptyBasketCallback(req)
+		{
+			// Считаем полученное сообщение
+			var xmlResult = req.responseXML;
+			// Результат выполнения операции
+			var result = xmlResult.getElementsByTagName("emptyBasketResponse")[0].firstChild.nodeValue;
+			if (result == "true")
+			{
+				// Корзина очищена
+				document.getElementById("basketPlaceholder").innerHTML = "";
+			}
+			else
+			{
+				// Ошибка
+				alert("Ошибка очистки корзины");
+			}			
+		}		
+		
+		// Инициализация страницы
+		window.onload = function()
+		{
+			// Загрузка сообщения getCategories
+			var msgGetCat = loadXML(serverBase + "messages/getCategories-request.xml");
+			// Синхронный запрос сервера
+			var msgGetCatResponse = sendMessage(msgGetCat, "urn:SampleServer2-getCategories", false, null);
+			// Загрузка преобразования
+			var xsltCat = loadXML(serverBase + "xslt/getCategories.xsl");
+			// Отображение списка категорий
+			document.getElementById("selectPlaceholder").innerHTML = xsltTransform(msgGetCatResponse, xsltCat);
+			// Регистрация новой сессии
+			registerSession();
+		}
+	</script>
+</head>
+<body>
+	<h1>Выбор книг в корзину</h1>
+	<div id="sessId"></div>
+	<div id="container">
+		<form action="#" onsubmit="return false">
+			<div>
+				<label for="">Категория</label>
+				<span id="selectPlaceholder"></span>
+				<button onclick="showBooks()">Показать</button>
+			</div>
+		</form>
+		<div id="basketPlaceholder"></div>
+		<div id="tablePlaceholder"></div>
+	</div>
+</body>
+</html>
+

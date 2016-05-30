@@ -1,0 +1,187 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ru" lang="ru" dir="ltr">
+<head>
+	<title>Редактор книг</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="Content-Language" content="ru" />
+	<link rel="stylesheet" type="text/css" href="demo-2-soap.css" />
+	<script type="text/javascript" src="xmlhttprequest.js"></script>
+	<script type="text/javascript" src="xslt.js"></script>
+	<script type="text/javascript" src="xmltools.js"></script>
+	<script type="text/javascript">
+		// URL сервера, взято из WSDL
+		var server = "sample_server_2/server.php";
+		
+		// Текущий набор книг
+		var xmlBooks = null;
+		
+		// Функция показывает книги указанной категории
+		function showBooks()
+		{
+			var selCategory = document.getElementById("selectPlaceholder").firstChild;
+			if (!selCategory) return;
+			// Загрузка сообщения getBooks-request
+			var msgGetBooks = loadXML("sample_server_2/messages/getBooks-request.xml");
+			setParameter("categoryId", selCategory.value, msgGetBooks);
+			// Асинхронный запрос сервера
+			sendMessage(msgGetBooks, "urn:SampleServer2-getBooks", true, showBooksCallBack);
+		}
+		
+		// Функция обратного вызова при завершении метода showBooks
+		function showBooksCallBack(req)
+		{
+			// Считаем полученное сообщение
+			xmlBooks = req.responseXML;
+			// Загрузка преобразования
+			var xsltBooks = loadXML("xslt/getBooks.xsl");
+			// Отображение таблицы книг
+			document.getElementById("tablePlaceholder").innerHTML = xsltTransform(xmlBooks, xsltBooks);
+		}
+		
+		// Функция редактирования книги
+		function editBook(bookId)
+		{
+			if (!xmlBooks) return;
+			// Загрузка преобразования
+			var xsltBookEditor = loadXML("xslt/bookEditor.xsl");
+			// Установка кода книги в переменную преобразования
+			var varBookId = xsltBookEditor.getElementsByTagName("variable")[0];
+			// "Хак" для IE: для IE нужно указывать префикс пространства имен
+			if (!varBookId) varBookId = xsltBookEditor.getElementsByTagName("xsl:variable")[0];
+			// Установим значение переменной bookId
+			varBookId.setAttribute("select", bookId);
+			// Отображение формы редактирования
+			document.body.style.backgroundColor = "#ccc";
+			document.getElementById("formPlaceholder").innerHTML = xsltTransform(xmlBooks, xsltBookEditor);
+		}
+		
+		// Закрывает редактор книги
+		function closeEditor()
+		{
+			document.body.style.backgroundColor = "";
+			document.getElementById("formPlaceholder").innerHTML = "";
+		}
+		
+		// Сохраняет книгу, если она есть, или добавляет новую книгу в БД (если bookId = 0)
+		function saveBook(bookId)
+		{
+			// Данные книги
+			var categoryId = document.getElementById("txtCategory").value;
+			var author = document.getElementById("txtAuthor").value;
+			var title = document.getElementById("txtTitle").value;
+			var image = document.getElementById("txtImage").value;
+			
+			// SOAP сообщение
+			var message;
+			// SOAP действие
+			var action;
+			if (bookId == 0)
+			{
+				// Новая книга: Загрузка сообщения addBook-request.xml
+				message = loadXML("sample_server_2/messages/addBook-request.xml");
+				action = "urn:SampleServer2-addBook";
+				// Текущая категория - получим из списка категорий
+				var selCategory = document.getElementById("selectPlaceholder").firstChild;
+				categoryId = selCategory.value;
+			}
+			else
+			{
+				// Редактирование книги: Загрузка сообщения replaceBook-request.xml
+				message = loadXML("sample_server_2/messages/replaceBook-request.xml");
+				action = "urn:SampleServer2-replaceBook";
+			}
+			// Параметры сообщения
+			setParameter("id", bookId, message);
+			setParameter("author", author, message);
+			setParameter("title", title, message);
+			setParameter("image", image, message);
+			setParameter("category", categoryId, message);
+			// Асинхронная отправка сообщения
+			sendMessage(message, action, true, saveBookCallBack);
+		}
+		
+		// Обратный вызов метода saveBook
+		function saveBookCallBack(req)
+		{
+			// Считаем из полученного сообщения результат
+			var operationResult = req.responseXML.getElementsByTagName("addBookResult")[0];
+			// Если это было не добавление книги, то это сообщение замены книги
+			if (!operationResult)
+				operationResult = req.responseXML.getElementsByTagName("replaceBookResult")[0];
+			// Проверим результат операции
+			if (operationResult.firstChild.nodeValue == "true")
+			{
+				if (operationResult.nodeName == "addBookResult") alert("Книга добавлена");
+					else alert("Книга сохранена");
+				// Закроем редактор, так как все OK!
+				closeEditor();
+				// Перечитаем список книг
+				showBooks();
+			}
+			else
+			{
+				if (operationResult.nodeName == "addBookResult") alert("Книга не добавлена!");
+					else alert("Книга не сохранена!");				
+			}
+		}
+		
+		// Удаляет книгу
+		function deleteBook(bookId)
+		{
+			if (confirm("Вы действительно хотите удалить эту книгу из БД?"))
+			{
+				// Загрузка и подготовка сообщения deleteBook-request.xml
+				var message = loadXML("sample_server_2/messages/deleteBook-request.xml");
+				setParameter("bookId", bookId, message);
+				// Отправка сообщения
+				sendMessage(message, "urn:SampleServer2-deleteBook", true, deleteBookCallBack);
+			}
+		}
+		
+		// Обратный вызов метода deleteBook
+		function deleteBookCallBack(req)
+		{
+			// Считаем из полученного сообщения результат
+			var operationResult = req.responseXML.getElementsByTagName("deleteBookResult")[0];
+			if (operationResult.firstChild.nodeValue == "true")
+			{
+				alert("Книга удалена!");
+				// Закроем редактор, так как все OK!
+				closeEditor();
+				// Перечитаем список книг
+				showBooks();				
+			}
+			else
+			{
+				alert("Книга не удалена!");
+			}
+		}
+		
+		// Инициализация страницы
+		window.onload = function()
+		{
+			// Загрузка сообщения getCategories
+			var msgGetCat = loadXML("sample_server_2/messages/getCategories-request.xml");
+			// Синхронный запрос сервера
+			var msgGetCatResponse = sendMessage(msgGetCat, "urn:SampleServer2-getCategories", false, null);
+			// Загрузка преобразования
+			var xsltCat = loadXML("xslt/getCategories.xsl");
+			// Отображение списка категорий
+			document.getElementById("selectPlaceholder").innerHTML = xsltTransform(msgGetCatResponse, xsltCat);
+		}
+	</script>
+</head>
+<body>
+	<h1>Редактор книг</h1>
+	<form action="#" onsubmit="return false">
+		<div>
+			<label for="">Категория</label>
+			<span id="selectPlaceholder"></span>
+			<button onclick="showBooks()">Показать</button>
+		</div>
+		<div id="tablePlaceholder"></div>
+	</form>
+	<div id="formPlaceholder"></div>
+</body>
+</html>
+

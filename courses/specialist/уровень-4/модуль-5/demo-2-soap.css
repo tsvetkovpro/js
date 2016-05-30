@@ -1,0 +1,50 @@
+﻿/* Форма редактирования книги */
+#frmBook 
+{
+	position: absolute;
+	top: 70px; 
+	left: 70px;
+	width: 40em;
+	background-color: white;
+	border: 1px solid gray;
+	padding: 2em;
+}
+#frmBook  div
+{
+	margin-top: 1em;
+}
+
+#frmBook  label
+{
+	display: block;
+	width: 7em;
+	text-align: right;
+	margin-right: 1ex;
+	float: left;
+}
+
+#frmBook  input
+{
+	padding: 2px;
+	width: 35em;
+}
+
+#aClose
+{
+	display: block;
+	width: 2em; height: 1.3em;
+	text-align: center;
+	text-decoration: none;
+	font-family: Sans-Serif;
+	font-weight: bold;
+	color: white;
+	background-color: #f99;
+	border: 1px solid gray;
+	position: absolute;
+	top: 0px;
+	right: 0px;
+} 
+#aClose:hover
+{
+	background-color: #f33;
+}
