@@ -1,0 +1,245 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ru" lang="ru" dir="ltr">
+<head>
+	<title>Аутентификация пользователя</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="Content-Language" content="ru" />
+	<style type="text/css">
+		#divShadowScreen { display:none; position:absolute; top:0px; left:0px; z-index:1; width:100%; height:100%; background-color:#000; opacity: 70%; filter:alpha(opacity=70); -moz-opacity: 0.7; }
+		#divFrmLogin { display:none; width:25em; position:absolute; top:50%; left:50%; font-family:Verdana,Sans-serif; font-size:small; z-index:2; }
+		#frmLogin { border:1px solid #000; background-color:#fff; padding:1em; position:relative; top:-10em; left:-12em; }
+		#frmLogin div { margin:1em; }
+		#frmLogin div label { display:block; width:8em; float:left; }
+		#divButtons { text-align:center; }
+		#divButtons button { margin:1em; width:6em; }
+		#divResult { margin:2em; }
+	</style>
+	<script type="text/javascript" src="md5.js"></script>
+	<script type="text/javascript" src="json2.js"></script>
+	<script type="text/javascript" src="xmlhttprequest.js"></script>
+	<script type="text/javascript">
+		/*
+		** Адрес сервера
+		*/
+		var server = "server/server.php";
+		
+		
+		/*
+		** Констуктор объекта Entropy
+		*/
+		function Entropy()
+		{
+			this.salt = arguments.length > 0 ? arguments[0] : "";
+			this.iterationCount = arguments.length > 1 ? arguments[1] : "";
+		}
+		
+		/*
+		** Констуктор объекта User
+		*/
+		function User()
+		{
+			// Свойства объекта
+			this.name = arguments.length > 0 ? arguments[0] : "";
+			this.email = arguments.length > 1 ? arguments[1] : "";
+			this.password = arguments.length > 2 ? arguments[2] : "";
+			this.dbEntropy = new Entropy();
+			this.transferEntropy = new Entropy();
+		}
+		
+		/*
+		** "Засоливание" пароля RFC2898
+		*/
+		function getSaltedHash(password, salt, iterationCount)
+		{
+			var saltedHash = password;
+			if (iterationCount < 1) iterationCount = 1;
+			for (var i=0; i<iterationCount; i++)
+				saltedHash = hex_md5(salt + saltedHash);
+			return saltedHash;
+		}
+		
+		/*
+		** Функция показывает/гасит форму входа на сайт
+		*/
+		function showHideLoginForm(visibility)
+		{
+			if (visibility)
+			{
+				document.getElementById("divShadowScreen").style.display = "block";
+				document.getElementById("divFrmLogin").style.display = "block";
+				if (document.getElementById("txtEmail").value)
+					document.getElementById("txtPassword").focus();
+				else
+					document.getElementById("txtEmail").focus();
+			}
+			else
+			{
+				document.getElementById("divShadowScreen").style.display = "";
+				document.getElementById("divFrmLogin").style.display = "";				
+			}
+		}
+		
+		/* Задание 1. Запрос "соли" хэширования с сервера.
+		**
+		** Общий сценарий: 
+		** В этой лабораторной работе используется надежная передача пароля с помощью
+		** многократного хэширования пароля со случайной строкой. При формировании пароля в базе данных
+		** сохраняется "соль" - случайная строка и число итераций хэширования. Для передачи пароля между клиентом
+		** и сервером, хэш пароля в БД также "засоливается", то есть многократно хэшируется
+		** со случайной строкой. В этом задании вы передадите введенный E-mail пользователя на сервер
+		** с помощью объекта User. Сервер вернет вам также объект User, у которого будут инициализировны
+		** свойства энтропии, то есть объекты "соли". Этих свойств два: та энтропия, которая использовалась
+		** при хэшировании пароля в БД, и новая энтропия, которая сгенерирована сервером для 
+		** текущего сеанса связи. Вы должны сначала прохэшировать введенный пользователем пароль
+		** с "солью" user.dbEntropy.salt указанное число раз (user.dbEntropy.iterationCount) и 
+		** полученную строку еще раз прохэшировать с "солью" user.transferEntropy.salt
+		** указанное число итераций (user.transferEntropy.iterationCount)
+		** Результирующую строку следует записать в свойство user.password и передать на сервер
+		** Если пользователь ввел правильный пароль, сервер вернет вам объект, у которого 
+		** установлено свойство user.name, иначе это свойство будет пустым.
+		** Такой способ передачи пароля позволяет говорить о некоторой защищенности данных пользователя
+		**
+		** Допишите функцию loginUser(). После комментария "// Создадим объект User" создайте новый
+		** объект User, установив у него свойство email из переменной email
+		** Передайте асинхронным вызовом этот объект на сервер (адрес сервера - глобальная переменная server)
+		** сериализовав его в JSON строку. Получите данные от сервера и десериализуйте его в объект
+		** Вызовите функцию sendPassword, передав ей полученный объект от сервера
+		** В целях отладки выведите с помощью функции alert ответ сервера
+		** Запишите, какие свойства у полученного объекта установлены. 
+		** Обратите внимание на значения объектов энтропии
+		** Для проверки работы используйте E-mail пользователей:
+		** vasyap@mail.ru, fedyas@mail.ru, masha@mail.ru
+		** У всех пользователей пароль - password		
+		*/
+		function loginUser()
+		{
+			// Введенный пользователем E-mail
+			var email = document.getElementById("txtEmail").value;
+			
+			// Создадим объект User
+			var user = new User("", email, "");
+			
+			// Сериализуем его и отправим серверу
+			var jsonUser = JSON.stringify(user);
+			var req = getXmlHttpRequest();
+			req.onreadystatechange = function()
+				{
+					if (req.readyState != 4) return;
+					// Десериализация полученного объекта
+					var challenge = JSON.parse(req.responseText);
+					// Вызов функции хэширования пароля
+					sendPassword(challenge);
+				}
+			req.open("POST", server, true);
+			req.setRequestHeader("Content-Type", "text/plain");
+			req.setRequestHeader("Content-Length", jsonUser.length);			
+			req.send(jsonUser);	
+			
+			// Гашение формы ввода пароля
+			showHideLoginForm(false);
+		}
+
+		/* Задание 2.
+		** После комментария "// Хэширование" произведите хэширование введенного пароля
+		** (свойство user.password) с помощью функции getSaltedHash().
+		** Передайте этой функции "соль" user.dbEntropy.salt и 
+		** число итераций user.dbEntropy.iterationCount
+		** Сохраните результат в свойство user.password
+		** Проведите второе хэширование, Передавая "соль" user.transferEntropy.salt
+		** и число итераций user.transferEntropy.iterationCount
+		** Сохраните результат в свойство user.password
+		** Сериализуйте объект user в JSON-строку и асинхронно передайте его на сервер
+		** (URL - глобальная переменная server). Получите данные от сервера и десериализуйте 
+		** JSON строку в объект. Вызовите функцию showUserData, передав полученный объект 
+		** в качестве параметра
+		** В целях отладки выведите с помощью функции alert ответ сервера
+		** Запишите, какие свойства у полученного объекта установлены. 
+		** Обратите внимание на значения свойства user.name	
+		** Для проверки работы используйте E-mail пользователей:
+		** vasyap@mail.ru, fedyas@mail.ru, masha@mail.ru
+		** У всех пользователей пароль - password
+		*/
+		function sendPassword(user)
+		{
+			// Введенный пользователем пароль
+			user.password = document.getElementById("txtPassword").value;
+			// Сбос введенного пароля
+			document.getElementById("txtPassword").value = "";			
+			
+			// Хэширование
+			// 1-е хэширование пароля - с энтропией БД
+			user.password = getSaltedHash(user.password, user.dbEntropy.salt, user.dbEntropy.iterationCount);
+			// 2-е хэширование пароля - с энтропией используемой при передаче
+			user.password = getSaltedHash(user.password, user.transferEntropy.salt, user.transferEntropy.iterationCount);			
+			
+			// Сериализуем его и отправим серверу
+			var jsonUser = JSON.stringify(user);
+			var req = getXmlHttpRequest();
+			req.onreadystatechange = function()
+				{
+					if (req.readyState != 4) return;
+					// Десериализация полученного объекта
+					var response = JSON.parse(req.responseText);
+					// Вывод результатов
+					showUserData(response);
+				}
+			req.open("POST", server, true);
+			req.setRequestHeader("Content-Type", "text/plain");
+			req.setRequestHeader("Content-Length", jsonUser.length);			
+			req.send(jsonUser);				
+		}
+		
+		/* Задание 3
+		** В зависимости от значения свойства user.name	покажите пользователю
+		** результат проверки пароля. Если это свойство пусто - пользователь ошибся.
+		** Если нет - то в этом свойстве записано правильное имя пользователя. Покажите 
+		** сообщение пользователю в HTML объекте <div id="divResult"></div>
+		*/
+		function showUserData(user)
+		{
+			// Объект вывода результатов
+			var divResult = document.getElementById("divResult");
+			
+			// Вывод результатов
+			if (user.name)
+			{
+				// Проверка пользователя прошла успешно
+				divResult.style.color = "";
+				divResult.style.fontWeight = "";
+				divResult.innerHTML = "<strong>" + user.name + "</strong>! Добро пожаловать на сайт!";
+			}
+			else
+			{
+				divResult.style.color = "red";
+				divResult.style.fontWeight = "bold";
+				divResult.innerHTML = "Вы неправильно ввели логин/пароль! Повторите снова...";
+			}
+		}
+	</script>
+</head>
+<body>
+	<h1>Аутентификация пользователя</h1>
+	<form onsubmit="return false">
+		<button onclick="showHideLoginForm(true)">Вход</button>
+	</form>
+	<div id="divFrmLogin">
+		<form id="frmLogin" onsubmit="return false">
+			<div>
+				<label for="txtEmail">Ваш E-mail:</label>
+				<input id="txtEmail" type="text" />
+			</div>
+			<div>
+				<label for="txtPassword">Ваш пароль:</label>
+				<input id="txtPassword" type="password" />
+			</div>
+			<div id="divButtons">
+				<button onclick="loginUser()">Вход</button>
+				<button onclick="showHideLoginForm(false)">Закрыть</button>
+			</div>
+		</form>		
+	</div>
+	<div id="divResult"></div>
+	<div id="divShadowScreen"></div>
+</body>
+</html>
+

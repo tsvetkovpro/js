@@ -1,0 +1,14 @@
+/*
+** Сообщение пользователю
+*/
+#divMessageLoad
+{
+	position: absolute;
+	top: 100px; left: 100px;
+	background-color: #fff;
+	color: gray;
+	text-align: center;
+	border:1px solid gray;
+	padding: 2em;
+	display: none;
+}

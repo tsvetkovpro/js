@@ -1,0 +1,32 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ru" lang="ru" dir="ltr">
+<head>
+	<title>Демонстрация хэширования</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="Content-Language" content="ru" />
+	<script type="text/javascript" src="md4.js"></script>
+	<script type="text/javascript" src="md5.js"></script>
+	<script type="text/javascript" src="sha1.js"></script>
+	<script type="text/javascript">
+		// Запрос данных
+		function calculateHash()
+		{
+			var input = document.getElementById("txtInput").value;
+			document.getElementById("divResult").innerHTML = 
+				"MD4: <strong>" + hex_md4(input) + "</strong><br />" + 
+				"MD5: <strong>" + hex_md5(input) + "</strong><br />" + 
+				"SHA1: <strong>" + hex_sha1(input) + "</strong>";
+		}
+	</script>
+</head>
+<body>
+	<h1>Демонстрация хэширования</h1>
+	<form onsubmit="return false">
+		<label for="txtInput">Строка текста</label>
+		<input id="txtInput" type="text" value="Проба!" />
+		<button onclick="calculateHash()">Хэш!</button>
+	</form>
+	<div id="divResult" style="margin:20px"></div>
+</body>
+</html>
+

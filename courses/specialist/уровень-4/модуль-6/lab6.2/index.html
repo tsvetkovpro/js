@@ -1,0 +1,115 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ru" lang="ru" dir="ltr">
+<head>
+	<title>Понедельник начинается в субботу</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="Content-Language" content="ru" />
+	<link rel="stylesheet" type="text/css" href="lab6.2.css" />
+	<script type="text/javascript" src="xmlhttprequest.js"></script>
+	<script type="text/javascript" src="xslt.js"></script>
+	<script type="text/javascript">
+		// Адреса сервера
+		var serverXml = "server/get-section-xml.php";
+		var serverHtml = "server/get-section-html.php";
+		
+		// XSLT преобразование
+		var fb2html;
+		
+	
+		/* Задание 1. Функция загрузки главы книги
+		** Покажите сообщение пользователю о загрузке данных. Для этого установите у
+		** объекта divMessageLoad свойство display = "block"
+		** Сформируйте и выполните асинхронный GET запрос к серверу serverXml (глобальная переменная),
+		** передавая ему параметер no с номером текущей главы (аргумент функции)
+		** Получите XML данные и вызовите функцию showChapter, передавая ей параметры
+		** полученный DOM документ и номер текущей главы
+		*/
+		function getChapter(no)
+		{
+			// Сообщение пользователю
+			document.getElementById("divMessageLoad").style.display = "block";
+			
+			// Запрос главы с сервера
+			var req = getXmlHttpRequest();
+			req.onreadystatechange = function()
+				{
+					if (req.readyState != 4) return;
+					//Получаем DOM документ
+					var xmlDOM = req.responseXML;
+					// Если нет ошибок...
+					if (xmlDOM) showChapter(xmlDOM, no);
+				}
+			req.open("GET", serverXml + "?no=" + no , true);
+			req.setRequestHeader("Content-Type", "text/xml");
+			req.send(null);			
+		}
+		
+		/* Задание 2. Показ главы книги
+		** Допишите функцию showChapter. На основании переменной currentChapter сформируйте ссылки
+		** "Вперед" и "Назад", загружающие следующую и предыдущую главу книги. Для загрузки 
+		** используйте функцию getChapter(no). Выведите эти ссылки в объект divChapters
+		** Произведите XSLT преобразование полученной главы (переменная xmlDOM) с помощью загруженного
+		** преобразования fb2html. Преобразование выполните с помощью функции xsltTransform(xmlDOM, fb2html)
+		** Результат преобразования выведите в объект divResult
+		** Погасите сообщение пользователю о загрузке данных, устанавливая свойство display = "none"
+		** для объекта divMessageLoad
+		*/
+		function showChapter(xmlDOM, currentChapter)
+		{
+			// Узнаем общее число глав
+			var chapterCount = xmlDOM.documentElement.firstChild.getAttribute("count");
+
+			// Выведем ссылки вперед/назад
+			var divChapters = document.getElementById("divChapters");
+			var previousChapter = currentChapter - 1;
+			var nextChapter = currentChapter + 1;
+
+			divChapters.innerHTML = "";
+			if (previousChapter > 0) divChapters.innerHTML += 
+				'<a href="' + serverHtml + '?no=' + previousChapter + 
+				'" onclick="getChapter(' + previousChapter + ');return false">Предыдущая глава</a>&nbsp;';
+			if (nextChapter < chapterCount) divChapters.innerHTML += 
+				'&nbsp;<a href="' + serverHtml + '?no=' + nextChapter + 
+				'" onclick="getChapter(' + nextChapter + ');return false">Следующая глава</a>';
+			
+			// Произведем преобразование
+			var html = xsltTransform(xmlDOM, fb2html);
+			var divResult = document.getElementById("divResult");
+			divResult.innerHTML = html;
+			
+			// Гашение сообщения пользователю
+			document.getElementById("divMessageLoad").style.display = "";
+		}
+
+		/*
+		** Инициализация страницы
+		*/
+		window.onload = function()
+		{
+			// Покажем сообщение пользователю
+			var divMessageLoad = document.getElementById("divMessageLoad");
+			divMessageLoad.style.display = "block";
+			
+			// Загрузка XSLT преобразования
+			var req = getXmlHttpRequest();
+			req.open("GET", "server/fb2html.xsl", false);
+			req.send(null);
+			fb2html = req.responseXML;
+			
+			// Уберем сообщение пользователю
+			divMessageLoad.style.display = "none";
+			
+			// Показ первой главы
+			getChapter(1);
+		}
+	</script>
+</head>
+<body>
+	<h1>Понедельник начинается в субботу</h1>
+	<div id="divMessageLoad">Идет загрузка данных...</div>
+	<noscript><a href="server/get-section-html.php?no=1">Перейти к чтению книги</a></noscript>
+	<div id="divChapters"></div>
+	<div id="divResult"></div>
+</body>
+</html>
+

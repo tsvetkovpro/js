@@ -1,0 +1,46 @@
+http://localhost/AJAX/demo/module6/base_auth/
+
+GET /AJAX/demo/module6/base_auth/ HTTP/1.1
+Host: localhost
+User-Agent: Mozilla/5.0 (Windows; U; Windows NT 5.1; ru; rv:1.9) Gecko/2008052906 Firefox/3.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: ru,en-us;q=0.7,en;q=0.3
+Accept-Encoding: gzip,deflate
+Accept-Charset: windows-1251,utf-8;q=0.7,*;q=0.7
+Keep-Alive: 300
+Connection: keep-alive
+Referer: http://localhost/AJAX/demo/module6/
+
+HTTP/1.x 401 Authorization Required
+Date: Mon, 30 Jun 2008 04:52:24 GMT
+Server: Apache/1.3.39 (Win32) PHP/5.2.6
+WWW-Authenticate: Basic realm="Private zone. Only for valid users!"
+Keep-Alive: timeout=15, max=98
+Connection: Keep-Alive
+Transfer-Encoding: chunked
+Content-Type: text/html; charset=iso-8859-1
+----------------------------------------------------------
+http://localhost/AJAX/demo/module6/base_auth/
+
+GET /AJAX/demo/module6/base_auth/ HTTP/1.1
+Host: localhost
+User-Agent: Mozilla/5.0 (Windows; U; Windows NT 5.1; ru; rv:1.9) Gecko/2008052906 Firefox/3.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: ru,en-us;q=0.7,en;q=0.3
+Accept-Encoding: gzip,deflate
+Accept-Charset: windows-1251,utf-8;q=0.7,*;q=0.7
+Keep-Alive: 300
+Connection: keep-alive
+Referer: http://localhost/AJAX/demo/module6/
+Authorization: Basic dmFzeWE6cGFzc3dvcmQ=
+
+HTTP/1.x 200 OK
+Date: Mon, 30 Jun 2008 04:52:31 GMT
+Server: Apache/1.3.39 (Win32) PHP/5.2.6
+Cache-Control: no-store, no-cache, max-age=0
+Expires: Mon, 30 Jun 2008 04:52:31 GMT
+Keep-Alive: timeout=15, max=95
+Connection: Keep-Alive
+Transfer-Encoding: chunked
+Content-Type: text/html
+----------------------------------------------------------

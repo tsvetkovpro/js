@@ -1,0 +1,36 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ru" lang="ru" dir="ltr">
+<head>
+	<title>Запрос данных с аутентификацией</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="Content-Language" content="ru" />
+	<script type="text/javascript" src="xmlhttprequest.js"></script>
+	<script type="text/javascript">
+		// Запрос данных
+		function getSecretFile()
+		{
+			var login = "vasya";
+			var password = "password";
+			
+			var req = getXmlHttpRequest();
+			req.onreadystatechange = function()
+				{
+					if (req.readyState != 4) return;
+					alert(req.responseText);
+				}
+
+			req.open("GET", "base_auth/secret.txt", true, login, password);
+			req.send(null);
+		}
+		
+		
+	</script>
+</head>
+<body>
+	<h1>Запрос данных с аутентификацией</h1>
+	<form onsubmit="return false">
+		<button onclick="getSecretFile()">Показать</button>
+	</form>
+</body>
+</html>
+

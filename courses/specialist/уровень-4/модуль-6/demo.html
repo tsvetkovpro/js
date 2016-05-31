@@ -1,0 +1,66 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ru" lang="ru" dir="ltr">
+<head>
+	<title>Демонстрация безопасного хэширования пароля</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="Content-Language" content="ru" />
+	<style type="text/css">
+		label { display: block; width: 8em; float: left }
+		div { margin: 10px }
+	</style>
+	<script type="text/javascript" src="md5.js"></script>
+	<script type="text/javascript">
+		
+		window.onload = function(){
+			var s = location.hash.substring(2);
+			if( s != ''){
+				document.getElementById("txtInput").value = s;
+				calculateHash();
+			}
+		};
+		// Запрос данных
+		var originUrl = location.href;
+		function calculateHash()
+		{
+			var input = document.getElementById("txtInput").value;
+			var salt = document.getElementById("txtSalt").value;
+			var iterationCount = document.getElementById("txtIterations").value;
+			
+			// "Засоливание" пароля RFC2898
+			document.getElementById("divResult").innerHTML = 
+				getSaltedHash(input, salt, iterationCount);
+			location.assign(originUrl + '#!'+encodeURIComponent(input));	
+		}
+		
+		// "Засоливание" пароля RFC2898
+		function getSaltedHash(password, salt, iterationCount)
+		{
+			var saltedHash = password;
+			if (iterationCount < 1) iterationCount = 1;
+			for (var i=0; i<iterationCount; i++)
+				saltedHash = hex_md5(salt + saltedHash);
+			return saltedHash;
+		}
+	</script>
+</head>
+<body>
+	<h1>Демонстрация безопасного хэширования пароля</h1>
+	<form onsubmit="return false">
+		<div>
+			<label for="txtInput">Строка текста</label>
+			<input id="txtInput" type="text" value="Проба!" />		
+		</div>
+		<div>
+			<label for="txtSalt">Строка соли</label>
+			<input id="txtSalt" type="text" value="$$$_SALT_$$$" />		
+		</div>
+		<div>
+			<label for="txtIterations">Число итераций</label>
+			<input id="txtIterations" type="text" value="100" />		
+		</div>
+		<button onclick="calculateHash()">Хэш!</button>
+	</form>
+	<div id="divResult" style="margin:20px"></div>
+</body>
+</html>
+
