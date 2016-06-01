@@ -101,7 +101,7 @@
 ```
 
 
-* [л.р. счастливые числа](https://github.com/tsvetkovpro/js/tree/master/cources/others/hexlet/labs/happy-numbers)
+* [л.р. счастливые числа](https://github.com/tsvetkovpro/js/tree/master/courses/others/hexlet/labs/happy-numbers)
 
 
 
