@@ -10,7 +10,7 @@
 ```
 
 
-* [исходный код игры 21](https://github.com/tsvetkovpro/js/tree/master/cources/others/geekbrains/)
+* [исходный код игры 21](https://github.com/tsvetkovpro/js/tree/master/courses/others/geekbrains/)
 
 
 
