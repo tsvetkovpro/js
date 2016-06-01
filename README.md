@@ -22,7 +22,7 @@
 * [Уровень 1. Основы веб - программирования](link/specialist/level-1/ch1.md)
 * [Уровень 2. Расширенные возможности](link/specialist/level-2/ch1.md)
 * [Уровень 3а. jQuery](link/specialist/level-3/ch1.md)
-* [Уровень 3б. AJAX]
+* [Уровень 3б. AJAX](link/specialist/level-4/ch1.md)
 * [Уровень 3в. Node.js]
 * [Уровень 3г. HTML5 API ]
 
