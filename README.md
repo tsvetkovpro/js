@@ -28,7 +28,7 @@
 
 &nbsp;
 
-##### Исходные коды из учебных курсов:
+##### Исходные коды:
 * [Geekbrains - Основы программирования](link/others/geekbrains-ru/ch1.md)
 * [Hexlet - Основы программирования](link/others/hexlet-io/ch1.md)
 

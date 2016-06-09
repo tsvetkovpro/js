@@ -1,4 +1,4 @@
-import { alertMessage, logMessage } from './flash-message';
+import flashMessage from './flash-message';
 
-alertMessage("Hello1");
-logMessage("Log hello");
+flashMessage("hello!");
+
