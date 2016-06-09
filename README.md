@@ -23,7 +23,7 @@
 * [Уровень 2. Расширенные возможности](link/specialist/level-2/ch1.md)
 * [Уровень 3а. jQuery](link/specialist/level-3/ch1.md)
 * [Уровень 3б. AJAX](link/specialist/level-4/ch1.md)
-* [Уровень 3в. Node.js]
+* [Уровень 3в. Node.js](link/specialist/level-5/ch1.md)
 * [Уровень 3г. HTML5 API ]
 
 &nbsp;
