@@ -12,7 +12,7 @@ Socket.IO
 
 
 ### Основы NodeJS
-[исходники](https://github.com/tsvetkovpro/js/tree/master/courses/specialist/%D1%83%D1%80%D0%BE%D0%B2%D0%B5%D0%BD%D1%8C-5/%D0%BC%D0%BE%D0%B4%D1%83%D0%BB%D1%8C-1)
+[исходники](https://github.com/tsvetkovpro/js/tree/master/courses/specialist/level-5/%D0%BC%D0%BE%D0%B4%D1%83%D0%BB%D1%8C-1)
 ```
 Что такое Node.js?
 Установка Node.js
@@ -23,11 +23,53 @@ Blocking vs Non-blocking
 Использование веб-сервера
 ```
 
-### 
+### События
+[исходники](https://github.com/tsvetkovpro/js/tree/master/courses/specialist/level-5/%D0%BC%D0%BE%D0%B4%D1%83%D0%BB%D1%8C-2)
+```
+События JavaScript
+- Встроенный вызов
+- Пользовательский вызов
+События http-сервера Node.js
+Пользовательские события Node.js
+```
+
+
+### Потоки
+[исходники](https://github.com/tsvetkovpro/js/tree/master/courses/specialist/level-5/%D0%BC%D0%BE%D0%B4%D1%83%D0%BB%D1%8C-3)
+```
+HTTP-метод POST
+Использование cURL
+Способы обработки запроса
+Чтение из файла и запись в файл
+Загрузка файла на сервер
+```
+
+### Модули
+[исходники](https://github.com/tsvetkovpro/js/tree/master/courses/specialist/level-5/%D0%BC%D0%BE%D0%B4%D1%83%D0%BB%D1%8C-4)
+```
+Использование модулей
+Как создать модуль
+NPM -Node Packaged Modules
+Публикация модуля
+Семантика версий
+Основные команды NPM
+```
+
+### Express
+[исходники](https://github.com/tsvetkovpro/js/tree/master/courses/specialist/level-5/module-5)
+```
+Фреймворк Express
+Установка Express
+Базовое использование Express
+Использование шаблонизаторов
+Использование модулей request и url
+```
+
+### Socket.IO
 [исходники]()
 ```
 
 ```
 
-* [Материалы в pdf](https://github.com/tsvetkovpro/js/blob/master/courses/specialist/%D1%83%D1%80%D0%BE%D0%B2%D0%B5%D0%BD%D1%8C-5/course.pdf)
+* [Материалы в pdf](https://github.com/tsvetkovpro/js/blob/master/courses/specialist/level-5/course.pdf)
 
