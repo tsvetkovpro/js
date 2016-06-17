@@ -1,0 +1,27 @@
+﻿<!doctype html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Socket</title>
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+        var socket = io.connect('http://localhost:8088');
+        window.onunload = function () {
+            socket.disconnect();
+        };
+
+        socket.on('hello', function (data) {
+            console.log(data.hello);
+        }); // когда тебе придёт сообщение мессадж исполни ф-ю в которую придут данные
+        function getName() {
+            var name = prompt('Как Вас звать?', 'Гость!');
+            if (name) {
+                socket.emit('message', name);
+            }
+        }
+    </script>
+</head>
+<body>
+<button onclick="getName()">Как Вас зовут?</button>
+</body>
+</html>
