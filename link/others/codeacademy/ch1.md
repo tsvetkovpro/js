@@ -18,7 +18,8 @@ Getting Started with Programming
 ```
 This course introduces functions, why we use them, and how to use them. The course also combines functions with other programming concepts previously learned. 
 ```
-[]()
+[Lessons source code](https://github.com/tsvetkovpro/js/tree/master/courses/others/codecademy/2 functions.md)
+
 [Build "Rock, Paper, Scissors"](https://github.com/tsvetkovpro/js/tree/master/courses/others/codecademy/rock-paper-scissors)
 
 
