@@ -8,8 +8,8 @@ Learn the fundamentals of JavaScript, the programming language of the Web.
 ### INTRODUCTION TO JAVASCRIPT
 ```
 Getting Started with Programming
-[Code Your Own Adventure!](https://github.com/tsvetkovpro/js/tree/master/courses/others/codecademy/your-own-adventure)
 ```
+[Code Your Own Adventure!](https://github.com/tsvetkovpro/js/tree/master/courses/others/codecademy/your-own-adventure)
 
 
 ### FUNCTIONS
