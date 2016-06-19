@@ -10,6 +10,7 @@ Learn the fundamentals of JavaScript, the programming language of the Web.
 Getting Started with Programming
 ```
 [source](https://github.com/tsvetkovpro/js/tree/master/courses/others/codecademy/1 introduction.txt)
+
 [Code Your Own Adventure!](https://github.com/tsvetkovpro/js/tree/master/courses/others/codecademy/your-own-adventure)
 
 
