@@ -9,6 +9,7 @@ Learn the fundamentals of JavaScript, the programming language of the Web.
 ```
 Getting Started with Programming
 ```
+[source](https://github.com/tsvetkovpro/js/tree/master/courses/others/codecademy/1 introduction.txt)
 [Code Your Own Adventure!](https://github.com/tsvetkovpro/js/tree/master/courses/others/codecademy/your-own-adventure)
 
 
@@ -16,6 +17,7 @@ Getting Started with Programming
 ```
 This course introduces functions, why we use them, and how to use them. The course also combines functions with other programming concepts previously learned. 
 ```
+[]()
 [Build "Rock, Paper, Scissors"](https://github.com/tsvetkovpro/js/tree/master/courses/others/codecademy/rock-paper-scissors)
 
 
