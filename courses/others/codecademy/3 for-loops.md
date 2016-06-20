@@ -4,10 +4,10 @@ You've done an awesome job! Loops are always a little tricky when you first meet
 
 What now? You have so many useful tricks up your sleeve:
 
-a. if / else statements
-b. functions
-c. for loops
-d. booleans, arrays, variables, etc.
+ - a. if / else statements
+ - b. functions
+ - c. for loops
+ - d. booleans, arrays, variables, etc.
 
 
 

@@ -36,7 +36,7 @@ For loops are one of the most commonly used bits of code - it's so powerful and 
 ```
 'While' loops are like 'for' loops, only they don't need a counter—they continue to run until their condition is met.
 ```
-[Lessons source code](https://github.com/tsvetkovpro/js/tree/master/courses/others/codecademy/)
+[Lessons source code](https://github.com/tsvetkovpro/js/tree/master/courses/others/codecademy/4 while-loops.md)
 
 [Dragon Slayer!](https://github.com/tsvetkovpro/js/tree/master/courses/others/codecademy/dragon-slayer)
 
