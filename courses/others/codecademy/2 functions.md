@@ -120,15 +120,3 @@ console.log(sleepCheck(10));
 console.log(sleepCheck(5));
 console.log(sleepCheck(8));
 ```
-
-###### 
-
-```javascript
-
-```
-
-###### 
-
-```javascript
-
-```
