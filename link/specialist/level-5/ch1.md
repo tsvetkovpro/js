@@ -66,6 +66,17 @@ NPM -Node Packaged Modules
 ```
 
 ### Socket.IO
+[исходники](https://github.com/tsvetkovpro/js/tree/master/courses/specialist/level-5/module-6)
+```
+Взаимодействие клиент –сервер
+Обзор модели работы Comet
+Модуль Socket.IO
+Совместное использование модулей
+	- Express и Socket.IO
+Основные методы и свойства Socket.IO
+```
+
+### Создание веб-приложения
 [исходники]()
 ```
 
