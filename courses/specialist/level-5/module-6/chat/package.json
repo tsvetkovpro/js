@@ -1,0 +1,18 @@
+{
+  "name": "NodeChat",
+  "version": "1.0.0",
+  "description": "My first node.js chat",
+  "main": "lab js",
+  "dependencies": {
+    "socket.io": "0.9",
+    "socket.io-client": "0.9",
+    "express": "3.5.0",
+    "jade": "latest"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": ["node js chat"],
+  "author": "tsvetkov.pro",
+  "license": "ISC"
+}
