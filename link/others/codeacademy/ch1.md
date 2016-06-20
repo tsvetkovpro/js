@@ -45,7 +45,7 @@ For loops are one of the most commonly used bits of code - it's so powerful and 
 ```
 When we tell a program what order to do things in, we're using something called control flow. You already know about 'if' statements, but in this course, we'll expand our knowledge!
 ```
-[Lessons source code](https://github.com/tsvetkovpro/js/tree/master/courses/others/codecademy/)
+[Lessons source code](https://github.com/tsvetkovpro/js/tree/master/courses/others/codecademy/5 control-flow.md)
 
 [Code Your Own Adventure 2!](https://github.com/tsvetkovpro/js/tree/master/courses/others/codecademy/your-own-adventure-2)
 
@@ -54,7 +54,7 @@ When we tell a program what order to do things in, we're using something called 
 ```
 In this course, we'll cover some of the more powerful features of JavaScript in greater detail. We'll review arrays, create arrays of arrays, and begin learning about a new data structure: objects.
 ```
-[Lessons source code](https://github.com/tsvetkovpro/js/tree/master/courses/others/codecademy/)
+[Lessons source code](https://github.com/tsvetkovpro/js/tree/master/courses/others/codecademy/6 data-structures.md)
 
 [Contact List](https://github.com/tsvetkovpro/js/tree/master/courses/others/codecademy/contact-list)
 
