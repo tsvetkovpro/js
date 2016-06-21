@@ -63,7 +63,7 @@ In this course, we'll cover some of the more powerful features of JavaScript in 
 ```
 An introduction to object oriented thinking in JavaScript. Objects are the building blocks of object oriented programming (OOP) so we begin here!
 ```
-[Lessons source code](https://github.com/tsvetkovpro/js/tree/master/courses/others/codecademy/)
+[Lessons source code](https://github.com/tsvetkovpro/js/tree/master/courses/others/codecademy/7 objects-i.md)
 
 [Building an Address Book](https://github.com/tsvetkovpro/js/tree/master/courses/others/codecademy/adress-book)
 
