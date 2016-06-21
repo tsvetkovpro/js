@@ -72,6 +72,6 @@ An introduction to object oriented thinking in JavaScript. Objects are the build
 ```
 A closer look at objects in JavaScript and an introduction to object-oriented programming concepts.
 ```
-[Lessons source code](https://github.com/tsvetkovpro/js/tree/master/courses/others/codecademy/)
+[Lessons source code](https://github.com/tsvetkovpro/js/tree/master/courses/others/codecademy/7 objects-ii.md)
 
 [Building a Cash Register](https://github.com/tsvetkovpro/js/blob/master/courses/others/codecademy/building-a-cash-register/script.js)
