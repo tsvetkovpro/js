@@ -11,7 +11,7 @@ Getting Started with Programming
 ```
 [Lessons source code](https://github.com/tsvetkovpro/js/tree/master/courses/others/codecademy/1 introduction.md)
 
-[Code Your Own Adventure!](https://github.com/tsvetkovpro/js/tree/master/courses/others/codecademy/your-own-adventure)
+[Code Your Own Adventure!](https://github.com/tsvetkovpro/js/tree/master/courses/others/codecademy/your-own-adventure/script.js)
 
 
 ### FUNCTIONS
@@ -20,7 +20,7 @@ This course introduces functions, why we use them, and how to use them. The cour
 ```
 [Lessons source code](https://github.com/tsvetkovpro/js/tree/master/courses/others/codecademy/2 functions.md)
 
-[Build "Rock, Paper, Scissors"](https://github.com/tsvetkovpro/js/tree/master/courses/others/codecademy/rock-paper-scissors)
+[Build "Rock, Paper, Scissors"](https://github.com/tsvetkovpro/js/tree/master/courses/others/codecademy/rock-paper-scissors/script.js)
 
 
 ### 'FOR' LOOPS IN JAVASCRIPT
@@ -29,7 +29,7 @@ For loops are one of the most commonly used bits of code - it's so powerful and 
 ```
 [Lessons source code](https://github.com/tsvetkovpro/js/tree/master/courses/others/codecademy/3 for-loops.md)
 
-[Search Text for Your Name](https://github.com/tsvetkovpro/js/tree/master/courses/others/codecademy/search-text-for-your-name).
+[Search Text for Your Name](https://github.com/tsvetkovpro/js/tree/master/courses/others/codecademy/search-text-for-your-name/index.js).
 
 
 ### 'WHILE' LOOPS IN JAVASCRIPT
@@ -38,7 +38,7 @@ For loops are one of the most commonly used bits of code - it's so powerful and 
 ```
 [Lessons source code](https://github.com/tsvetkovpro/js/tree/master/courses/others/codecademy/4 while-loops.md)
 
-[Dragon Slayer!](https://github.com/tsvetkovpro/js/tree/master/courses/others/codecademy/dragon-slayer)
+[Dragon Slayer!](https://github.com/tsvetkovpro/js/tree/master/courses/others/codecademy/dragon-slayer/index.html)
 
 
 ### CONTROL FLOW
@@ -47,7 +47,7 @@ When we tell a program what order to do things in, we're using something called 
 ```
 [Lessons source code](https://github.com/tsvetkovpro/js/tree/master/courses/others/codecademy/5 control-flow.md)
 
-[Code Your Own Adventure 2!](https://github.com/tsvetkovpro/js/tree/master/courses/others/codecademy/your-own-adventure-2)
+[Code Your Own Adventure 2!](https://github.com/tsvetkovpro/js/tree/master/courses/others/codecademy/your-own-adventure-2/script.js)
 
 
 ### DATA STRUCTURES
@@ -65,7 +65,7 @@ An introduction to object oriented thinking in JavaScript. Objects are the build
 ```
 [Lessons source code](https://github.com/tsvetkovpro/js/tree/master/courses/others/codecademy/7 objects-i.md)
 
-[Building an Address Book](https://github.com/tsvetkovpro/js/tree/master/courses/others/codecademy/adress-book)
+[Building an Address Book](https://github.com/tsvetkovpro/js/tree/master/courses/others/codecademy/adress-book/book.js)
 
 
 ### OBJECTS II
@@ -74,4 +74,4 @@ A closer look at objects in JavaScript and an introduction to object-oriented pr
 ```
 [Lessons source code](https://github.com/tsvetkovpro/js/tree/master/courses/others/codecademy/)
 
-[Building a Cash Register]()
+[Building a Cash Register](https://github.com/tsvetkovpro/js/blob/master/courses/others/codecademy/building-a-cash-register/script.js)
