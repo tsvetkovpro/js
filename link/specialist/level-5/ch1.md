@@ -77,9 +77,18 @@ NPM -Node Packaged Modules
 ```
 
 ### Создание веб-приложения
-[исходники]()
+[исходники](https://github.com/tsvetkovpro/js/tree/master/courses/specialist/level-5/module-7/site)
 ```
-
+Основные этапы создания приложения
+Создание каркаса приложения
+Middleware
+Конфигурация приложения
+Логирование
+Использование шаблонизатора
+Использование MongoDB
+Обработка ошибок
+Использование сеансов
+Маршрутизация
 ```
 
 * [Материалы в pdf](https://github.com/tsvetkovpro/js/blob/master/courses/specialist/level-5/course.pdf)
