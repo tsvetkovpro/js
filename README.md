@@ -37,7 +37,8 @@
 &nbsp;
 
 #### Ресурсы
-- [Awesome JavaScript](https://github.com/sorrycc/awesome-javascript) - A collection of awesome browser-side JavaScript libraries, resources and shiny things.
-- [Современный учебник JavaScript](http://learn.javascript.ru/) - учебник по JavaScript, начиная с основ, включающий в себя много тонкостей и фишек JavaScript/DOM.
+- [Awesome JavaScript](https://github.com/sorrycc/awesome-javascript) - A collection of awesome browser-side JavaScript libraries.
+- [Современный учебник JavaScript](http://learn.javascript.ru/) - учебник по JavaScript, JavaScript/DOM.
+- [Книги и учебные ресурсы по JavaScript](http://ru.stackoverflow.com/questions/474385/%D0%9A%D0%BD%D0%B8%D0%B3%D0%B8-%D0%B8-%D1%83%D1%87%D0%B5%D0%B1%D0%BD%D1%8B%D0%B5-%D1%80%D0%B5%D1%81%D1%83%D1%80%D1%81%D1%8B-%D0%BF%D0%BE-javascript) - Рекомендуемая литература, документация и курсы по JavaScript..
 
 
