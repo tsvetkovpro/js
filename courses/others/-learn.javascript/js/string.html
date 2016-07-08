@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script>
+        var consoleStyles = {
+            'h3': 'font: 1.2em/1 Arial; color: olivedrab;',
+            'h4': 'font: 1.2em/1 Consolas; color: #247BA0;'
+        };
+        function log(msg, style) {
+            if (!style || !consoleStyles[style]) {
+                style = 'bold';
+            }
+            console.log('%c' + msg, consoleStyles[style]);
+        }
+
+
+        // Напишите функцию ucFirst(str), которая возвращает строку str с заглавным первым символом, например:
+        function ucFirst(str) {
+            // только пустая строка в логическом контексте даст false
+            if (!str) return str;
+
+            return str[0].toUpperCase() + str.slice(1);
+        }
+        console.log(ucFirst("вася"));
+        console.log(ucFirst(""));
+
+
+        // Напишите функцию checkSpam(str), которая возвращает true, если строка str содержит „viagra“ или „XXX“, а иначе false.
+        function checkSpam(str) {
+            var lowerStr = str.toLowerCase();
+
+            return !!(~lowerStr.indexOf('viagra') || ~lowerStr.indexOf('xxx'));
+        }
+
+        console.log(checkSpam('buy ViAgRA now'));
+        console.log(checkSpam('free xxxxx'));
+        console.log(checkSpam("innocent rabbit"));
+
+
+        // Создайте функцию truncate(str, maxlength), которая проверяет длину строки str,
+        // и если она превосходит maxlength – заменяет конец str на "...",
+        // так чтобы ее длина стала равна maxlength.
+        // Результатом функции должна быть (при необходимости) усечённая строка.
+        function truncateOld(str, maxlength) {
+            if (str.length > maxlength) {
+                return str.slice(0, maxlength - 3) + '...';
+                // итоговая длина равна maxlength
+            }
+            return str;
+        }
+
+        // Можно было бы написать этот код ещё короче:
+        function truncate(str, maxlength) {
+            return (str.length > maxlength) ?
+            str.slice(0, maxlength - 3) + '...' : str;
+        }
+        console.log(truncate("Вот, что мне хотелось бы сказать на эту тему:", 20));
+        console.log(truncate("Всем привет!", 20));
+
+
+        // Выделить число
+        function extractCurrencyValue(str) {
+            //return str.slice(1, str.length);
+            return +str.slice(1); // Решение ильи
+        }
+        ;
+        log('Усечение строки: ' + extractCurrencyValue("$125"), 'h4');
+        log('Усечение строки: ' + extractCurrencyValue("$1"), 'h4');
+        log('Усечение строки: ' + extractCurrencyValue("$13243"), 'h4');
+
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>

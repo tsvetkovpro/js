@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script>
+        var consoleStyles = {
+            'h3': 'font: 1.2em/1 Arial; color: olivedrab;',
+            'h4': 'font: 1.2em/1 Consolas; color: #247BA0;'
+        };
+        function log(msg, style) {
+            if (!style || !consoleStyles[style]) {
+                style = 'bold';
+            }
+            console.log('%c' + msg, consoleStyles[style]);
+        }
+
+        // Создайте страницу, которая предлагает ввести два числа и выводит их сумму.
+        // P.S. Есть «подводный камень» при работе с типами.
+        /*var number1 = +prompt("Ведите 1ое число");
+         var number2 = +prompt("Ведите 1ое число");
+         console.log(number1 + number2);*/
+
+
+        // Почему 6.35.toFixed(1) == 6.3?
+        console.log(6.35.toFixed(1));
+        // Во внутреннем двоичном представлении 6.35 является бесконечной двоичной дробью.
+        // Хранится она с потерей точности… А впрочем, посмотрим сами:
+        // 6.34999999999999964473
+        // Интерпретатор видит число как 6.34..., поэтому и округляет вниз.
+
+
+        // Получится глупо, если при заказе двух товаров с ценами 0.10$ и 0.20$ человек получит общую стоимость 0.30000000000000004$:
+        // Что можно сделать, чтобы избежать проблем с ошибками округления?
+        var result = 0.1 + 0.2;
+        console.log(+result.toFixed(10));
+
+        //Этот цикл – бесконечный. Почему?
+        var i = 0;
+        while (i != 10) {
+            //debugger;
+            //i += 0.2;
+            i += 2;
+        }
+
+        // Напишите функцию getDecimal(num), которая возвращает десятичную часть числа:
+        function getDecimal(num) {
+            return ~~num;
+        }
+        console.log(getDecimal(12.345));
+        console.log(getDecimal(12.745));
+
+        function getDecimal(num) {
+            return num ^ 0;
+        }
+        console.log(getDecimal(.345));
+        console.log(getDecimal(12.99));
+
+
+        // Напишите код для генерации случайного значения в диапазоне от 0 до max, не включая max.
+        // + весёлая консоль
+
+
+        function getRandomInt(min, max) {
+            return Math.random() * (max - min) + min;
+        }
+        log('Math.random:' + getRandomInt(0, 100), 'h3');
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>
