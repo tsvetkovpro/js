@@ -1,0 +1,182 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script>
+        var consoleStyles = {
+            'h3': 'font: 1.2em/1 Arial; color: olivedrab;',
+            'h4': 'font: 1.2em/1 Consolas; color: #247BA0;'
+        };
+        function log(msg, style) {
+            if (!style || !consoleStyles[style]) {
+                style = 'bold';
+            }
+            console.log('%c' + msg, consoleStyles[style]);
+        }
+
+        /*
+         Создайте функцию isEmpty(obj), которая возвращает true,
+         если в объекте нет свойств и false – если хоть одно свойство есть.
+         * */
+
+        /*function isEmpty(obj) {
+         var counter = 0;
+         for (var prop in obj) {
+         counter++;
+         }
+         if (counter == 0) {
+         return true;
+         } else {
+         return false;
+         }
+         }*/
+
+        function isEmpty(obj) {
+            for (var key in obj) {
+                return false;
+            }
+            return true;
+        }
+
+        var schedule = {};
+
+        console.log(isEmpty(schedule));
+
+        schedule["8:30"] = "Подъём";
+
+        console.log(isEmpty(schedule));
+
+
+        /*
+         Есть объект salaries с зарплатами. Напишите код, который выведет сумму всех зарплат.
+         Если объект пустой, то результат должен быть 0.
+         */
+        "use strict";
+
+        var salaries = {
+            "Вася": 100,
+            "Петя": 300,
+            "Даша": 250
+        };
+
+        var sum = 0;
+        for (var prop in salaries) {
+            sum += salaries[prop];
+        }
+        console.log(sum);
+
+
+
+
+
+
+        /*
+        Есть объект salaries с зарплатами. Напишите код, который выведет имя сотрудника, у которого самая большая зарплата.
+        Если объект пустой, то пусть он выводит «нет сотрудников».
+        * */
+
+        "use strict";
+
+        var salariesBig = {
+            "Вася": 100,
+            "Петя": 300,
+            "Даша": 250
+        };
+
+        var bigSum = 0;
+        var nameBigSum = '';
+        for (var prop in salariesBig) {
+            if (salariesBig[prop] > bigSum) {
+                bigSum = salariesBig[prop];
+                nameBigSum = prop;
+            }
+        }
+        log(nameBigSum, "h3");
+
+
+
+
+
+
+
+
+        /*
+         Создайте функцию multiplyNumeric, которая получает объект и умножает все численные свойства на 2.
+        * */
+
+        // до вызова
+        var menu = {
+            width: 200,
+            height: 300,
+            title: "My menu"
+        };
+
+        function isNumeric(n) {
+            return !isNaN(parseFloat(n)) && isFinite(n)
+        }
+
+        function multiplyNumeric (obj) {
+            for (var prop in obj) {
+                if (isNumeric(obj[prop])) {
+                    obj[prop] *= 2;
+                }
+            }
+        }
+
+        multiplyNumeric(menu);
+        log("width: " + menu.width + " height: " + menu.height + " title: " + menu.title, "h3");
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
