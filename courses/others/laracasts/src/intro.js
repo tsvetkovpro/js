@@ -4,7 +4,7 @@ class Person {
     }
 
     greet() {
-        return this.name + ' привет!...';
+        return this.name + ' привет!..!';
     }
 }
 
