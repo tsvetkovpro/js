@@ -1,0 +1,221 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script>
+        var consoleStyles = {
+            'h3': 'font: 1.2em/1 Arial; color: olivedrab;',
+            'h4': 'font: 1.2em/1 Consolas; color: #247BA0;'
+        };
+        function log(msg, style) {
+            if (!style || !consoleStyles[style]) {
+                style = 'bold';
+            }
+            console.log('%c' + msg, consoleStyles[style]);
+        }
+
+
+        /*
+         Получить последний элемент массива
+         */
+
+        let goods = ["1", "2", "3", "4", "5", 1, true];
+        var lastItem = goods[goods.length - 1];
+        console.log(lastItem);
+
+        /*let goodLength = goods.length;
+         goods.pop(goodLength);
+         console.log(goods);*/
+
+
+
+
+        /*
+         Добавить новый элемент в массив
+         */
+
+        let goods2 = ["1", "2", "3", "4", "5", 1, true];
+
+        /*goods2.push("lastitem");*/
+
+        goods2[goods2.length] = 'Компьютер';
+        log(goods2, "h3");
+
+
+        /*
+         Задача из 5 шагов-строк:
+         Создайте массив styles с элементами «Джаз», «Блюз».
+         Добавьте в конец значение «Рок-н-Ролл»
+         Замените предпоследнее значение с конца на «Классика». Код замены предпоследнего значения должен работать для массивов любой длины.
+         Удалите первое значение массива и выведите его alert.
+         Добавьте в начало значения «Рэп» и «Регги».
+
+         Джаз, Блюз
+         Джаз, Блюз, Рок-н-Ролл
+         Джаз, Классика, Рок-н-Ролл
+         Классика, Рок-н-Ролл
+         Рэп, Регги, Классика, Рок-н-Ролл
+         * */
+
+        /*let styles = ["Джаз", "Блюз"];
+         styles.push("Рок-н-рол");
+         styles[styles.length - 2] = "Классика";
+         let someStyles = ["rap", "reggi"];
+         console.log(styles.shift());
+         styles = styles.concat(someStyles);
+         console.log(styles);*/
+
+        var styles = ["Джаз", "Блюз"];
+        styles.push("Рок-н-Ролл");
+        styles[styles.length - 2] = "Классика";
+        console.log(styles.shift());
+        styles.unshift("Рэп", "Регги");
+        log(styles, "h3")
+
+
+        /*
+         Получить случайное значение из массива
+         * */
+
+        /* var arr = ["Яблоко", "Апельсин", "Груша", "Лимон"];
+
+         var min = 0;
+         var max = 3;
+         // Код для генерации случайного целого от min to max включительно:
+         var rand = min + Math.floor(Math.random() * (max + 1 - min));
+         console.log(arr[rand]);*/
+
+        var arr = ["Яблоко", "Апельсин", "Груша", "Лимон"];
+        var rand = Math.floor(Math.random() * arr.length);
+        console.log(arr[rand]);
+
+
+        /*
+         Напишите код, который:
+         Запрашивает по очереди значения при помощи prompt и сохраняет их в массиве.
+         Заканчивает ввод, как только посетитель введёт пустую строку, не число или нажмёт «Отмена».
+         При этом ноль 0 не должен заканчивать ввод, это разрешённое число.
+         Выводит сумму всех значений массива
+         * */
+
+        /*var numbers = [];
+
+         while (true) {
+         var value = prompt("Введите число", 0);
+         if (value === "" || value === null || isNaN(value)) break;
+         numbers.push(+value);
+         }
+
+         var sum = 0;
+         for (var i = 0; i < numbers.length; i++) {
+         sum += numbers[i];
+         }
+
+         console.log(sum);*/
+
+
+
+
+        /*Создайте функцию find(arr, value), которая ищет в массиве arr значение value и возвращает его номер, если найдено, или -1, если не найдено.*/
+        var arr = ["test", 2, 1.5, false];
+
+        // создаем пустой массив и проверяем поддерживается ли indexOf
+        if ([].indexOf) {
+
+            var find = function (array, value) {
+                return array.indexOf(value);
+            }
+
+        } else {
+            var find = function (array, value) {
+                for (var i = 0; i < array.length; i++) {
+                    if (array[i] === value) return i;
+                }
+
+                return -1;
+            }
+
+        }
+        console.log(find(arr, false));
+
+
+        /*
+         * Создайте функцию filterRange(arr, a, b), которая принимает массив чисел arr и возвращает новый массив, который содержит только числа из arr из диапазона от a до b. То есть, проверка имеет вид a ≤ arr[i] ≤ b. Функция не должна менять arr.
+         * */
+
+        function filterRange(arr, a, b) {
+            var result = [];
+
+            for (var i = 0; i < arr.length; i++) {
+                if (arr[i] >= a && arr[i] <= b) {
+                    result.push(arr[i]);
+                }
+            }
+
+            return result;
+        }
+
+        var arr = [5, 4, 3, 8, 0];
+
+        var filtered = filterRange(arr, 3, 5);
+        console.log(filtered);
+
+
+        /*Подмассив наибольшей суммы*/
+        function getMaxSubSum(arr) {
+            var maxSum = 0,
+                    partialSum = 0;
+            for (var i = 0; i < arr.length; i++) {
+                partialSum += arr[i];
+                maxSum = Math.max(maxSum, partialSum);
+                if (partialSum < 0) partialSum = 0;
+            }
+            return maxSum;
+        }
+
+        console.log( getMaxSubSum([-1, 2, 3, -9]) ); // 5
+        console.log( getMaxSubSum([-1, 2, 3, -9, 11]) ); // 11
+        console.log( getMaxSubSum([-2, -1, 1, 2]) ); // 3
+        console.log( getMaxSubSum([100, -9, 2, -3, 5]) ); // 100
+        console.log( getMaxSubSum([1, 2, 3]) ); // 6
+        console.log( getMaxSubSum([-1, -2, -3]) ); // 0
+
+
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
