@@ -7,18 +7,21 @@ If you feel overwhelmed by the lightning-fast pace of the JavaScript community, 
 
 
 ### Babel Setup
+[source code](https://github.com/tsvetkovpro/js/blob/master/courses/others/laracasts/src/intro.js)
 ```
 Before we begin toying around with the new features in ES6, we must first review basic compilation, using Babel. This way, all browsers will understand the cutting-edge ES6 code you'll soon be writing.
 ```
 
 
 ### To Var, Let, or Const
+[source code]()
 ```
 ES6 introduces two new keywords for declaring variables: let and const. The only question is: how do you know which of the three to choose for any given situation? Well, let's talk about it.
 ```
 
 
 ### Arrows
+[source code](https://github.com/tsvetkovpro/js/blob/master/courses/others/laracasts/src/var-let-const.js)
 ```
 Arrows in ES2015 provide a friendly function shorthand for performing common tasks. While not a complete replacement for the function keyword, you'll still get an enormous amount of usage out of this new syntax.
 ```
