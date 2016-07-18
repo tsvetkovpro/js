@@ -1,9 +1,5 @@
 "use strict";
 
-/**
- * Created by user on 08.07.2016.
- */
-
 // hoisted
 // если указать var будет undefined -> неочевидно
 function fire(bool) {
@@ -18,6 +14,8 @@ function fire(bool) {
 
 fire(false);
 
+// let
+// const
 var names = ["Иван", "Ярослав"];
 // names = ["123", "345"]; не работает
 names.push('3333');
