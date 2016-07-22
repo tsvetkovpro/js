@@ -1,453 +1,473 @@
 <!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Document</title>
-    <script>
-        var consoleStyles = {
-            'h3': 'font: 1.2em/1 Arial; color: olivedrab;',
-            'h4': 'font: 1.2em/1 Consolas; color: #247BA0;'
-        };
-        function log(msg, style) {
-            if (!style || !consoleStyles[style]) {
-                style = 'bold';
-            }
-            console.log('%c' + msg, consoleStyles[style]);
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <script>
+    var consoleStyles = {
+      'h3': 'font: 1.2em/1 Arial; color: olivedrab;',
+      'h4': 'font: 1.2em/1 Consolas; color: #247BA0;'
+    };
+    function log(msg, style) {
+      if (!style || !consoleStyles[style]) {
+        style = 'bold';
+      }
+      console.log('%c' + msg, consoleStyles[style]);
+    }
+
+
+    /*
+     Получить последний элемент массива
+     */
+
+    let goods = ["1", "2", "3", "4", "5", 1, true];
+    var lastItem = goods[goods.length - 1];
+    console.log(lastItem);
+
+    /*let goodLength = goods.length;
+     goods.pop(goodLength);
+     console.log(goods);*/
+
+
+
+
+    /*
+     Добавить новый элемент в массив
+     */
+
+    let goods2 = ["1", "2", "3", "4", "5", 1, true];
+
+    /*goods2.push("lastitem");*/
+
+    goods2[goods2.length] = 'Компьютер';
+    log(goods2, "h3");
+
+
+    /*
+     Задача из 5 шагов-строк:
+     Создайте массив styles с элементами «Джаз», «Блюз».
+     Добавьте в конец значение «Рок-н-Ролл»
+     Замените предпоследнее значение с конца на «Классика». Код замены предпоследнего значения должен работать для массивов любой длины.
+     Удалите первое значение массива и выведите его alert.
+     Добавьте в начало значения «Рэп» и «Регги».
+
+     Джаз, Блюз
+     Джаз, Блюз, Рок-н-Ролл
+     Джаз, Классика, Рок-н-Ролл
+     Классика, Рок-н-Ролл
+     Рэп, Регги, Классика, Рок-н-Ролл
+     * */
+
+    /*let styles = ["Джаз", "Блюз"];
+     styles.push("Рок-н-рол");
+     styles[styles.length - 2] = "Классика";
+     let someStyles = ["rap", "reggi"];
+     console.log(styles.shift());
+     styles = styles.concat(someStyles);
+     console.log(styles);*/
+
+    var styles = ["Джаз", "Блюз"];
+    styles.push("Рок-н-Ролл");
+    styles[styles.length - 2] = "Классика";
+    console.log(styles.shift());
+    styles.unshift("Рэп", "Регги");
+    log(styles, "h3")
+
+
+    /*
+     Получить случайное значение из массива
+     * */
+
+    /* var arr = ["Яблоко", "Апельсин", "Груша", "Лимон"];
+
+     var min = 0;
+     var max = 3;
+     // Код для генерации случайного целого от min to max включительно:
+     var rand = min + Math.floor(Math.random() * (max + 1 - min));
+     console.log(arr[rand]);*/
+
+    var arr = ["Яблоко", "Апельсин", "Груша", "Лимон"];
+    var rand = Math.floor(Math.random() * arr.length);
+    console.log(arr[rand]);
+
+
+    /*
+     Напишите код, который:
+     Запрашивает по очереди значения при помощи prompt и сохраняет их в массиве.
+     Заканчивает ввод, как только посетитель введёт пустую строку, не число или нажмёт «Отмена».
+     При этом ноль 0 не должен заканчивать ввод, это разрешённое число.
+     Выводит сумму всех значений массива
+     * */
+
+    /*var numbers = [];
+
+     while (true) {
+     var value = prompt("Введите число", 0);
+     if (value === "" || value === null || isNaN(value)) break;
+     numbers.push(+value);
+     }
+
+     var sum = 0;
+     for (var i = 0; i < numbers.length; i++) {
+     sum += numbers[i];
+     }
+
+     console.log(sum);*/
+
+
+
+
+    /*Создайте функцию find(arr, value), которая ищет в массиве arr значение value и возвращает его номер, если найдено, или -1, если не найдено.*/
+    var arr = ["test", 2, 1.5, false];
+
+    // создаем пустой массив и проверяем поддерживается ли indexOf
+    if ([].indexOf) {
+
+      var find = function (array, value) {
+        return array.indexOf(value);
+      }
+
+    } else {
+      var find = function (array, value) {
+        for (var i = 0; i < array.length; i++) {
+          if (array[i] === value) return i;
         }
 
+        return -1;
+      }
 
-        /*
-         Получить последний элемент массива
-         */
-
-        let goods = ["1", "2", "3", "4", "5", 1, true];
-        var lastItem = goods[goods.length - 1];
-        console.log(lastItem);
-
-        /*let goodLength = goods.length;
-         goods.pop(goodLength);
-         console.log(goods);*/
+    }
+    console.log(find(arr, false));
 
 
+    /*
+     * Создайте функцию filterRange(arr, a, b), которая принимает массив чисел arr и возвращает новый массив, который содержит только числа из arr из диапазона от a до b. То есть, проверка имеет вид a ≤ arr[i] ≤ b. Функция не должна менять arr.
+     * */
 
+    function filterRange(arr, a, b) {
+      var result = [];
 
-        /*
-         Добавить новый элемент в массив
-         */
-
-        let goods2 = ["1", "2", "3", "4", "5", 1, true];
-
-        /*goods2.push("lastitem");*/
-
-        goods2[goods2.length] = 'Компьютер';
-        log(goods2, "h3");
-
-
-        /*
-         Задача из 5 шагов-строк:
-         Создайте массив styles с элементами «Джаз», «Блюз».
-         Добавьте в конец значение «Рок-н-Ролл»
-         Замените предпоследнее значение с конца на «Классика». Код замены предпоследнего значения должен работать для массивов любой длины.
-         Удалите первое значение массива и выведите его alert.
-         Добавьте в начало значения «Рэп» и «Регги».
-
-         Джаз, Блюз
-         Джаз, Блюз, Рок-н-Ролл
-         Джаз, Классика, Рок-н-Ролл
-         Классика, Рок-н-Ролл
-         Рэп, Регги, Классика, Рок-н-Ролл
-         * */
-
-        /*let styles = ["Джаз", "Блюз"];
-         styles.push("Рок-н-рол");
-         styles[styles.length - 2] = "Классика";
-         let someStyles = ["rap", "reggi"];
-         console.log(styles.shift());
-         styles = styles.concat(someStyles);
-         console.log(styles);*/
-
-        var styles = ["Джаз", "Блюз"];
-        styles.push("Рок-н-Ролл");
-        styles[styles.length - 2] = "Классика";
-        console.log(styles.shift());
-        styles.unshift("Рэп", "Регги");
-        log(styles, "h3")
-
-
-        /*
-         Получить случайное значение из массива
-         * */
-
-        /* var arr = ["Яблоко", "Апельсин", "Груша", "Лимон"];
-
-         var min = 0;
-         var max = 3;
-         // Код для генерации случайного целого от min to max включительно:
-         var rand = min + Math.floor(Math.random() * (max + 1 - min));
-         console.log(arr[rand]);*/
-
-        var arr = ["Яблоко", "Апельсин", "Груша", "Лимон"];
-        var rand = Math.floor(Math.random() * arr.length);
-        console.log(arr[rand]);
-
-
-        /*
-         Напишите код, который:
-         Запрашивает по очереди значения при помощи prompt и сохраняет их в массиве.
-         Заканчивает ввод, как только посетитель введёт пустую строку, не число или нажмёт «Отмена».
-         При этом ноль 0 не должен заканчивать ввод, это разрешённое число.
-         Выводит сумму всех значений массива
-         * */
-
-        /*var numbers = [];
-
-         while (true) {
-         var value = prompt("Введите число", 0);
-         if (value === "" || value === null || isNaN(value)) break;
-         numbers.push(+value);
-         }
-
-         var sum = 0;
-         for (var i = 0; i < numbers.length; i++) {
-         sum += numbers[i];
-         }
-
-         console.log(sum);*/
-
-
-
-
-        /*Создайте функцию find(arr, value), которая ищет в массиве arr значение value и возвращает его номер, если найдено, или -1, если не найдено.*/
-        var arr = ["test", 2, 1.5, false];
-
-        // создаем пустой массив и проверяем поддерживается ли indexOf
-        if ([].indexOf) {
-
-            var find = function (array, value) {
-                return array.indexOf(value);
-            }
-
-        } else {
-            var find = function (array, value) {
-                for (var i = 0; i < array.length; i++) {
-                    if (array[i] === value) return i;
-                }
-
-                return -1;
-            }
-
+      for (var i = 0; i < arr.length; i++) {
+        if (arr[i] >= a && arr[i] <= b) {
+          result.push(arr[i]);
         }
-        console.log(find(arr, false));
+      }
+
+      return result;
+    }
+
+    var arr = [5, 4, 3, 8, 0];
+
+    var filtered = filterRange(arr, 3, 5);
+    console.log(filtered);
 
 
-        /*
-         * Создайте функцию filterRange(arr, a, b), которая принимает массив чисел arr и возвращает новый массив, который содержит только числа из arr из диапазона от a до b. То есть, проверка имеет вид a ≤ arr[i] ≤ b. Функция не должна менять arr.
-         * */
+    /*Подмассив наибольшей суммы*/
+    function getMaxSubSum(arr) {
+      var maxSum = 0,
+              partialSum = 0;
+      for (var i = 0; i < arr.length; i++) {
+        partialSum += arr[i];
+        maxSum = Math.max(maxSum, partialSum);
+        if (partialSum < 0) partialSum = 0;
+      }
+      return maxSum;
+    }
 
-        function filterRange(arr, a, b) {
-            var result = [];
+    console.log(getMaxSubSum([-1, 2, 3, -9])); // 5
+    console.log(getMaxSubSum([-1, 2, 3, -9, 11])); // 11
+    console.log(getMaxSubSum([-2, -1, 1, 2])); // 3
+    console.log(getMaxSubSum([100, -9, 2, -3, 5])); // 100
+    console.log(getMaxSubSum([1, 2, 3])); // 6
+    console.log(getMaxSubSum([-1, -2, -3])); // 0
 
-            for (var i = 0; i < arr.length; i++) {
-                if (arr[i] >= a && arr[i] <= b) {
-                    result.push(arr[i]);
-                }
-            }
 
-            return result;
+    /*В объекте есть свойство className, которое содержит список «классов» – слов, разделенных пробелом:*/
+
+    /*Решение заключается в превращении obj.className в массив при помощи split. После этого в нем можно проверить наличие класса, и если нет – добавить.*/
+    function addClass(obj, cls) {
+      var classes = obj.className ? obj.className.split(' ') : [];
+
+      for (var i = 0; i < classes.length; i++) {
+        if (classes[i] == cls) return; // класс уже есть
+      }
+
+      classes.push(cls); // добавить
+
+      obj.className = classes.join(' '); // и обновить свойство
+    }
+
+    var obj = {
+      className: 'open menu'
+    };
+
+    addClass(obj, 'new');
+    addClass(obj, 'open');
+    addClass(obj, 'me');
+    console.log(obj.className); // open menu new me
+
+
+    /*Перевести текст вида border-left-width в borderLeftWidth*/
+
+    /*Задача может быть решена несколькими способами. Один из них – разбить строку по дефису str.split('-'), затем последовательно сконструировать новую.*/
+    function camelize(str) {
+      var arr = str.split('-');
+
+      for (var i = 1; i < arr.length; i++) {
+        // преобразовать: первый символ с большой буквы
+        arr[i] = arr[i].charAt(0).toUpperCase() + arr[i].slice(1);
+      }
+
+      return arr.join('');
+    }
+
+    console.log(camelize("background-color")); // backgroundColor
+    console.log(camelize("list-style-image")); // listStyleImage
+    console.log(camelize("-webkit-transition")); // WebkitTransition
+
+
+    /*У объекта есть свойство className, которое хранит список «классов» – слов, разделенных пробелами:*/
+
+    /*Решение заключается в том, чтобы разбить className в массив классов, а затем пройтись по нему циклом. Если класс есть – удаляем его splice, заново объединяем массив в строку и присваиваем объекту.*/
+    function removeClass(obj, cls) {
+      var classes = obj.className.split(' ');
+
+      for (var i = 0; i < classes.length; i++) {
+        if (classes[i] == cls) {
+          classes.splice(i, 1); // удалить класс
+          i--; // (*)
         }
+      }
+      obj.className = classes.join(' ');
 
-        var arr = [5, 4, 3, 8, 0];
+    }
 
-        var filtered = filterRange(arr, 3, 5);
-        console.log(filtered);
+    var obj = {
+      className: 'open menu menu'
+    }
+
+    removeClass(obj, 'blabla');
+    removeClass(obj, 'menu')
+    console.log(obj.className) // open
 
 
-        /*Подмассив наибольшей суммы*/
-        function getMaxSubSum(arr) {
-            var maxSum = 0,
-                    partialSum = 0;
-            for (var i = 0; i < arr.length; i++) {
-                partialSum += arr[i];
-                maxSum = Math.max(maxSum, partialSum);
-                if (partialSum < 0) partialSum = 0;
-            }
-            return maxSum;
+    /*Создайте функцию filterRangeInPlace(arr, a, b), которая получает массив с числами arr и удаляет из него все числа вне диапазона a..b. То есть, проверка имеет вид a ≤ arr[i] ≤ b. Функция должна менять сам массив и ничего не возвращать.*/
+
+    function filterRangeInPlace(arr, a, b) {
+
+      for (var i = 0; i < arr.length; i++) {
+        var val = arr[i];
+        if (val < a || val > b) {
+          arr.splice(i--, 1);
         }
+      }
 
-        console.log( getMaxSubSum([-1, 2, 3, -9]) ); // 5
-        console.log( getMaxSubSum([-1, 2, 3, -9, 11]) ); // 11
-        console.log( getMaxSubSum([-2, -1, 1, 2]) ); // 3
-        console.log( getMaxSubSum([100, -9, 2, -3, 5]) ); // 100
-        console.log( getMaxSubSum([1, 2, 3]) ); // 6
-        console.log( getMaxSubSum([-1, -2, -3]) ); // 0
+    }
 
+    var arr = [5, 3, 8, 1];
 
-
+    filterRangeInPlace(arr, 1, 4);
+    console.log(arr); // [3, 1]
 
 
+    /*Сортировать в обратном порядке*/
+
+    var arr = [5, 2, 1, -10, 8];
+
+    function compareReversed(a, b) {
+      return b - a;
+    }
+
+    arr.sort(compareReversed);
+
+    console.log(arr);
 
 
+    /*Скопировать и отсортировать массив*/
+
+    /*Для копирования массива используем slice(), и тут же – сортировку:*/
+
+    var arr = ["HTML", "JavaScript", "CSS"];
+
+    var arrSorted = arr.slice().sort();
+
+    log(arrSorted, "h3");
+    log(arr, "h3");
 
 
+    //Используйте функцию sort для того, чтобы «перетрясти» элементы массива в случайном порядке.
+
+    /*Функция сортировки должна возвращать случайный результат сравнения.
+     Используйте для этого Math.random.
+     Обычно Math.random() возвращает результат от 0 до 1. Вычтем 0.5, чтобы область значений стала [-0.5 ... 0.5).*/
+
+    var arr = [1, 2, 3, 4, 5];
+
+    function compareRandom(a, b) {
+      return Math.random() - 0.5;
+    }
+
+    arr.sort(compareRandom);
+
+    console.log(arr);
 
 
+    /*Напишите код, который отсортирует массив объектов people по полю age.*/
+
+    /*Для сортировки объявим и передадим в sort анонимную функцию, которая сравнивает объекты по полю age:*/
+    // Наша функция сравнения
+    function compareAge(personA, personB) {
+      return personA.age - personB.age;
+    }
+
+    // проверка
+    var vasya = {name: "Вася", age: 23};
+    var masha = {name: "Маша", age: 18};
+    var vovochka = {name: "Вовочка", age: 6};
+
+    var people = [vasya, masha, vovochka];
+
+    people.sort(compareAge);
+
+    // вывести
+    for (var i = 0; i < people.length; i++) {
+      console.log(people[i].name); // Вовочка Маша Вася
+    }
 
 
+    /*Вывести односвязный список*/
 
-
-
-        /*В объекте есть свойство className, которое содержит список «классов» – слов, разделенных пробелом:*/
-
-        /*Решение заключается в превращении obj.className в массив при помощи split. После этого в нем можно проверить наличие класса, и если нет – добавить.*/
-        function addClass(obj, cls) {
-            var classes = obj.className ? obj.className.split(' ') : [];
-
-            for (var i = 0; i < classes.length; i++) {
-                if (classes[i] == cls) return; // класс уже есть
-            }
-
-            classes.push(cls); // добавить
-
-            obj.className = classes.join(' '); // и обновить свойство
+    /*Такая структура данных интересна тем, что можно очень быстро разбить список на части, объединить списки, удалить или добавить элемент в любое место, включая начало. При использовании массива такие действия требуют обширных перенумерований.*/
+    var list = {
+      value: 1,
+      next: {
+        value: 2,
+        next: {
+          value: 3,
+          next: {
+            value: 4,
+            next: null
+          }
         }
+      }
+    };
 
-        var obj = {
-            className: 'open menu'
-        };
+    function printReverseList(list) {
+      var arr = [];
+      var tmp = list;
 
-        addClass(obj, 'new');
-        addClass(obj, 'open');
-        addClass(obj, 'me');
-        console.log(obj.className); // open menu new me
+      while (tmp) {
+        arr.push(tmp.value);
+        tmp = tmp.next;
+      }
 
+      for (var i = arr.length - 1; i >= 0; i--) {
+        log(arr[i], "h3");
+      }
+    }
 
+    printReverseList(list);
 
 
-        /*Перевести текст вида border-left-width в borderLeftWidth*/
+    /*Оставить уникальные элементы массива*/
 
-        /*Задача может быть решена несколькими способами. Один из них – разбить строку по дефису str.split('-'), затем последовательно сконструировать новую.*/
-        function camelize(str) {
-            var arr = str.split('-');
+    /*Решение ниже создаёт объект obj = {} и записывает в него все строки как имена свойств. А затем собирает свойства из объекта в массив через for..in. Дубликатов уже не будет.*/
 
-            for (var i = 1; i < arr.length; i++) {
-                // преобразовать: первый символ с большой буквы
-                arr[i] = arr[i].charAt(0).toUpperCase() + arr[i].slice(1);
-            }
+    function unique(arr) {
+      var obj = {};
 
-            return arr.join('');
-        }
+      for (var i = 0; i < arr.length; i++) {
+        var str = arr[i];
+        obj[str] = true; // запомнить строку в виде свойства объекта
+      }
 
-        console.log( camelize("background-color") ); // backgroundColor
-        console.log( camelize("list-style-image") ); // listStyleImage
-        console.log( camelize("-webkit-transition") ); // WebkitTransition
+      return Object.keys(obj); // или собрать ключи перебором для IE8-
+    }
 
+    var strings = ["кришна", "кришна", "харе", "харе",
+      "харе", "харе", "кришна", "кришна", "8-()"
+    ];
 
+    console.log(unique(strings)); // кришна, харе, 8-()
 
 
+    // Код ниже получает из массива строк новый массив, содержащий их длины:
+    var arr = ["Есть", "жизнь", "на", "Марсе"];
 
+    var arrLength = [];
+    for (var i = 0; i < arr.length; i++) {
+      arrLength[i] = arr[i].length;
+    }
+    // alert(arrLength); // 4,5,2,5
+    // Перепишите выделенный участок: уберите цикл, используйте вместо него метод map.
 
+    var arrLength = arr.map(function (num) {
+      return num.length;
+    });
+    console.log(arrLength);
 
-        /*У объекта есть свойство className, которое хранит список «классов» – слов, разделенных пробелами:*/
 
-        /*Решение заключается в том, чтобы разбить className в массив классов, а затем пройтись по нему циклом. Если класс есть – удаляем его splice, заново объединяем массив в строку и присваиваем объекту.*/
-        function removeClass(obj, cls) {
-            var classes = obj.className.split(' ');
+    // Массив частичных сумм
 
-            for (var i = 0; i < classes.length; i++) {
-                if (classes[i] == cls) {
-                    classes.splice(i, 1); // удалить класс
-                    i--; // (*)
-                }
-            }
-            obj.className = classes.join(' ');
+    /*На входе массив чисел, например: arr = [1,2,3,4,5].
+     Напишите функцию getSums(arr), которая возвращает массив его частичных сумм.
+     Иначе говоря, вызов getSums(arr) должен возвращать новый массив из такого же числа элементов, в котором на каждой позиции должна быть сумма элементов arr до этой позиции включительно.
+     То есть:
+     для arr = [ 1, 2, 3, 4, 5 ]
+     getSums( arr ) = [ 1, 1+2, 1+2+3, 1+2+3+4, 1+2+3+4+5 ] = [ 1, 3, 6, 10, 15 ]*/
 
-        }
+    function getSums(arr) {
+      var result = [];
+      if (!arr.length) return result;
 
-        var obj = {
-            className: 'open menu menu'
-        }
+      arr.reduce(function (sum, item) {
+        result.push(sum);
+        return sum + item;
+      });
 
-        removeClass(obj, 'blabla');
-        removeClass(obj, 'menu')
-        console.log(obj.className) // open
+      return result;
+    }
 
+    console.log(getSums([1, 2, 3, 4, 5])); // результат: 1,3,6,10
 
 
 
+    
+    /*Проверка на аргумент-undefined*/
+    function f(x) {
+      console.log(arguments.length ? 1 : 0);
+    }
+    f(undefined); // 1
+    f(); // 0
 
-        /*Создайте функцию filterRangeInPlace(arr, a, b), которая получает массив с числами arr и удаляет из него все числа вне диапазона a..b. То есть, проверка имеет вид a ≤ arr[i] ≤ b. Функция должна менять сам массив и ничего не возвращать.*/
 
-        function filterRangeInPlace(arr, a, b) {
 
-            for (var i = 0; i < arr.length; i++) {
-                var val = arr[i];
-                if (val < a || val > b) {
-                    arr.splice(i--, 1);
-                }
-            }
+    // Сумма аргументов
+    function sum() {
+      var result = 0;
+      for (var i = 0; i < arguments.length; i++) {
+        result += arguments[i];
+      }
+      return result;
+    }
 
-        }
+    console.log(sum());
+    console.log(sum(1,2,3,4));
+    console.log(sum(1,4));
 
-        var arr = [5, 3, 8, 1];
 
-        filterRangeInPlace(arr, 1, 4);
-        console.log( arr ); // [3, 1]
 
 
 
 
 
-        /*Сортировать в обратном порядке*/
 
-        var arr = [5, 2, 1, -10, 8];
 
-        function compareReversed(a, b) {
-            return b - a;
-        }
 
-        arr.sort(compareReversed);
+    console.log("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
 
-        console.log( arr );
 
-
-
-
-
-        /*Скопировать и отсортировать массив*/
-
-        /*Для копирования массива используем slice(), и тут же – сортировку:*/
-
-        var arr = ["HTML", "JavaScript", "CSS"];
-
-        var arrSorted = arr.slice().sort();
-
-        log( arrSorted, "h3" );
-        log( arr, "h3" );
-
-
-
-
-
-        //Используйте функцию sort для того, чтобы «перетрясти» элементы массива в случайном порядке.
-
-        /*Функция сортировки должна возвращать случайный результат сравнения.
-        Используйте для этого Math.random.
-         Обычно Math.random() возвращает результат от 0 до 1. Вычтем 0.5, чтобы область значений стала [-0.5 ... 0.5).*/
-
-        var arr = [1, 2, 3, 4, 5];
-
-        function compareRandom(a, b) {
-            return Math.random() - 0.5;
-        }
-
-        arr.sort(compareRandom);
-
-        console.log( arr );
-
-
-
-
-
-
-        /*Напишите код, который отсортирует массив объектов people по полю age.*/
-
-        /*Для сортировки объявим и передадим в sort анонимную функцию, которая сравнивает объекты по полю age:*/
-        // Наша функция сравнения
-        function compareAge(personA, personB) {
-            return personA.age - personB.age;
-        }
-
-        // проверка
-        var vasya = { name: "Вася", age: 23 };
-        var masha = { name: "Маша", age: 18 };
-        var vovochka = { name: "Вовочка", age: 6 };
-
-        var people = [ vasya , masha , vovochka ];
-
-        people.sort(compareAge);
-
-        // вывести
-        for(var i = 0; i < people.length; i++) {
-            console.log(people[i].name); // Вовочка Маша Вася
-        }
-
-
-
-
-        /*Вывести односвязный список*/
-
-        /*Такая структура данных интересна тем, что можно очень быстро разбить список на части, объединить списки, удалить или добавить элемент в любое место, включая начало. При использовании массива такие действия требуют обширных перенумерований.*/
-        var list = {
-            value: 1,
-            next: {
-                value: 2,
-                next: {
-                    value: 3,
-                    next: {
-                        value: 4,
-                        next: null
-                    }
-                }
-            }
-        };
-
-        function printReverseList(list) {
-            var arr = [];
-            var tmp = list;
-
-            while (tmp) {
-                arr.push(tmp.value);
-                tmp = tmp.next;
-            }
-
-            for (var i = arr.length - 1; i >= 0; i--) {
-                log( arr[i], "h3" );
-            }
-        }
-
-        printReverseList(list);
-
-
-
-
-
-
-        /*Оставить уникальные элементы массива*/
-
-        /*Решение ниже создаёт объект obj = {} и записывает в него все строки как имена свойств. А затем собирает свойства из объекта в массив через for..in. Дубликатов уже не будет.*/
-
-        function unique(arr) {
-            var obj = {};
-
-            for (var i = 0; i < arr.length; i++) {
-                var str = arr[i];
-                obj[str] = true; // запомнить строку в виде свойства объекта
-            }
-
-            return Object.keys(obj); // или собрать ключи перебором для IE8-
-        }
-
-        var strings = ["кришна", "кришна", "харе", "харе",
-            "харе", "харе", "кришна", "кришна", "8-()"
-        ];
-
-        console.log( unique(strings) ); // кришна, харе, 8-()
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    </script>
+  </script>
 </head>
 <body>
 
