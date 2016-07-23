@@ -1,54 +1,135 @@
 <!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Document</title>
-    <script>
-        var consoleStyles = {
-            'h3': 'font: 1.2em/1 Arial; color: olivedrab;',
-            'h4': 'font: 1.2em/1 Consolas; color: #247BA0;'
-        };
-        function log(msg, style) {
-            if (!style || !consoleStyles[style]) {
-                style = 'bold';
-            }
-            console.log('%c' + msg, consoleStyles[style]);
-        }
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <script>
+    var consoleStyles = {
+      'h3': 'font: 1.2em/1 Arial; color: olivedrab;',
+      'h4': 'font: 1.2em/1 Consolas; color: #247BA0;'
+    };
+    function log(msg, style) {
+      if (!style || !consoleStyles[style]) {
+        style = 'bold';
+      }
+      console.log('%c' + msg, consoleStyles[style]);
+    }
 
-        var a = 5; // всего лишь сво-во глобального объекта windows
-        log(window.a, "h3");
-
-
-        if ("a" in window) {
-            var a = 1;
-        }
-        console.log(a); // 1
+    var a0 = 5; // всего лишь сво-во глобального объекта windows
+    log(window.a0, "h3");
 
 
-        var userName = 'Петя';
-
-        function sayHi() {
-            var phrase = 'Привет, ' + userName;
-            console.log(phrase);
-        }
-
-        function test() {
-            var userName = 'Баба-яга';
-
-            sayHi();
-        }
-
-        test();
+    if ("a" in window) {
+      var a = 1;
+    }
+    console.log(a); // 1
 
 
+    var userName = 'Петя';
+
+    function sayHi() {
+      var phrase = 'Привет, ' + userName;
+      console.log(phrase);
+    }
+
+    function test() {
+      var userName = 'Баба-яга';
+
+      sayHi();
+    }
+
+    test();
+
+
+    // Что будет, если вызов say('Вася'); стоит в самом-самом начале, в первой строке кода?
+    say('Вася'); // Что выведет? Не будет ли ошибки?
+
+    var phrase = 'Привет';
+
+    function say(name) {
+      console.log(name + ", " + phrase);
+    }
+
+
+    //    Каков будет результат выполнения этого кода?
+    var value = 0;
+
+    function f() {
+      if (1) {
+        value = true;
+      } else {
+        var value = false;
+      }
+
+      console.log(value);
+    }
+
+    f();
+    //    Изменится ли внешняя переменная value ?
+    //   P.S. Какими будут ответы, если из строки var value = false убрать var?
+
+
+    // Каков будет результат выполнения этого кода? Почему?
+
+    function test1() {
+
+      console.log(window); // undefined
+
+      var window = 5;
+
+      console.log(window); // 5
+    }
+
+    test1();
 
 
 
+    // Каков будет результат выполнения кода? Почему?
+
+    var a33 = 5;
+
+    (function() {
+      log(a33, 'h3');
+    })();
 
 
 
+    // Если во внутренней функции есть своя переменная с именем currentCount – можно ли в ней получить currentCount из внешней функции?
 
-    </script>
+    function makeCounter() {
+      var currentCount = 1;
+
+      return function() {
+        var currentCount;
+        // можно ли здесь вывести currentCount из внешней функции (равный 1)?
+        // Нет, нельзя.
+        // Локальная переменная полностью перекрывает внешнюю.
+      };
+    }
+
+
+
+    // Что выведут эти вызовы, если переменная currentCount находится вне makeCounter?
+
+    var currentCount = 1;
+
+    function makeCounter1() {
+      return function() {
+        return currentCount++;
+      };
+    }
+
+    var counter = makeCounter1();
+    var counter2 = makeCounter1();
+
+    console.log( counter() ); // 1
+    console.log( counter() ); // 2
+
+    console.log( counter2() ); // 3
+    console.log( counter2() ); // 4
+
+
+  </script>
 </head>
 <body>
 

@@ -1,0 +1,217 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <script>
+    var consoleStyles = {
+      'h3': 'font: 1.2em/1 Arial; color: olivedrab;',
+      'h4': 'font: 1.2em/1 Consolas; color: #247BA0;'
+    };
+    function log(msg, style) {
+      if (!style || !consoleStyles[style]) {
+        style = 'bold';
+      }
+      console.log('%c' + msg, consoleStyles[style]);
+    }
+
+
+    // Создайте объект Date для даты: 20 февраля 2012 года, 3 часа 12 минут.
+    var myDate = new Date(2012, 1, 20, 3, 12);
+    console.log(myDate);
+
+
+    // Создайте функцию getWeekDay(date), которая выводит текущий день недели в коротком формате „пн“, „вт“, … „вс“.
+    var date = new Date(2016, 6, 23); // 3 января 2014
+    console.log( date.toLocaleString('ru', {weekday: 'short'}) ); // 'Пт'
+
+
+    /*Напишите функцию, getLocalDay(date) которая возвращает день недели для даты date.*/
+    function getLocalDay(date) {
+      var day = date.getDay();
+      if (day == 0) { // день 0 становится 7
+        day = 7;
+      }
+      return day;
+    }
+    console.log( getLocalDay(new Date(2012, 0, 3)) ); // 2
+
+
+    /* День указанное количество дней назад
+    Создайте функцию getDateAgo(date, days), которая возвращает число, которое было days дней назад от даты date. */
+
+    function getDateAgo(date, days) {
+      var dateCopy = new Date(date);
+
+      dateCopy.setDate(date.getDate() - days);
+      return dateCopy.getDate();
+    }
+
+    var date = new Date(2015, 0, 2);
+
+    console.log( getDateAgo(date, 1) ); // 1, (1 января 2015)
+    console.log( getDateAgo(date, 2) ); // 31, (31 декабря 2014)
+    console.log( getDateAgo(date, 365) ); // 2, (2 января 2014)
+
+
+
+    /*Напишите функцию getLastDayOfMonth(year, month), которая возвращает последний день месяца.*/
+
+    function getLastDayOfMonth(year, month) {
+      var date = new Date(year, month + 1, 0);
+      return date.getDate();
+    }
+
+    console.log( getLastDayOfMonth(2012, 0) ); // 31
+    console.log( getLastDayOfMonth(2016, 7) ); // 31
+
+
+
+
+    /*Напишите функцию getSecondsToday() которая возвращает, сколько секунд прошло с начала сегодняшнего дня.*/
+
+    function getSecondsToday() {
+      var d = new Date();
+      return d.getHours() * 3600 + d.getMinutes() * 60 + d.getSeconds();
+    };
+
+    console.log(getSecondsToday());
+
+
+
+    /*Напишите функцию getSecondsToTomorrow() которая возвращает, сколько секунд осталось до завтра.*/
+
+    function getSecondsToTomorrow() {
+      var now = new Date();
+
+      // создать объект из завтрашней даты, без часов-минут-секунд
+      var tomorrow = new Date(now.getFullYear(), now.getMonth(), now.getDate()+1);
+
+      var diff = tomorrow - now; // разница в миллисекундах
+      return Math.round(diff / 1000); // перевести в секунды
+    }
+
+    console.log(getSecondsToTomorrow());
+
+
+
+    // Напишите функцию formatDate(date), которая выводит дату date в формате дд.мм.гг:
+    function formatDate(date) {
+
+      var dd = date.getDate();
+      if (dd < 10) dd = '0' + dd;
+
+      var mm = date.getMonth() + 1;
+      if (mm < 10) mm = '0' + mm;
+
+      var yy = date.getFullYear() % 100;
+      if (yy < 10) yy = '0' + yy;
+
+      return dd + '.' + mm + '.' + yy;
+    }
+
+    var d = new Date(2014, 0, 30); // 30 Янв 2014
+    console.log( formatDate(d) ); // '30.01.14'
+
+
+
+
+    /*Напишите функцию formatDate(date), которая форматирует дату date так:
+
+     Если со времени date прошло менее секунды, то возвращает "только что".
+     Иначе если со времени date прошло менее минуты, то "n сек. назад".
+     Иначе если прошло меньше часа, то "m мин. назад".
+     Иначе полная дата в формате "дд.мм.гг чч:мм".*/
+
+    function formatDate(date) {
+      var diff = new Date() - date; // разница в миллисекундах
+
+      if (diff < 1000) { // прошло менее 1 секунды
+        return 'только что';
+      }
+
+      var sec = Math.floor(diff / 1000); // округлить diff до секунд
+
+      if (sec < 60) {
+        return sec + ' сек. назад';
+      }
+
+      var min = Math.floor(diff / 60000); // округлить diff до минут
+      if (min < 60) {
+        return min + ' мин. назад';
+      }
+
+      // форматировать дату, с учетом того, что месяцы начинаются с 0
+      var d = date;
+      d = [
+        '0' + d.getDate(),
+        '0' + (d.getMonth() + 1),
+        '' + d.getFullYear(),
+        '0' + d.getHours(),
+        '0' + d.getMinutes()
+      ];
+
+      for (var i = 0; i < d.length; i++) {
+        d[i] = d[i].slice(-2);
+      }
+
+      return d.slice(0, 3).join('.') + ' ' + d.slice(3).join(':');
+    }
+
+    log( formatDate(new Date(new Date - 1)), 'h3' ); // только что
+
+    log( formatDate(new Date(new Date - 30 * 1000)), 'h3' ); // 30 сек. назад
+
+    log( formatDate(new Date(new Date - 5 * 60 * 1000)), 'h3' ); // 5 мин. назад
+
+    log( formatDate(new Date(new Date - 86400 * 1000)), 'h3' ); // вчерашняя дата в формате "дд.мм.гг чч:мм"
+
+
+
+
+
+
+
+
+
+
+
+    console.log("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
+
+
+  </script>
+</head>
+<body>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

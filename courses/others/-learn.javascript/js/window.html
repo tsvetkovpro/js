@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <script>
+    var consoleStyles = {
+      'h3': 'font: 1.2em/1 Arial; color: olivedrab;',
+      'h4': 'font: 1.2em/1 Consolas; color: #247BA0;'
+    };
+    function log( msg, style ) {
+      if (!style || !consoleStyles[ style ]) {
+        style = 'bold';
+      }
+      console.log( '%c' + msg, consoleStyles[ style ] );
+    }
+
+
+    // Каков будет результат кода?
+    if ("a" in window) {
+      var a = 1;
+    }
+    console.log( a );
+
+
+    // Каков будет результат (перед a нет var)?
+    if ("a2" in window) {
+      a2 = 1;
+    }
+    // console.log( a2 ); - error
+
+
+    // Каков будет результат (перед a нет var, а ниже есть)?
+    if ("a3" in window) {
+      a3 = 1;
+    }
+    var a3;
+
+    log( a3, 'h3' );
+
+  </script>
+</head>
+<body>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
