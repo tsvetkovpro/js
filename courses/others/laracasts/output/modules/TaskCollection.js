@@ -8,7 +8,7 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-var TaskCollection = exports.TaskCollection = function () {
+var TaskCollection = function () {
   function TaskCollection() {
     var tasks = arguments.length <= 0 || arguments[0] === undefined ? [] : arguments[0];
 
@@ -20,9 +20,11 @@ var TaskCollection = exports.TaskCollection = function () {
   _createClass(TaskCollection, [{
     key: "dump",
     value: function dump() {
-      console.log(this.tasks);
+      console.dir(this.tasks);
     }
   }]);
 
   return TaskCollection;
 }();
+
+exports.default = TaskCollection;
