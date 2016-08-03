@@ -51,6 +51,14 @@ try {
     var name = _step.value;
     console.log(name);
   } /*=============================================================*/
+
+  /*
+  *  [].fill()
+  *  [].keys()
+  *  [].values()
+  *  [].entries()
+  *
+  * */
 } catch (err) {
   _didIteratorError = true;
   _iteratorError = err;
