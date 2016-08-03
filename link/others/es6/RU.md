@@ -356,9 +356,9 @@ w.has(o1); // false
 
 <br>
 
-### 12. Set and WeakSet
+### 12. Set и WeakSet
 
-Set objects are collections of unique values. Duplicate values are ignored, as the collection must have all unique values. The values can be primitive types or object references.
+Объекты Set это коллекции уникальных значений. Дублированные значения игнорируются, т.к. коллекция должна содержать только уникальные значения. Значения могут быть примитивами или ссылками на объекты.
 
 ```javascript
 let mySet = new Set([1, 1, 2, 2, 3, 3]);
@@ -370,30 +370,34 @@ mySet.add({ a: 1, b:2 });
 
 You can iterate over a set by insertion order using either the `forEach` method or the `for...in` loop.
 
+Вы можете перебирать <code>Set</code> в цикле с помощью <code>forEach</code> или <code>for...of</code>. Перебор происходит в том же порядке, что и вставка.
+
+
 ```javascript
 mySet.forEach((item) => {
-  console.log(item);
-	// 1
-	// 2
-	// 3
-	// 'strings'
-	// Object { a: 1, b: 2 }
+    console.log(item);
+    // 1
+    // 2
+    // 3
+    // 'строки'
+    // Object { a: 1, b: 2 }
 });
 
 for (let value of mySet) {
-  console.log(value);
-	// 1
-	// 2
-	// 3
-	// 'strings'
-	// Object { a: 1, b: 2 }
+    console.log(value);
+    // 1
+    // 2
+    // 3
+    // 'строки'
+    // Object { a: 1, b: 2 }
 }
 ```
-Sets also have the ` delete()` and ` clear()` methods.
+
+У Set также есть методы ` delete()` и ` clear()` .
 
 **WeakSet**
 
-Similar to <code>WeakMap</code>, the <code>WeakSet</code> object lets you store weakly held *objects* in a collection. An object in the <code>WeakSet</code> occurs only once; it is unique in the WeakSet's collection.
+Аналогично <code>WeakMap</code>, объект <code>WeakSet</code> позволяет хранить *объекты* с неустойчивыми связями в коллекции. Объект в <code>WeakSet</code> уникален.
 
 ```javascript
 var ws = new WeakSet();
@@ -404,76 +408,76 @@ ws.add(window);
 ws.add(obj);
 
 ws.has(window); // true
-ws.has(foo);    // false, foo has not been added to the set
+ws.has(foo);    // false, foo не был добавлен к коллекции
 
-ws.delete(window); // removes window from the set
-ws.has(window);    // false, window has been removed
+ws.delete(window); // удаляет window из коллекции
+ws.has(window);    // false, window был удалён
 ```
 
 <br>
 
-### 13. Classes in ES6
+### 13. Классы в ES6
 
-ES6 introduces new class syntax. One thing to note here is that ES6 class is not a new object-oriented inheritance model. They just serve as a syntactical sugar over JavaScript's existing prototype-based inheritance.
+В ES6 представили новый синтаксис для классов. Здесь стоит отметить, что класс ES6 не представляет собой новую объектно-ориентированную модель наследования. Это просто синтаксический сахар для существующего в JavaScript прототипного наследования.
 
-One way to look at a class in ES6 is just a new syntax to work with prototypes and contructor functions that we'd use in ES5.
+Класс в ES6 представляет собой просто новый синтаксис для работы с прототипами и функциями-конструкторами, которые мы привыкли использовать в ES5.
 
-Functions defined using the `static` keyword implement static/class functions on the class.
+Функции, записанные с помощью ключевого слова <code>static</code>, используются для объявления статических свойств класса.
 
 ```javascript
 class Task {
-	constructor() {
-		console.log("task instantiated!");
-	}
-	
-	showId() {
-		console.log(23);
-	}
-	
-	static loadAll() {
-		console.log("Loading all tasks..");
-	}
+    constructor() {
+        console.log("Создан экземпляр task!");
+    }
+
+    showId() {
+        console.log(23);
+    }
+
+    static loadAll() {
+        console.log("Загружаем все tasks...");
+    }
 }
 
 console.log(typeof Task); // function
-let task = new Task(); // "task instantiated!"
+let task = new Task(); // "Создан экземпляр task!"
 task.showId(); // 23
-Task.loadAll(); // "Loading all tasks.."
+Task.loadAll(); // "Загружаем все tasks..."
 ```
 
-**extends and super in classes**
+**extends и super в классах**
 
-Consider the following code:
+Посмотрим на следующий код:
 
 ```javascript
 class Car {
-	constructor() {
-		console.log("Creating a new car");
-	}
+    constructor() {
+        console.log("Создаём новый автомобиль");
+    }
 }
 
 class Porsche extends Car {
-	constructor() {
-		super();
-		console.log("Creating Porsche");
-	}
+    constructor() {
+        super();
+        console.log("Создаём Porsche");
+    }
 }
 
 let c = new Porsche();
-// Creating a new car
-// Creating Porsche
+// Создаём новый автомобиль
+// Создаём Porsche
 ```
 
-<code>extends</code> allow child class to inherit from parent class in ES6. It is important to note that the derived constructor must call super().
+В ES6 ключевое слово <code>extends</code> позволяет классу-потомку наследовать от родительского класса. Важно отметить, что конструктор класса-потомка должен вызывать super().
 
-Also, you can call parent class's method in child class's methods using <code>super.parentMethodName()</code>
+Также, в классе-потомке можно вызвать метод родительского класса с помощью <code>super.имяМетодаРодителя()</code>.
 
-[Read more about classes here](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Classes)
+[Узнать больше о классах на сайте MDN](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Classes)
 
-A few things to keep in mind:
+О чём стоит помнить:
 
-* Class declarations are not hoisted. You first need to declare your class and then access it, otherwise ReferenceError will be thrown.
-* There is no need to use <code>function</code> keyword when defining functions inside a class definition.
+* Объявления классов не поднимаются наверх (not hoisted). Сначала нужно объявить класс и только после этого использовать его, иначе будет ошибка ReferenceError.
+* Нет необходимости использовать ключевое слово ` function` во время задания функций внутри определения класса.
 
 <br>
 
