@@ -328,12 +328,6 @@ myMap.get(keyFunc);      // "значение, связанное с keyFunc"
 
 **WeakMap**
 
-A <code>WeakMap</code> is a Map in which the keys are weakly referenced, that doesn’t prevent its keys from being garbage-collected. That means you don't have to worry about memory leaks.
-
-Another thing to note here- in <code>WeakMap</code> as opposed to <code>Map</code> *every key must be an object*.
-
-A <code>WeakMap</code> only has four methods <code>delete(key)</code>, <code>has(key)</code>, <code>get(key)</code> and <code>set(key, value)</code>.
-
 <code>WeakMap</code> это Map, в котором ключи обладают неустойчивыми связями, что позволяет не мешать сборщику мусора удалять элементы WeakMap. Это означает, что можно не беспокоиться об утечках памяти.
 
 Стоить отметить, что в <code>WeakMap<code>, в отличие от <code>Map</code>, *каждый ключ должен быть объектом*.
