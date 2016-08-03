@@ -36,9 +36,9 @@ console.log(a); // 2
 
 <br>
 
-### 2. Arrow Functions
+### 2. Стрелочные функции
 
-Arrow Functions are a short-hand notation for writing functions in ES6. The arrow function definition consists of a parameter list <code>( ... )</code>, followed by the <code>=></code> marker and a function body.
+Стрелочные функции представляют собой сокращённую запись функций в ES6. Стрелочная функция состоит из списка параметров <code>( ... )</code>, за которым следует знак <code>=></code> и тело функции.
 
 ```javascript
 var getPrice = function() {
@@ -48,9 +48,9 @@ var getPrice = function() {
 // Implementation with Arrow Function
 var getPrice = () => 4.55;
 ```
-Note that in the above example, the <code>getPrice</code> arrow function is implemented with "concise body" which does not need an explicit return statement.
+Заметим, что в примере выше, тело функции представляет собой краткую запись, в которой не требуется явного указания на то, что мы хотим вернуть результат.
 
-Here is an example with the usual "block body"
+А вот пример с использованием блока из фигурных скобок:
 
 ```javascript
 let arr = ['apple', 'banana', 'orange'];
@@ -62,11 +62,11 @@ let breakfast = arr.map(fruit => {
 console.log(breakfast); // apples bananas oranges
 ```
 
-**Behold! There is more...**
+**Это ещё не всё!...**
 
-Arrow functions don't just make the code shorter. They are closely related to <code>this</code> binding behaviour.
+Стрелочные функции не просто делают код короче. Они тесно связаны с ключевым словом <code>this</code> и привязкой контекста.
 
-Arrow functions behaviour with <code>this</code> keyword varies from that of normal functions. Each function in JavaScript defines its own <code>this</code> context but Arrow functions capture the <code>this</code> value of the enclosing context. Check out the following code:
+Поведение стрелочных функций с ключевым словом <code>this</code> отличается от поведения обычных функций с <code>this</code>. Каждая функция в JavaScript определяет свой собственный контекст <code>this</code>, но внутри стрелочных функций значение <code>this</code> то же самое, что и снаружи (стрелочные функции не имеют своего <code>this</code>). Посмотрим на следующий код:
 
 ```javascript
 function Person() {
@@ -83,7 +83,7 @@ function Person() {
 var p = new Person();
 ```
 
-In ECMAScript 3/5, this issue was fixed by assigning the value in <code>this</code> to a variable that could be closed over.
+В ECMAScript 3/5 это поведение стало возможным изменить, присвоив значение <code>this</code> другой переменной.
 
 ```javascript
 function Person() {
@@ -98,7 +98,9 @@ function Person() {
 }
 ```
 
-As mentioned above, Arrow functions capture the this value of the enclosing context, so the following code works as expected.
+Как сказано выше, внутри стрелочных функций значение <code>this</code> то же самое, что и снаружи, поэтому следующий код работает так, как от него и ожидается: 
+
+[Узнать больше о 'Лексическом this' в стрелочных функциях на сайте MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions#Lexical_this)
 
 ```javascript
 function Person(){
@@ -111,13 +113,12 @@ function Person(){
 
 var p = new Person();
 ```
-[Read more about 'Lexical this' in arrow functions here](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions#Lexical_this)
 
 <br>
 
-### 3. Default Function Parameters
+### 3. Параметры по умолчанию
 
-ES6 allows you to set default parameters in function definitions. Here is a simple illustration.
+ES6 позволяет установить параметры по умолчанию при объявлении функции. Вот простой пример:
 
 ```javascript
 let getFinalPrice = (price, tax=0.7) => price + price * tax;
@@ -126,11 +127,11 @@ getFinalPrice(500); // 850
 
 <br>
 
-### 4. Spread / Rest Operator
+### 4. Spread / Rest оператор
 
-<code>...</code> operator is referred to as spread or rest operator, depending on how and where it is used.
+<code>...</code> оператор называют как spread или rest, в зависимости от того, как и где он используется.
 
-When used with any iterable, it acts as to "spread" it into individual elements:
+При использовании в любом итерируемом объекте (iterable), данный оператор "разбивает" ("spread") его на индивидуальные элементы:
 
 ```javascript
 function foo(x,y,z) {
@@ -141,7 +142,7 @@ let arr = [1,2,3];
 foo(...arr); // 1 2 3
 ```
 
-The other common usage of <code>...</code> is gathering a set of values together into an array. This is referred as "rest" operator.
+Другим распространённым использованием оператора <code>...</code> является объединение набора значений в один массив. В данном случае оператор работает как "rest"
 
 ```javascript
 function foo(...args) {
@@ -152,27 +153,28 @@ foo( 1, 2, 3, 4, 5); // [1, 2, 3, 4, 5]
 
 <br>
 
-### 5. Object Literal Extensions
+### 5. Расширение возможностей литералов объекта
 
-ES6 allows declaring object literals by providing shorthand syntax for initializing properties from variables and defining function methods. It also enables the ability to have computed property keys in an object literal definition.
+ES6 позволяет объявить литералы объекта с помощью короткого синтаксиса для инициализации свойств из переменных и определения функциональных методов. Также, стандарт обеспечивает возможность вычисления свойств непосредственно в литерале объекта.
 
 ```javascript
 function getCar(make, model, value) {
 	return {
-		// with property value shorthand
-		// syntax, you can omit the property
-		// value if key matches variable
-		// name
+		// с синтаксисом короткой записи можно
+        // пропускать значение свойства, если оно
+        // совпадает с именем переменной, значение
+        // которой мы хотим использовать
 		make,  // same as make: make
 		model, // same as model: model
 		value, // same as value: value
 
-		// computed values now work with
-		// object literals
+		// вычисляемые свойства теперь работают в
+        // литералах объекта
 		['make' + make]: true,
 
-		// Method definition shorthand syntax
-		// omits `function` keyword & colon
+		// Короткая запись метода объекта пропускает
+        // ключевое слово `function` и двоеточие. Вместо
+        // "depreciate: function() {}" можно написать:
 		depreciate() {
 			this.value -= 2500;
 		}
@@ -192,10 +194,10 @@ let car = getCar('Kia', 'Sorento', 40000);
 
 <br>
 
-### 6. Octal and Binary Literals
+### 6. Восьмеричный и двоичный литералы
 
-ES6 has new support for octal and binary literals.
-Prependending a number with <code>0o</code> or <code>0O</code> would convert it into octal value. Have a look at the following code:
+В ES6 появилась новая поддержка для восьмеричных и двоичных литералов.
+Добавление к началу числа <code>0o</code> или <code>0O</code> преобразует его в восьмеричную систему счисления (аналогично, 0b или 0B преобразует в двоичную систему счисления). Посмотрим на следующий код:
 
 ```javascript
 let oValue = 0o10;
@@ -207,9 +209,9 @@ console.log(bValue); // 2
 
 <br>
 
-### 7. Array and Object Destructuring
+### 7. Деструктуризация массивов и объектов
 
-Desctructuring helps in avoiding the need for temp variables when dealing with object and arrays.
+Деструктуризация помогает избежать использования вспомогательных переменных при взаимодействии с объектами и массивами.
 
 ```javascript
 function foo() {
@@ -233,9 +235,10 @@ console.log(x, y, z); // 4 5 6
 
 <br>
 
-### 8. super in Objects
+### 8. Ключевое слово super для объектов
 
-ES6 allows to use <code>super</code> method in (classless) objects with prototypes. Following is a simple example:
+ES6 позволяет использовать метод <code>super</code> в (безклассовых) объектах с прототипами. Вот простой пример:
+
 
 ```javascript
 var parent = {
@@ -258,9 +261,9 @@ child.foo(); // Hello from the Parent
 
 <br>
 
-### 9. Template Literal and Delimiters
+### 9. Строковые шаблоны и разделители
 
-ES6 introduces an easier way to add interpolation which are evaluated automatically.
+ES6 предоставяляет более простой способ вставки значения переменной или результата выражения (т.н. "интерполяцию"), которые рассчитываются автоматически.
 
 * <code>\`${ ... }\`</code> is used for rendering the variables.
 * <code>\`</code> Backtick is used as delimiter.
@@ -272,8 +275,8 @@ console.log(`Hi ${user}!`); // Hi Kevin!
 
 <br>
 
-### 10. for...of vs for...in
-* <code>for...of</code> iterates over iterable objects, such as array.
+### 10. for...of против for...in
+* <code>for...of</code> используется для перебора в цикле итерируемых объектов, например, массивов.
 
 ```javascript
 let nicknames = ['di', 'boo', 'punkeye'];
@@ -284,7 +287,7 @@ for (let nickname of nicknames) {
 Result: di, boo, punkeye
 ```
 
-* <code>for...in</code> iterates over all enumerable properties of an object.
+* <code>for...in</code> используется для перебора в цикле всех доступных для перебора (enumerable) свойств объекта.
 
 ```javascript
 let nicknames = ['di', 'boo', 'punkeye'];
@@ -297,30 +300,30 @@ Result: 0, 1, 2, size
 
 <br>
 
-### 11. Map and WeakMap
+### 11. Map и WeakMap
 
-ES6 introduces new set of data structures called <code>Map</code> and <code>WeakMap</code>. Now, we actually use maps in JavaScript all the time. Infact every object can be considered as a <code>Map</code>.
+ES6 представляет новые структуры данных — <code>Map</code> и <code>WeakMap</code>. На самом деле, мы используем "Map" в JavaScript всё время. Каждый объект можно представить как частный случай <code>Map</code>.
 
-An object is made of keys (always strings) and values, whereas in <code>Map</code>, any value (both objects and primitive values) may be used as either a key or a value. Have a look at this piece of code:
+Классический объект состоит из ключей (всегда в строковом виде) и значений, тогда как в <code>Map</code> для ключа и значения можно использовать любое значение (и объекты, и примитивы). Посмотрим на этот код:
 
 ```javascript
 var myMap = new Map();
 
-var keyString = "a string",
+var keyString = "строка",
     keyObj = {},
-    keyFunc = function () {};
+    keyFunc = function() {};
 
-// setting the values
-myMap.set(keyString, "value associated with 'a string'");
-myMap.set(keyObj, "value associated with keyObj");
-myMap.set(keyFunc, "value associated with keyFunc");
+// устанавливаем значения
+myMap.set(keyString, "значение, связанное со 'строка'");
+myMap.set(keyObj, "значение, связанное с keyObj");
+myMap.set(keyFunc, "значение, связанное с keyFunc");
 
 myMap.size; // 3
 
-// getting the values
-myMap.get(keyString);    // "value associated with 'a string'"
-myMap.get(keyObj);       // "value associated with keyObj"
-myMap.get(keyFunc);      // "value associated with keyFunc"
+// получаем значения
+myMap.get(keyString);    // "значение, связанное со 'строка'"
+myMap.get(keyObj);       // "значение, связанное с keyObj"
+myMap.get(keyFunc);      // "значение, связанное с keyFunc"
 ```
 
 **WeakMap**
@@ -330,6 +333,12 @@ A <code>WeakMap</code> is a Map in which the keys are weakly referenced, that do
 Another thing to note here- in <code>WeakMap</code> as opposed to <code>Map</code> *every key must be an object*.
 
 A <code>WeakMap</code> only has four methods <code>delete(key)</code>, <code>has(key)</code>, <code>get(key)</code> and <code>set(key, value)</code>.
+
+<code>WeakMap</code> это Map, в котором ключи обладают неустойчивыми связями, что позволяет не мешать сборщику мусора удалять элементы WeakMap. Это означает, что можно не беспокоиться об утечках памяти.
+
+Стоить отметить, что в <code>WeakMap<code>, в отличие от <code>Map</code>, *каждый ключ должен быть объектом*.
+
+Для <code>WeakMap</code> есть только четыре метода: <code>delete(ключ)</code>, <code>has(ключ)</code>, <code>get(ключ)</code> и <code>set(ключ, значение)</code>.
 
 ```javascript
 let w = new WeakMap();
@@ -344,7 +353,7 @@ w.set(o1, 37);
 w.set(o2, "azerty");
 w.set(o3, undefined);
 
-w.get(o3); // undefined, because that is the set value
+w.get(o3); // undefined, потому что это заданное значение
 
 w.has(o1); // true
 w.delete(o1);
