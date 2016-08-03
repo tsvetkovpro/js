@@ -17,7 +17,7 @@ function sum(...numbers) {
     (prev, current) => prev + current
   );
 }
-log(sum(1,2,3,4,5), "h3");
+log(sum(1,2,3,4,5,6,7), "h3");
 
 
 
@@ -27,7 +27,6 @@ function sum2(x, y) {
 }
 let num = [1, 2];
 console.log(sum2(...num));
-
 
 
 
