@@ -481,42 +481,42 @@ let c = new Porsche();
 
 <br>
 
-### 14. Symbol
+### 14. Тип данных Symbol
 
-A symbol is a unique and immutable data type introduced in ES6. The purpose of a symbol is to generate a unique identifier but you can never get any access to that identifier.
+Symbol это уникальный и неизменяемый тип данных, представленный в ES6. Целью ` Symbol` является создание уникального идентификатора, к которому нельзя получить доступ.
 
-Here’s how you create a symbol:
+Вот как можно создать ` Symbol`:
 
 ```javascript
-var sym = Symbol( "some optional description" );
+var sym = Symbol("опциональное описание");
 console.log(typeof sym); // symbol
 ```
 
-Note that you cannot use new with Symbol(..).
+Заметим, что использовать new вместе с ` Symbol (…)` нельзя.
 
-If a symbol is used as a property/key of an object, it’s stored in a special way that the property will not show up in a normal enumeration of the object’s properties.
+Если ` Symbol` используется как свойство/ключ объекта, он сохраняется таким специальным образом, что свойство не будет показано при нормальном перечислении свойств объекта.
 
 ```javascript
 var o = {
-	val: 10,
-    [ Symbol("random") ]: "I'm a symbol",
+    val: 10,
+    [Symbol("случайный")]: "Я - символ",
 };
 
 console.log(Object.getOwnPropertyNames(o)); // val
 ```
 
-To retrieve an object’s symbol properties, use <code>Object.getOwnPropertySymbols(o)</code>
+Чтобы извлечь символьные свойства объекта, нужно использовать <code>Object.getOwnPropertySymbols(o)</code>
 
 
 <br>
 
-### 15. Iterators
+### 15. Итераторы
 
-An iterator accesses the items from a collection one at a time, while keeping track of its current position within that sequence. It provides a <code>next()</code> method which returns the next item in the sequence. This method returns an object with two properties: done and value.
+Итератор обращается к элементам коллекции по одному, в то же время сохраняя память о своей текущей позиции в этой коллекции. У итератора есть метод ` next()`, который возвращает следующий элемент в последовательности. Этот метод возвращает объект с двумя свойствами: done (окончен ли перебор) и value (значение).
 
-ES6 has <code>Symbol.iterator</code> which specifies the default iterator for an object. Whenever an object needs to be iterated (such as at the beginning of a for..of loop), its @@iterator method is called with no arguments, and the returned iterator is used to obtain the values to be iterated.
+В ES6 есть метод ` Symbol.iterator`, который определяет итератор для объекта по-умолчанию. При каждой необходимости перебора в цикле для объекта (например, в начале цикла for..of), его метод итератора вызывается без аргументов, и возвращённый итератор используется для того, чтобы получить значения для перебора.
 
-Let’s look at an array, which is an iterable, and the iterator it can produce to consume its values:
+Посмотрим на массив, который является перебираемым (iterable), и на итератор, который есть у массива для обработки его значений:
 
 ```javascript
 var arr = [11,12,13];
@@ -529,7 +529,9 @@ itr.next(); // { value: 13, done: false }
 itr.next(); // { value: undefined, done: true }
 ```
 
-Note that you can write custom iterators by defining <code>\[Symbol.iterator]()</code> with the object definition.
+Заметим, что можно написать собственный итератор через определение ` obj[Symbol.iterator]()` с описанием объекта.
+
+[Подробнее про итераторы:](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols)
 
 <br>
 
