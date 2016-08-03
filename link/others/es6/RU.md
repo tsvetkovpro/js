@@ -535,54 +535,106 @@ itr.next(); // { value: undefined, done: true }
 
 <br>
 
-### 16. Generators
+### 16. Генераторы
 
-Generator functions are a new feature in ES6 that allow a function to generate many values over time by returning an object which can be iterated over to pull values from the function one value at a time.
+Функции-генераторы представляют собой новую особенность ES6, которая позволяет функции создавать много значений в течение некоторого периода времени, возвращая объект (называемый генератором), который может быть итерирован для выброса значений из функции по одному за раз.
 
-A generator function returns an **iterable oject** when it's called.
-It is written using the new <code>*</code> syntax as well as the new <code>yield</code> keyword introduced in ES6.
+Функция-генератор возвращает **итерируемый объект** при своём вызове.
+Функция-генератор записывается с помощью знака * после ключевого слова ` function`, а в теле функции должно присутствовать ключевое слово ` yield`.
 
 ```javascript
 function *infiniteNumbers() {
-	var n = 1;
-  	while (true){
-    	yield n++;
-  	}
+    var n = 1;
+    while (true) {
+        yield n++;
+    }
 }
 
-var numbers = infiniteNumbers(); // returns an iterable object
+var numbers = infiniteNumbers(); // возвращает перебираемый объект
 
 numbers.next(); // { value: 1, done: false }
 numbers.next(); // { value: 2, done: false }
 numbers.next(); // { value: 3, done: false }
 ```
 
-Each time yield is called, the yielded value becomes the next value in the sequence.
+Каждый раз при вызове ` yield` возвращённое значение становится следующим значением в последовательности.
 
-Also, note that generators compute their yielded values on demand, which allows them to efficiently represent sequences that are expensive to compute, or even infinite sequences.
+Также заметим, что генераторы вычисляют свои возвращённые значения по запросу, что позволяет им эффективно представлять последовательности, затратные с точки зрения вычислений, или даже бесконечные последовательности.
 
 <br>
 
-### 17. Promises
+### 17. Промисы
 
-ES6 has native support for promises. A promise is an object that is waiting for an asynchronous operation to complete, and when that operation completes, the promise is either fulfilled(resolved) or rejected.
+В ES6 появилась встроенная поддержка промисов. Промис это объект, который ждёт выполнения асинхронной операции, после которого (т.е. после выполнения) промис принимает одно из двух состояний: fulfilled (resolved, успешное выполнение) или rejected (выполнено с ошибкой).
 
-The standard way to create a Promise is by using the <code>new Promise()</code> constructor which accepts a handler that is given two functions as parameters. The first handler (typically named <code>resolve</code>) is a function to call with the future value when it's ready; and the second handler (typically named <code>reject</code>) is a function to call to reject the Promise if it can't resolve the future value.
+Стандартным способом создания промиса является конструктор ` new Promise()`, который принимает обработчик с двумя функциями как параметрами. Первый обработчик (обычно именуемый ` resolve`) представляет собой функцию для вызова вместе с будущим значением, когда оно будет готово; второй обработчик (обычно именуемый ` reject`) является функцией, которая вызывается для отказа от выполнения промиса, если он не может определить будущее значение.
 
 ```javascript
 var p = new Promise(function(resolve, reject) {  
-	if (/* condition */) {
-    	resolve(/* value */);  // fulfilled successfully
-   	}
-   	else {
-   		reject(/* reason */);  // error, rejected
-   	}
+    if (/* условие */) {
+        resolve(/* значение */);  // fulfilled successfully (успешный результат)
+    } else {
+        reject(/* reason */);  // rejected (ошибка)
+    }
 });
 ```
 
-Every Promise has a method named <code>then</code> which takes a pair of callbacks. The first callback is called if the promise is resolved, while the second is called if the promise is rejected.
+Каждый промис обладает методом ` then`, в котором есть два коллбэка. Первый коллбэк вызывается, если промис успешно выполнен (resolved), тогда как второй коллбэк вызывается, если промис выполнен с ошибкой (rejected).
 
 ```javascript
-p.then((val) => console.log("Promise Resolved", val),
-       (err) => console.log("Promise Rejected", err));
+p.then((val) => console.log("Промис успешно выполнен", val),
+       (err) => console.log("Промис выполнен с ошибкой", err));
 ```
+
+При возвращении значения от ` then` коллбэки передадут значение следующему коллбэку ` then`.
+
+```javascript
+var hello = new Promise(function(resolve, reject) {  
+    resolve("Привет");
+});
+
+hello.then((str) => `${str} Мир`)
+     .then((str) => `${str}!`)
+     .then((str) => console.log(str)) // Привет Мир!
+```
+
+При возвращении промиса, успешно обработанное значение промиса пройдёт к следующему коллбэку, для того, чтобы эффективно соединить их вместе.
+Эта простая техника помогает избежать ада с коллбэками ("callback hell").
+
+
+```javascript
+var p = new Promise(function(resolve, reject) {  
+    resolve(1);
+});
+
+var eventuallyAdd1 = (val) => {
+    return new Promise(function(resolve, reject){
+        resolve(val + 1);
+    });
+}
+
+p.then(eventuallyAdd1)
+ .then(eventuallyAdd1)
+ .then((val) => console.log(val)) // 3
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
