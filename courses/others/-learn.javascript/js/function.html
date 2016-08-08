@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <script>
+    var consoleStyles = {
+      'h3': 'font: 1.2em/1 Arial; color: olivedrab;',
+      'h4': 'font: 1.2em/1 Consolas; color: #247BA0;'
+    };
+    function log(msg, style) {
+      if (!style || !consoleStyles[style]) {
+        style = 'bold';
+      }
+      console.log('%c' + msg, consoleStyles[style]);
+    }
+
+    // разница между
+    // func declaration - обычные функции. приятный бонус - можем вызывать их до объявления
+    // и func exspression - используем там где не работают обычные, например:
+    var age = prompt('Ваш возраст:', 18);
+
+
+    var checkAccess = (age >= 18) ?
+            function () {
+              return true;
+            } : function () {
+      return confirm('А мама разрешила?');
+    };
+
+    log(( checkAccess() ? "OK" : "forbidden"), 'h3');
+
+
+    // Важноя область применения func exspression
+    // функции вызываемы на месте func declaration вызывать нельзя
+    (function () {
+      var ecmaSupport = 1;
+    }());
+    // так никто не перезапишет переменные.
+
+
+  </script>
+</head>
+<body>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
