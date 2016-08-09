@@ -83,15 +83,13 @@
     test1();
 
 
-
     // Каков будет результат выполнения кода? Почему?
 
     var a33 = 5;
 
-    (function() {
+    (function () {
       log(a33, 'h3');
     })();
-
 
 
     // Если во внутренней функции есть своя переменная с именем currentCount – можно ли в ней получить currentCount из внешней функции?
@@ -99,7 +97,7 @@
     function makeCounter() {
       var currentCount = 1;
 
-      return function() {
+      return function () {
         var currentCount;
         // можно ли здесь вывести currentCount из внешней функции (равный 1)?
         // Нет, нельзя.
@@ -108,13 +106,12 @@
     }
 
 
-
     // Что выведут эти вызовы, если переменная currentCount находится вне makeCounter?
 
     var currentCount = 1;
 
     function makeCounter1() {
-      return function() {
+      return function () {
         return currentCount++;
       };
     }
@@ -122,15 +119,276 @@
     var counter = makeCounter1();
     var counter2 = makeCounter1();
 
-    console.log( counter() ); // 1
-    console.log( counter() ); // 2
+    console.log(counter()); // 1
+    console.log(counter()); // 2
 
-    console.log( counter2() ); // 3
-    console.log( counter2() ); // 4
-
-
+    console.log(counter2()); // 3
+    console.log(counter2()); // 4
 
 
+    // вспомогательная функция (префикс do)
+    var list = {
+      value: 1,
+      next: {
+        value: 2,
+        next: {
+          value: 3,
+          next: {
+            value: 4,
+            next: null
+          }
+        }
+      }
+    };
+
+    function walkByListReverseRec(list) {
+      var result = [];
+
+      function doWalkListReverseRec(list) {
+        if (!list) return null;
+
+        doWalkListReverseRec(list.next);
+        console.log(`do: ${list.value}`);
+        result.push(list.value);
+        return result;
+      }
+
+      doWalkListReverseRec(list);
+      return result;
+    }
+
+    console.log(walkByListReverseRec(list));
+
+
+    // замыкания
+    function counter34() {
+      var count = 0;
+
+      return function () { // [[Scope]] = LE - содержит ссылку
+        return count++;
+      };
+    }
+
+    var c = counter34();
+
+    log(c(), 'h3');
+    log(c(), 'h3');
+    log(c(), 'h3');
+    log(c(), 'h3');
+
+
+    // Сумма через замыкание
+
+    // Чтобы вторые скобки в вызове работали – первые должны возвращать функцию.
+    // Эта функция должна знать про a и уметь прибавлять a к b. Вот так:
+
+    function sum(a) {
+
+      return function (b) {
+        return a + b; // возьмет a из внешнего LexicalEnvironment
+      };
+    }
+
+    console.log(sum(1)(2));
+    console.log(sum(5)(-1));
+
+
+
+
+    // Функция - строковый буфер
+    function makeBuffer() {
+      var text = '';
+
+      return function(piece) {
+        if (arguments.length == 0) { // вызов без аргументов
+          return text;
+        }
+        text += piece;
+      };
+    }
+
+    var buffer = makeBuffer();
+
+    // добавить значения к буферу
+    buffer('Замыкания');
+    buffer(' Использовать');
+    buffer(' Нужно!');
+    console.log( buffer() ); // 'Замыкания Использовать Нужно!'
+
+    var buffer2 = makeBuffer();
+    buffer2(0);
+    buffer2(1);
+    buffer2(0);
+
+    console.log( buffer2() ); // '010'
+
+
+    // Строковый буфер с очисткой
+    function makeBuffer() {
+      var text = '';
+
+      function buffer(piece) {
+        if (arguments.length == 0) { // вызов без аргументов
+          return text;
+        }
+        text += piece;
+      };
+
+      buffer.clear = function() {
+        text = "";
+      }
+
+      return buffer;
+    };
+
+    var buffer = makeBuffer();
+
+    buffer("Тест");
+    buffer(" тебя не съест ");
+    console.log( buffer() ); // Тест тебя не съест
+
+    buffer.clear();
+
+    console.log( buffer() ); // ""
+
+
+
+
+
+    // Сортировка
+    var users = [{
+      name: "Вася",
+      surname: 'Иванов',
+      age: 20
+    }, {
+      name: "Петя",
+      surname: 'Чапаев',
+      age: 25
+    }, {
+      name: "Маша",
+      surname: 'Медведева',
+      age: 18
+    }];
+
+    function byField(field) {
+      return function(a, b) {
+        return a[field] > b[field] ? 1 : -1;
+      }
+    }
+
+    users.sort(byField('name'));
+    users.forEach(function(user) {
+      console.log( user.name );
+    });
+
+    users.sort(byField('age'));
+    users.forEach(function(user) {
+      console.log( user.name );
+    });
+
+
+    // Функция фильтрации
+    function filter(arr, func) {
+      var result = [];
+
+      for (var i = 0; i < arr.length; i++) {
+        var val = arr[i];
+        if (func(val)) {
+          result.push(val);
+        }
+      }
+
+      return result;
+    }
+
+    var arr = [1, 2, 3, 4, 5, 6, 7];
+
+    console.log(filter(arr, function(a) {
+      return a % 2 == 0;
+    })); // 2, 4, 6
+
+
+    // Фильтр inBetween
+    function filter(arr, func) {
+      var result = [];
+
+      for (var i = 0; i < arr.length; i++) {
+        var val = arr[i];
+        if (func(val)) {
+          result.push(val);
+        }
+      }
+
+      return result;
+    }
+
+    function inBetween(a, b) {
+      return function(x) {
+        return x >= a && x <= b;
+      };
+    }
+
+    var arr = [1, 2, 3, 4, 5, 6, 7];
+    console.log( filter(arr, inBetween(3, 6)) ); // 3,4,5,6
+
+    // Фильтр inArray
+    function filter(arr, func) {
+      var result = [];
+
+      for (var i = 0; i < arr.length; i++) {
+        var val = arr[i];
+        if (func(val)) {
+          result.push(val);
+        }
+      }
+
+      return result;
+    }
+
+    function inArray(arr) {
+      return function(x) {
+        return arr.indexOf(x) != -1;
+      };
+    }
+
+    var arr = [1, 2, 3, 4, 5, 6, 7];
+    console.log( filter(arr, inArray([1, 2, 10])) ); // 1,2
+
+
+
+
+
+
+
+
+
+
+
+    // Следующий код создает массив функций-стрелков shooters. По замыслу, каждый стрелок должен выводить свой номер:
+    function makeArmy() {
+
+      var shooters = [];
+
+      for (var i = 0; i < 10; i++) {
+
+        var shooter = (function(x) {
+
+          return function() {
+            console.log( x );
+          };
+
+        })(i);
+
+        shooters.push(shooter);
+      }
+
+      return shooters;
+    }
+
+    var army = makeArmy();
+
+    army[0](); // 0
+    army[1](); // 1
 
 
   </script>

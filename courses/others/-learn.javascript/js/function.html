@@ -39,6 +39,24 @@
     // так никто не перезапишет переменные.
 
 
+
+
+    // named_function_expression
+    var f = function go(n) {
+      return n > 1 ? n*go(n-1) : 1;
+    }
+
+    log(f(5), 'h4');
+    g = f;
+    f = null;
+    log(g(5), 'h4');
+
+
+
+
+
+
+
   </script>
 </head>
 <body>
