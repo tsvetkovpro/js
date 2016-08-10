@@ -6,29 +6,34 @@
 Learn about the new types of variable declarations and how they can help with some well-known JavaScript gotchas.
 ```
 
-##Level  
-[link to source]()
+##Level 2 Functions
+[link to source](https://github.com/tsvetkovpro/js/tree/master/courses/codeschool/es2015/level-2)
 ```
-```
-
-##Level  
-[link to source]()
-```
+Explore new features added to functions, like default parameters, rest parameters, spread operators, and arrow functions.
 ```
 
-##Level  
-[link to source]()
+##Level 3 Objects, Strings, and Object.assign
+[link to source](https://github.com/tsvetkovpro/js/tree/master/courses/codeschool/es2015/level-3)
 ```
-```
-
-##Level  
-[link to source]()
-```
+Find new ways to work with JavaScript Objects and Strings.
 ```
 
-##Level  
-[link to source]()
+##Level 4 Arrays, Maps, and Sets
+[link to source](https://github.com/tsvetkovpro/js/tree/master/courses/codeschool/es2015/level-4)
 ```
+Learn how to work with Arrays and more efficient alternatives to working with collections, like Maps and Sets.
+```
+
+##Level 5 Classes and Modules
+[link to source](https://github.com/tsvetkovpro/js/tree/master/courses/codeschool/es2015/level-5)
+```
+Discover how to write object-oriented code using the new class syntax and how to leverage the new module system to keep things clean and organized.
+```
+
+##Level 6 Promises, Iterators, and Generators
+[link to source](https://github.com/tsvetkovpro/js/tree/master/courses/codeschool/es2015/level-6)
+```
+Learn alternatives to writing async code, iterator objects for navigating sequences more efficiently, and special functions that return those objects.
 ```
 
 
