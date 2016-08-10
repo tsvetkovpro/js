@@ -54,6 +54,26 @@
 
 
 
+    // only three simple rule
+    // obj.func()     this = obj
+    // func()         this = undefined (use strict) / window
+    // f.call
+    var user = {
+      firstName: "vasya"
+    };
+
+    function f123() {
+      // this = windows, ... window.firstName
+      console.log(this.firstName);
+    }
+
+    f123.call(user);
+
+
+
+
+
+
 
 
 

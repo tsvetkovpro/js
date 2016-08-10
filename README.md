@@ -8,7 +8,7 @@
 * [JavaScript trip - 1](link/codeschool/js-road-trip-1/ch1.md)
 * [JavaScript trip - 2](link/codeschool/js-road-trip-2/ch1.md)
 * [JavaScript trip - 3](link/codeschool/js-road-trip-3/ch1.md)
-* [ES2015: The Shape of JavaScript to Come]
+* [ES2015: The Shape of JavaScript to Come](link/codeschool/js-es6/ch1.md)
 * [JavaScript Best Practices]
 &nbsp;
 * [Try jQuery]
