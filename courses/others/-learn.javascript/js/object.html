@@ -1,150 +1,492 @@
 <!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Document</title>
-    <script>
-        var consoleStyles = {
-            'h3': 'font: 1.2em/1 Arial; color: olivedrab;',
-            'h4': 'font: 1.2em/1 Consolas; color: #247BA0;'
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <script>
+    var consoleStyles = {
+      'h3': 'font: 1.2em/1 Arial; color: olivedrab;',
+      'h4': 'font: 1.2em/1 Consolas; color: #247BA0;'
+    };
+    function log(msg, style) {
+      if (!style || !consoleStyles[style]) {
+        style = 'bold';
+      }
+      console.log('%c' + msg, consoleStyles[style]);
+    }
+
+
+    /*
+     Создайте функцию isEmpty(obj), которая возвращает true,
+     если в объекте нет свойств и false – если хоть одно свойство есть.
+     * */
+
+    /*function isEmpty(obj) {
+     var counter = 0;
+     for (var prop in obj) {
+     counter++;
+     }
+     if (counter == 0) {
+     return true;
+     } else {
+     return false;
+     }
+     }*/
+
+    function isEmpty(obj) {
+      for (var key in obj) {
+        return false;
+      }
+      return true;
+    }
+
+    var schedule = {};
+
+    console.log(isEmpty(schedule));
+
+    schedule["8:30"] = "Подъём";
+
+    console.log(isEmpty(schedule));
+
+
+    /*
+     Есть объект salaries с зарплатами. Напишите код, который выведет сумму всех зарплат.
+     Если объект пустой, то результат должен быть 0.
+     */
+    "use strict";
+
+    var salaries = {
+      "Вася": 100,
+      "Петя": 300,
+      "Даша": 250
+    };
+
+    var sum = 0;
+    for (var prop in salaries) {
+      sum += salaries[prop];
+    }
+    console.log(sum);
+
+
+    /*
+     Есть объект salaries с зарплатами. Напишите код, который выведет имя сотрудника, у которого самая большая зарплата.
+     Если объект пустой, то пусть он выводит «нет сотрудников».
+     * */
+
+    "use strict";
+
+    var salariesBig = {
+      "Вася": 100,
+      "Петя": 300,
+      "Даша": 250
+    };
+
+    var bigSum = 0;
+    var nameBigSum = '';
+    for (var prop in salariesBig) {
+      if (salariesBig[prop] > bigSum) {
+        bigSum = salariesBig[prop];
+        nameBigSum = prop;
+      }
+    }
+    log(nameBigSum, "h3");
+
+
+    /*
+     Создайте функцию multiplyNumeric, которая получает объект и умножает все численные свойства на 2.
+     * */
+
+    // до вызова
+    var menu = {
+      width: 200,
+      height: 300,
+      title: "My menu"
+    };
+
+    function isNumeric(n) {
+      return !isNaN(parseFloat(n)) && isFinite(n)
+    }
+
+    function multiplyNumeric(obj) {
+      for (var prop in obj) {
+        if (isNumeric(obj[prop])) {
+          obj[prop] *= 2;
+        }
+      }
+    }
+
+    multiplyNumeric(menu);
+    log("width: " + menu.width + " height: " + menu.height + " title: " + menu.title, "h3");
+
+
+    // приватные переменные и методы
+    function User(name) {
+      this.sayHi = function () {
+        console.log(name);
+      };
+
+      this.getName = function () {
+        return name;
+      };
+
+      this.setName = function (newName) {
+        name = newName;
+      };
+
+
+    }
+
+    var vasya = new User('Василий');
+    vasya.sayHi();
+
+    console.log(vasya.getName());
+
+    vasya.setName('Петя');
+    vasya.sayHi();
+
+
+    // [[Class]] - для встроенных объектов
+    // можно получить через {}.toString
+
+    var arr = [1, 2];
+
+    // одолжим метод
+    arr.toString = {}.toString();
+    console.log(arr);
+
+    // ... или безопасно
+    var toClass = {}.toString; // взять toString от объекта и скопировать эту функцию в переменную
+    console.log(toClass.call(arr)); // потом вызвать её через call в контексте array --> [object Array]
+
+    var date = new Date;
+    console.log(toClass.call(date)); // [object Date]
+
+
+    // для примитивов тоже работает
+    console.log({}.toString.call(123));    //   [object Number]
+    console.log({}.toString.call("строка")); //   [object String]
+
+
+    // только тип
+    var type = toClass.call(date).slice(8, -1); // Date
+    console.log(type);
+    // улучшим
+
+    function getClass(obj) {
+      return {}.toString.call(obj).slice(8, -1);
+    }
+
+    console.log(getClass(true)); // boolean
+
+
+    console.log("\n\n\n\n\n\n");
+
+
+    // Объявление объекта само по себе не влияет на this. Никаких функций, которые могли бы повлиять на контекст, здесь нет.
+    // Так как код находится вообще вне любых функций, то this в нём равен window
+    // (в браузере так всегда для кода вне функций, вне зависимости от use strict).
+    // Получается, что в строке (*) мы имеем export: window,
+    // так что далее alert(user.export.firstName) выводит свойство window.firstName, которое не определено.
+    var user = {
+      firstName: "Василий",
+
+      export: this
+    };
+
+    console.log(user.export.firstName);
+
+
+    // Вызов user.export() использует this, который равен объекту до точки,
+    // то есть внутри user.export() строка return this возвращает объект user.
+    var name = "";
+
+    var user = {
+      name: "Василий",
+
+      export: function () {
+        return this;
+      }
+
+    };
+
+    console.log(user.export().name); // Василий
+
+
+    // Во время выполнения user.export() значение this = user.
+    // При создании объекта { value: this }, в свойство value копируется ссылка на текущий контекст, то есть на user.
+    // Получается что user.export().value == user.
+    var name = "";
+
+    var user = {
+      name: "Василий",
+
+      export: function () {
+        return {
+          value: this
         };
-        function log(msg, style) {
-            if (!style || !consoleStyles[style]) {
-                style = 'bold';
-            }
-            console.log('%c' + msg, consoleStyles[style]);
+      }
+
+    };
+
+    console.log(user.export().value.name); // Василий
+
+
+    console.log("\n\n\n");
+    // Создайте объект calculator с тремя методами:
+
+    // read() запрашивает prompt два значения и сохраняет их как свойства объекта
+    // sum() возвращает сумму этих двух значений
+    // mul() возвращает произведение этих двух значений
+    var calculator = {
+      sum: function () {
+        return this.a + this.b;
+      },
+
+      mul: function () {
+        return this.a * this.b;
+      },
+
+      read: function () {
+        this.a = +prompt('a?', 0);
+        this.b = +prompt('b?', 0);
+      }
+    };
+
+    calculator.read();
+    console.log(calculator.sum());
+    console.log(calculator.mul());
+
+
+    // Цепочка вызовов
+    // Решение состоит в том, чтобы каждый раз возвращать текущий объект. Это делается добавлением return this в конце каждого метода:
+    var ladder = {
+      step: 0,
+      up: function () {
+        this.step++;
+        return this;
+      },
+      down: function () {
+        this.step--;
+        return this;
+      },
+      showStep: function () {
+        console.log(this.step);
+        return this;
+      }
+    };
+
+    ladder.up().up().down().up().down().showStep(); // 1
+
+
+    // Если с одной стороны – объект, а с другой – нет, то сначала приводится объект.
+    // В данном случае сравнение означает численное приведение. У массивов нет valueOf, поэтому вызывается toString, который возвращает список элементов через запятую.
+    // В данном случае, элемент только один – он и возвращается. Так что ['x'] становится 'x'. Получилось 'x' == 'x', верно.
+    // P.S. По той же причине верны равенства:
+
+    // alert( ['x', 'y'] == 'x,y' ); // true
+    // alert( [] == '' ); // true
+    // ['x'] == 'x'
+
+
+    // Первый alert(foo)
+    // Возвращает строковое представление объекта, используя toString, т.е. "foo".
+
+    // Второй alert(foo + 1)
+    // Оператор '+' преобразует объект к примитиву, используя valueOf, так что результат: 3.
+
+    // Третий alert(foo + „3“)
+    // То же самое, что и предыдущий случай, объект превращается в примитив 2. Затем происходит сложение 2 + '3'. Оператор '+' при сложении чего-либо со строкой приводит и второй операнд к строке, а затем применяет конкатенацию, так что результат – строка "23".
+    var foo = {
+      toString: function () {
+        return 'foo';
+      },
+      valueOf: function () {
+        return 2;
+      }
+    };
+
+    console.log(foo); // object
+    console.log(foo + 1); // 3
+    console.log(foo + "3"); //"32"
+
+
+    // Почему [] == [] неверно, а [ ] == ![ ] верно?
+    // https://learn.javascript.ru/task/compare-empty-arrays
+    console.log([] == []); // false
+    console.log([] == ![]); // true
+
+
+    // Вопросник по преобразованиям, для объектов
+    /*
+     new Date(0) - 0 = 0 // (1)
+     new Array(1)[0] + "" = "undefined" // (2)
+     ({})[0] = undefined // (3)
+     [1] + 1 = "11" // (4)
+     [1,2] + [3,4] = "1,23,4" // (5)
+     [] + null + 1 = "null1" // (6)
+     [[0]][0][0] = 0 // (7)
+     ({} + {}) = "[object Object][object Object]" // (8)
+
+     (1) new Date(0) – дата, созданная по миллисекундам и соответствующая 0 мс от 1 января 1970 года 00:00:00 UTC.
+     Оператор минус - преобразует дату обратно в число миллисекунд, то есть в 0.
+
+     (2) new Array(num) при вызове с единственным аргументом-числом создаёт массив данной длины, без элементов.
+     Поэтому его нулевой элемент равен undefined, при сложении со строкой получается строка "undefined".
+
+     (3) Фигурные скобки – это создание пустого объекта, у него нет свойства '0'. Так что значением будет undefined.
+     Обратите внимание на внешние, круглые скобки. Если их убрать и запустить {}[0] в отладочной консоли браузера – будет 0,
+     т.к. скобки {} будут восприняты как пустой блок кода, после которого идёт массив.
+
+     (4) Массив преобразуется в строку "1". Оператор "+" при сложении со строкой приводит второй аргумент к строке – значит
+     будет "1" + "1" = "11".
+
+     (5) Массивы приводятся к строке и складываются.
+
+     (6) Массив преобразуется в пустую строку "" + null + 1, оператор "+" видит, что слева строка и преобразует null к строке,
+     получается "null" + 1, и в итоге "null1".
+
+     (7) [[0]] – это вложенный массив [0] внутри внешнего [ ]. Затем мы берём от него нулевой элемент, и потом еще раз.
+
+     Если это непонятно, то посмотрите на такой пример:
+     alert( [1,[0],2][1] );
+     Квадратные скобки после массива/объекта обозначают не другой массив, а взятие элемента.
+
+     (8) Каждый объект преобразуется к примитиву. У встроенных объектов Object нет подходящего valueOf,
+     поэтому используется toString, так что складываются в итоге строковые представления объектов.*/
+
+
+
+
+
+
+
+    // Указание get/set в литералах
+    var userGetSet = {
+      firstName: "Вася",
+      surname: "Петров",
+
+      get fullName() {
+        return this.firstName + ' ' + this.surname;
+      },
+
+      set fullName(value) {
+        var split = value.split(' ');
+        this.firstName = split[0];
+        this.surname = split[1];
+      }
+    };
+
+    console.log(userGetSet.fullName); // Вася Петров (из геттера)
+
+    userGetSet.fullName = "Петя Иванов";
+    console.log(userGetSet.firstName); // Петя  (поставил сеттер)
+    console.log(userGetSet.surname); // Иванов (поставил сеттер)
+
+
+    // Добавить get/set-свойства
+    function UserValue(fullName) {
+      this.fullName = fullName;
+
+      Object.defineProperties(this, {
+
+        firstName: {
+
+          get: function () {
+            return this.fullName.split(' ')[0];
+          },
+
+          set: function (newFirstName) {
+            this.fullName = newFirstName + ' ' + this.lastName;
+          }
+
+        },
+
+        lastName: {
+
+          get: function () {
+            return this.fullName.split(' ')[1];
+          },
+
+          set: function (newLastName) {
+            this.fullName = this.firstName + ' ' + newLastName;
+          }
         }
+      });
+    }
 
-        /*
-         Создайте функцию isEmpty(obj), которая возвращает true,
-         если в объекте нет свойств и false – если хоть одно свойство есть.
-         * */
+    var vas = new UserValue("Василий Попкин");
 
-        /*function isEmpty(obj) {
-         var counter = 0;
-         for (var prop in obj) {
-         counter++;
-         }
-         if (counter == 0) {
-         return true;
-         } else {
-         return false;
-         }
-         }*/
+    // чтение firstName/lastName
+    console.log(vas.firstName); // Василий
+    console.log(vas.lastName); // Попкин
 
-        function isEmpty(obj) {
-            for (var key in obj) {
-                return false;
-            }
-            return true;
-        }
+    // запись в lastName
+    vas.lastName = 'Сидоров';
 
-        var schedule = {};
-
-        console.log(isEmpty(schedule));
-
-        schedule["8:30"] = "Подъём";
-
-        console.log(isEmpty(schedule));
+    console.log(vas.fullName); // Василий Сидоров
 
 
-        /*
-         Есть объект salaries с зарплатами. Напишите код, который выведет сумму всех зарплат.
-         Если объект пустой, то результат должен быть 0.
-         */
-        "use strict";
+    //Добавить в конструктор Article:
+    // Подсчёт общего количества созданных объектов.
+    // Запоминание даты последнего созданного объекта.
+    function Article() {
+      this.created = new Date;
 
-        var salaries = {
-            "Вася": 100,
-            "Петя": 300,
-            "Даша": 250
-        };
+      Article.count++; // увеличиваем счетчик при каждом вызове
+      Article.last = this.created; // и запоминаем дату
+    }
+    Article.count = 0; // начальное значение
+    // (нельзя оставить undefined, т.к. Article.count++ будет NaN)
 
-        var sum = 0;
-        for (var prop in salaries) {
-            sum += salaries[prop];
-        }
-        console.log(sum);
+    Article.showStats = function () {
+      console.log('Всего: ' + this.count + ', Последняя: ' + this.last);
+    };
+
+    new Article();
+    new Article();
+
+    Article.showStats(); // Всего: 2, Последняя: (дата)
+
+    new Article();
+
+    Article.showStats(); // Всего: 3, Последняя: (дата)
 
 
+    // Запись в объект после bind
+    function f() {
+      alert(this);
+    }
 
+    var user = {
+      g: f.bind("Hello")
+    };
 
+    user.g(); // hello
 
-
-        /*
-        Есть объект salaries с зарплатами. Напишите код, который выведет имя сотрудника, у которого самая большая зарплата.
-        Если объект пустой, то пусть он выводит «нет сотрудников».
-        * */
-
-        "use strict";
-
-        var salariesBig = {
-            "Вася": 100,
-            "Петя": 300,
-            "Даша": 250
-        };
-
-        var bigSum = 0;
-        var nameBigSum = '';
-        for (var prop in salariesBig) {
-            if (salariesBig[prop] > bigSum) {
-                bigSum = salariesBig[prop];
-                nameBigSum = prop;
-            }
-        }
-        log(nameBigSum, "h3");
+    /*
+     Так как вызов идёт в контексте объекта user.g(), то внутри функции g контекст this = user.
+     Однако, функции g совершенно без разницы, какой this она получила.
+     Её единственное предназначение – это передать вызов в f вместе с аргументами и ранее указанным контекстом "Hello", что она и делает.
+     Эта задача демонстрирует, что изменить однажды привязанный контекст уже нельзя.
+     */
 
 
 
+    // Повторный bind
+    function f() {
+      alert(this.name);
+    }
+
+    f = f.bind({name: "Вася"}).bind({name: "Петя"});
+
+    f(); // Вася
+    /*
+     Первый вызов f.bind(..Вася..) возвращает «обёртку», которая устанавливает контекст для f и передаёт вызов f.
+     Следующий вызов bind будет устанавливать контекст уже для этой обёртки. Это ни на что не повлияет.
+     */
 
 
-
-
-
-        /*
-         Создайте функцию multiplyNumeric, которая получает объект и умножает все численные свойства на 2.
-        * */
-
-        // до вызова
-        var menu = {
-            width: 200,
-            height: 300,
-            title: "My menu"
-        };
-
-        function isNumeric(n) {
-            return !isNaN(parseFloat(n)) && isFinite(n)
-        }
-
-        function multiplyNumeric (obj) {
-            for (var prop in obj) {
-                if (isNumeric(obj[prop])) {
-                    obj[prop] *= 2;
-                }
-            }
-        }
-
-        multiplyNumeric(menu);
-        log("width: " + menu.width + " height: " + menu.height + " title: " + menu.title, "h3");
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    </script>
+  </script>
 </head>
 <body>
 

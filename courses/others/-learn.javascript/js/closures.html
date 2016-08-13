@@ -391,6 +391,33 @@
     army[1](); // 1
 
 
+
+
+
+
+
+    console.log('\n');
+    // контекст
+
+    // only three simple rule
+    // obj.func()        this = obj
+    // func()            this = undefined (use strict) / window
+    // f.call(context)   this = context
+
+
+
+    var str = 'привет мир';
+    str.join = [].join;
+    console.log([].join.call(str));
+    
+    var str1 = 'привет новый мир';
+    var join = [].join; // взял из массива метод join и скопировал
+    console.log(join); // function join() { [native code] }
+    console.log(join.call(str, '-')); // п-р-и-в-е-т- -м-и-р
+
+
+
+
   </script>
 </head>
 <body>

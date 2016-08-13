@@ -39,11 +39,9 @@
     // так никто не перезапишет переменные.
 
 
-
-
     // named_function_expression
     var f = function go(n) {
-      return n > 1 ? n*go(n-1) : 1;
+      return n > 1 ? n * go(n - 1) : 1;
     }
 
     log(f(5), 'h4');
@@ -52,12 +50,10 @@
     log(g(5), 'h4');
 
 
-
-
     // only three simple rule
     // obj.func()     this = obj
     // func()         this = undefined (use strict) / window
-    // f.call
+    // f.call(context) this = context
     var user = {
       firstName: "vasya"
     };
@@ -70,11 +66,111 @@
     f123.call(user);
 
 
+    // декоратор - обёртка которая модифицирует поведение функции
+    // decorator(f, ...) = обёртка вокруг f
+
+    function wrappingDecorator(f, before, end) {
+      return function () {
+        return before + f.apply(this, arguments) + end; // для универсальности используется перенаправление вызовов:
+        // f.apply(this, arguments) - вызов f с передачей всех аргументов, которые получила обёртка
+        // тот же контекст те же аргументы
+      };
+    }
+
+    var WEEKDAYS = ['пн', 'вт', 'ср', 'чт', 'пн', 'сб', 'вс'];
+
+    function getDate(num) {
+      return WEEKDAYS[num];
+    }
+
+    var getDateInDiv = wrappingDecorator(getDate, "<div>", "</div>");
+    var getDateInTd = wrappingDecorator(getDate, "<td>", "</td>");
+
+    for (var i = 0; i < 7; i++) {
+      console.log(getDateInDiv(i));
+      console.log(getDateInTd(i));
+    }
+
+    // ещё примеры
+    function doubleDecorator(f) {
+      return function () {
+        return 2 * f.apply(this, arguments);
+      };
+    }
+
+    sum = doubleDecorator(sum);
+
+    function sum(a, b) {
+      return a + b;
+    }
+
+    console.log(sum(1, 2));
+
+
+    // короткий и удобный в поддержке код
+    function checkPermissionDecorator(f) {
+      return function () {
+        if (isAdmin()) {
+          return f.apply(this, arguments);
+        }
+        console.log('forbidenn');
+      }
+    }
+
+    var checkingF = checkPermissionDecorator(f);
+    // иногда удобно перезаписать саму f
+    var f = checkPermissionDecorator(f);
+
+
+    // декоратор, логирующий вызовы функции
+    // декоратор, кэширующий результат вызовы функции
+    // ...
+
+
+    // Создать Calculator при помощи конструктора
+    function Calculator() {
+
+      this.read = function () {
+        this.a = +prompt('a?', 0);
+        this.b = +prompt('b?', 0);
+      };
+
+      this.sum = function () {
+        return this.a + this.b;
+      };
+
+      this.mul = function () {
+        return this.a * this.b;
+      };
+    }
+
+    var calculator = new Calculator();
+    calculator.read();
+
+    console.log("Сумма = " + calculator.sum());
+    console.log("Произведение = " + calculator.mul());
 
 
 
 
 
+
+    // Напишите функцию-конструктор Accumulator(startingValue).
+    // Объекты, которые она создает, должны хранить текущую сумму и прибавлять к ней то, что вводит посетитель.
+    function Accumulator(startingValue) {
+      this.value = startingValue;
+
+      this.read = function() {
+        this.value += +prompt('Сколько добавлять будем?', 0);
+      };
+
+    }
+
+    var accumulator = new Accumulator(1);
+    accumulator.read();
+    accumulator.read();
+    console.log( accumulator.value );
+    
 
 
   </script>

@@ -432,15 +432,12 @@
     console.log(getSums([1, 2, 3, 4, 5])); // результат: 1,3,6,10
 
 
-
-
     /*Проверка на аргумент-undefined*/
     function f(x) {
       console.log(arguments.length ? 1 : 0);
     }
     f(undefined); // 1
     f(); // 0
-
 
 
     // Сумма аргументов
@@ -453,9 +450,8 @@
     }
 
     console.log(sum());
-    console.log(sum(1,2,3,4));
-    console.log(sum(1,4));
-
+    console.log(sum(1, 2, 3, 4));
+    console.log(sum(1, 4));
 
 
     console.log("\n\n\n\n\n\n");
@@ -467,6 +463,36 @@
 
 
     console.log("\n\n\n\n\n\n\n\n\n\n");
+
+
+    // Вызов в контексте массива
+    // Вызов arr[2]() – это обращение к методу объекта obj[method](), в роли obj выступает arr, а в роли метода: 2.
+    // Поэтому, как это бывает при вызове функции как метода, функция arr[2] получит this = arr и выведет массив:
+
+    var arrContext = ["a", "b"];
+
+    arrContext.push(function () {
+      console.log(this);
+    });
+
+    arrContext[2](); // "a","b",function
+
+    // самодеятельность
+    for (let prop of arrContext) {
+      console.log(prop);
+    }
+
+
+
+    console.log("\n\n\n\n\n\n\n\n\n\n");
+
+
+
+
+
+
+
+
 
 
   </script>
