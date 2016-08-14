@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <script>
+    var consoleStyles = {
+      'h3': 'font: 1.2em/1 Arial; color: olivedrab;',
+      'h4': 'font: 1.2em/1 Consolas; color: #247BA0;'
+    };
+    function log(msg, style) {
+      if (!style || !consoleStyles[style]) {
+        style = 'bold';
+      }
+      console.log('%c' + msg, consoleStyles[style]);
+    }
+
+
+    // ternary conditionals
+    var isArthur = false;
+    var weapon = isArthur ? 'Excalibur' : 'Longsword';
+    console.log(weapon);
+
+    isArthur = true;
+    console.log('Current weapon: ' + (isArthur ? 'Excalibur' : 'Longsword'));
+
+    isArthur = true;
+    isKing = true;
+    console.log('Current weapon: ' + (isArthur && isKing ? 'Excalibur' : 'Longsword'));
+
+
+    // ternaries can take action
+    isArthur && isKing ? console.log('Hi') : console.log('Not hi');
+
+
+    // build and choose func on the fly
+    isKing = false;
+    isArthur && isKing ? function () {
+      console.log('1');
+      console.log('2');
+    }()
+            :
+            function () {
+              console.log('a');
+              console.log('b');
+            }();
+
+
+    // multiple actions in ternaries
+    isArthur = true;
+    isKing = false;
+    var weapon;
+    var helmet;
+    isArthur && isKing ? (weapon = 'Exalibur', helmet = 'Goosewhite')
+            :
+            (weapon = 'Longsword', helmet = 'Iron helmet');
+    console.log("Curent weapon: " + weapon + "\nCurrent helmet: " + helmet);
+
+
+    // lastly, ternaries can be nested
+    isArthur = true;
+    isKing = false;
+    isArcher = true;
+    var weapon;
+    var helmet;
+    isArthur && isKing ? (weapon = 'Exalibur', helmet = 'Goosewhite')
+            :
+            isArcher ? (weapon = 'longbow', helmet = 'mail helm')
+                    : (weapon = 'longsword', helmet = 'iron helm');
+    console.log("Curent weapon: " + weapon + "\nCurrent helmet: " + helmet);
+
+
+  </script>
+</head>
+<body>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
