@@ -16,7 +16,6 @@
     }
 
 
-
     // the && operator takes the rightmost "truthy" value or the first "falsy" value
     var result1 = undefined && 42;
     console.log(result1); // undefined
@@ -28,40 +27,54 @@
     console.log(result3); // ''
 
 
-
     // when all elements are "truthy", && will return the last "truthy" value found
     var result4 = "king" && "arthur";
     console.log(result4); // arthur
 
-    var result5 = "arthur" && "king" ;
+    var result5 = "arthur" && "king";
     console.log(result5); // king
-
 
 
     // when all elements are "falsy", && will return the first "falsy" value found
     var result6 = undefined && "";
     console.log(result6); // undefined
 
-    var result7 = "" && undefined ;
+    var result7 = "" && undefined;
     console.log(result7); // ''
-
-
-
 
 
     // usefull
 
-    var armory = {};
-    var swords = ["broadsword", "Katana", "Claymore", "Scimitar"];
+    /* var armory = {};
+     swords = ["broadsword", "Katana", "Claymore", "Scimitar"];
+
+     armory.retrieveSword = function (request) {
+     return (this.swords.indexOf(request) >= 0) ?
+     this.swords.splice(this.swords.indexOf(request), 1)[0] :
+     console.log("No " + request + ", baby");
+     };
+
+     var isKnight = true;
+     var weapon = isKnight && armory.retrieveSword("Katana");
+     console.log(weapon);*/
+
+
+    var armory = {
+      swords: ["Broadsword", "Katana", "Claymore", "Scimitar"],
+      addSword: function (swords) {
+        this.swords = this.swords || [];
+        this.swords.push(swords);
+      }
+    };
 
     armory.retrieveSword = function (request) {
       return (this.swords.indexOf(request) >= 0) ?
               this.swords.splice(this.swords.indexOf(request), 1)[0] :
-              console.log("No " + request + ", baby");
+              alert("No " + request + ", baby!");
     };
 
     var isKnight = true;
-    var weapon = isKnight && armory.retrieveSword("Katana");
+    var weapon = isKnight && armory.retrieveSword("123");
     console.log(weapon);
 
 
@@ -70,12 +83,7 @@
 
 
 
-
-
-
-
-
-
+    
 
   </script>
 </head>
