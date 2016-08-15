@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <script>
+    var consoleStyles = {
+      'h3': 'font: 1.2em/1 Arial; color: olivedrab;',
+      'h4': 'font: 1.2em/1 Consolas; color: #247BA0;'
+    };
+    function log(msg, style) {
+      if (!style || !consoleStyles[style]) {
+        style = 'bold';
+      }
+      console.log('%c' + msg, consoleStyles[style]);
+    }
+
+
+    // a conditional for multiple possibilities
+
+    function Knight(name, regiment) {
+      this.name = name;
+      this.regiment = regiment;
+      switch (regiment) {
+        case 1:
+          this.weapon = "1";
+          break;
+        case 2:
+          this.weapon = "2";
+          break;
+        case 3:
+          this.weapon = "3";
+          break;
+        case 5:
+          this.weapon = "5";
+          break;
+        case 6:
+          this.weapon = "6";
+          break;
+        case 4:
+        case 7:
+        case 8:
+          this.weapon = "8";
+          break;
+        default:
+          this.weapon = "no";
+      }
+    }
+
+    var soldier = new Knight("Arbuz", "");
+    console.log(soldier.weapon);
+
+
+    function ceremonialDagger(knight, rank) {
+      this.length = 8;
+      this.owner = knight;
+      switch (rank) {
+        case "King":
+          this.diamonds = 1;
+        case "Hight Constable":
+          this.amethyst = 2;
+        case "Field Marshal":
+          this.sapphires = 4;
+        case "Captain":
+          this.emeralds = 1;
+        case "Knight":
+          this.rubies = 6;
+      }
+    }
+
+    var knightDagger = new ceremonialDagger("Jerome", "Knight");
+    console.log(knightDagger);
+
+    var marshalDagger = new ceremonialDagger("Timo", "Field Marshal");
+    console.log(marshalDagger);
+
+    var kingDagger = new ceremonialDagger("king", "King");
+    console.log(kingDagger);
+
+
+  </script>
+</head>
+<body>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
