@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <script>
+    var consoleStyles = {
+      'h3': 'font: 1.2em/1 Arial; color: olivedrab;',
+      'h4': 'font: 1.2em/1 Consolas; color: #247BA0;'
+    };
+    function log(msg, style) {
+      if (!style || !consoleStyles[style]) {
+        style = 'bold';
+      }
+      console.log('%c' + msg, consoleStyles[style]);
+    }
+
+
+
+    // the && operator takes the rightmost "truthy" value or the first "falsy" value
+    var result1 = undefined && 42;
+    console.log(result1); // undefined
+
+    var result2 = 0 && ['1', '2'];
+    console.log(result2); // 0
+
+    var result3 = '' && {type: 'ring', stone: 'diamond'};
+    console.log(result3); // ''
+
+
+
+    // when all elements are "truthy", && will return the last "truthy" value found
+    var result4 = "king" && "arthur";
+    console.log(result4); // arthur
+
+    var result5 = "arthur" && "king" ;
+    console.log(result5); // king
+
+
+
+    // when all elements are "falsy", && will return the first "falsy" value found
+    var result6 = undefined && "";
+    console.log(result6); // undefined
+
+    var result7 = "" && undefined ;
+    console.log(result7); // ''
+
+
+
+
+
+    // usefull
+
+    var armory = {};
+    var swords = ["broadsword", "Katana", "Claymore", "Scimitar"];
+
+    armory.retrieveSword = function (request) {
+      return (this.swords.indexOf(request) >= 0) ?
+              this.swords.splice(this.swords.indexOf(request), 1)[0] :
+              console.log("No " + request + ", baby");
+    };
+
+    var isKnight = true;
+    var weapon = isKnight && armory.retrieveSword("Katana");
+    console.log(weapon);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  </script>
+</head>
+<body>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
