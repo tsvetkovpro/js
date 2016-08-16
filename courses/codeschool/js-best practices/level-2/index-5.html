@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <script>
+
+    var rightNow = +new Date();
+    console.log(rightNow);
+
+
+    var SpeedTest = function (testImplement, testParams, repetitions) {
+      this.testImplement = testImplement;
+      this.testParams = testParams;
+      this.repetitions = repetitions || 10000;
+      this.average = 0;
+    };
+
+    SpeedTest.prototype = {
+      startTest: function () {
+        if (this.testImplement(this.testParams) === false) {
+          alert('Test failed with those parameters.');
+          return;
+        }
+        var beginTime, endTime, sumTimes = 0;
+        for (var i = 0, x = this.repetitions; i < x; i++) {
+          beginTime = +new Date();
+          this.testImplement(this.testParams);
+          endTime = +new Date();
+          sumTimes += endTime - beginTime;
+        }
+        this.average = sumTimes / this.repetitions;
+        return console.log('Average execution across ' + this.repetitions + ': ' + this.average);
+      }
+    };
+
+
+    //  первый тест
+
+    var firtsRegimentNewbs = ["Grimble", "Jark", "Bunder", "Ernst"];
+    var firtsRegimentKnights = ["Grimble1", "Jark1", "Bunder1", "Ernst1"];
+    var listsForTests = [firtsRegimentNewbs, firtsRegimentKnights];
+    function Knight() {
+    }
+
+    var BP = function (listOfParams) {
+      for (var i = 0, x = listOfParams[0].length; i < x; i++) {
+        listOfParams[1].push(new Knight(listOfParams[0][i], 1));
+      }
+    };
+
+    var BPtest = new SpeedTest(BP, listsForTests, 100000);
+    BPtest.startTest();
+
+
+
+
+    //  второй тест
+
+    var IP = ['11111', '222222', '3333333'],
+            GH = ['aaaaaa', 'bbbbbbb', 'ccccccccccc'],
+            inhabitants = [IP, GH];
+
+    function populationGetter(popn) {
+      var list = '';
+      for (var i = 0, x = popn.length; i < x; i++) {
+        for (var j = 0; j < popn[i].length; j++) {
+          list += (popn[i][j] + ', ');
+        }
+      }
+      return list;
+    }
+
+
+    var concatTest = new SpeedTest(populationGetter, inhabitants, 100000);
+    concatTest.startTest();
+
+  </script>
+</head>
+<body>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
