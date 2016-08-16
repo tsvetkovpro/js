@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <script>
+
+    // measuring perfomance I
+    // console.time
+
+    var firstRegimentNewbs = ["grimble horsehead", "jark winterborn", "bunder ropefist", "erntst"];
+    var firstRegimentKnights = [];
+
+    console.time("time to add" + firstRegimentNewbs.length + " knights");
+
+    for (var i = 0, x = firstRegimentNewbs.length; i<x; i++) {
+      firstRegimentKnights.push(new Knight( firstRegimentNewbs[i], 1));
+    }
+
+    console.timeEnd("Time to add " + firstRegimentNewbs.length + " Knights");
+
+    function Knight(name, regiment) {
+      this.name = name;
+      this.regiment = regiment;
+      switch (regiment) {
+        case 1:
+          this.weapon = "Broadsword";
+          break;
+        case 2:
+          this.weapon = "Claymore";
+          break;
+        case 3:
+          this.weapon = "Longsword";
+          break;
+        case 5:
+          this.weapon = "War Hammer";
+          break;
+        case 6:
+          this.weapon = "Battle Axe";
+          break;
+        case 4:
+        case 7:
+        case 8:
+          this.weapon = "Morning Star";
+          break;
+        default:
+          this.weapon = "no";
+      }
+    }
+
+
+
+  </script>
+</head>
+<body>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
