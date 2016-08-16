@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <script>
+
+    // use a prototype for shared stuff
+
+    function SignalFire(ID, startingLogs) {
+      this.fireID = ID;
+      this.logsLeft = startingLogs;
+    }
+
+    SignalFire.prototype = {
+      addLogs: function (numLogs) {
+        this.logsLeft += numLogs;
+      },
+      lightFire: function () {
+        console.log("Woooosh!");
+      },
+      smokeSignal: function (message) {
+        var x = message.length;
+
+        if (this.logsLeft < (x / 10)) {
+          console.log("Not enough fuel to send the current message!");
+        } else {
+          this.lightFire();
+
+          for (var i = 0; i < x; i++) {
+            console.log("(((" + message[i] + ")))");
+
+            if (i % 10 === 0 && i !== 0) {
+              this.logsLeft--;
+            }
+          }
+        }
+      }
+    };
+
+    var fireOne = new SignalFire(1, 20);
+    var fireTwo = new SignalFire(2, 18);
+    var fireThree = new SignalFire(3, 24);
+
+    fireOne.addLogs(8);
+    fireTwo.addLogs(10);
+    fireThree.addLogs(4);
+
+    fireThree.smokeSignal("Goblins!");
+    fireThree.smokeSignal("Goblins1 !");
+
+
+    /*
+     Efficient choices for string concatenation
+     */
+    var knight = "Jenna Rangespike",
+            action = " strikes the dragon with a ",
+            weapon = "Halberd",
+            turn = "";
+    turn += knight;
+    turn += action;
+    turn += weapon;
+    //It is ok because the code is short and clear
+
+
+    //**NOT GOOD ENOGUTH
+    //
+    var newPageBuild = ["<!DOCTYPE html>", "<html>", "<body>", "<h1>",
+              // *** a hundred or more other html elements***,
+              "<\/script>", "<\/body>", "<\/html>"],
+            page = "";
+
+    for (var i = 0, x = newPageBuild.length; i < x; i++) {
+      page += newPageBuild[i];
+    }
+
+    //**GOOD**
+    page = newPageBuild.join("\n");
+    //Using join is much faster than using ‘+=‘ and looks simple and clear!!
+
+
+  </script>
+  </body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
