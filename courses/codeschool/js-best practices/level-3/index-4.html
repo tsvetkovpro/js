@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <script>
+
+    // Well, we can make those properties and methods PRIVATE
+
+    var ARMORY = {
+
+      //should be private
+      weaponList: [/*List of weapon Objects*/],
+      armorList: [/*List of armor Objects*/],
+
+      //public
+      makeWeaponRequest: function () {},
+      makeArmorRequest: function () {},
+
+      //private
+      removeWeapon: function () {},
+      replaceWeapon: function () {},
+      removeArmor: function () {},
+      replaceArmor: function () {}
+    };
+
+
+    // Public methods and values often trigger private methods and values.
+    // The answer is closure!
+
+    var ARMORY = (function () {
+
+      //should be private
+      var weaponList = [/*List of weapon Objects*/];
+      var armorList = [/*List of armor Objects*/];
+
+      //private
+      var removeWeapon = function () {};
+      var replaceWeapon = function () {};
+      var removeArmor = function () {};
+      var replaceArmor = function () {};
+
+      return {
+        //public
+        makeWeaponRequest: function () {},
+        makeArmorRequest: function () {},
+      }
+    })();
+
+  </script>
+</head>
+<body>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
