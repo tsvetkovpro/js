@@ -22,6 +22,16 @@ Explore techniques to improve execution speed and measure performance.
 
 [script placement impacts perfomance](https://github.com/tsvetkovpro/js/blob/master/courses/codeschool/js-best%20practices/level-2/index.html)
 
+[loop optimization](https://github.com/tsvetkovpro/js/blob/master/courses/codeschool/js-best%20practices/level-2/index-2.html)
+
+[measuring perfomance I](https://github.com/tsvetkovpro/js/blob/master/courses/codeschool/js-best%20practices/level-2/index-3.html)
+
+[use a prototype for shared stuff](https://github.com/tsvetkovpro/js/blob/master/courses/codeschool/js-best%20practices/level-2/index-4.html)
+
+[codeschool - js best practices 2/5 - end
+
+measuring performance II](https://github.com/tsvetkovpro/js/blob/master/courses/codeschool/js-best%20practices/level-2/index-5.html)
+
 
 
 ##Level 3 The Crystal of Caution
@@ -29,14 +39,29 @@ Explore techniques to improve execution speed and measure performance.
 Examine common JavaScript pitfalls and the best ways to avoid them.
 ```
 
-[link to source]()
+[careful comparisons](https://github.com/tsvetkovpro/js/blob/master/courses/codeschool/js-best%20practices/level-3/index.html)
+
+[namespacing basics](https://github.com/tsvetkovpro/js/blob/master/courses/codeschool/js-best%20practices/level-3/index-2.html)
+
+[stuff that sucks](https://github.com/tsvetkovpro/js/blob/master/courses/codeschool/js-best%20practices/level-3/index-3.html)
+
+[anonymus closures](https://github.com/tsvetkovpro/js/blob/master/courses/codeschool/js-best%20practices/level-3/index-4.html)
+
+
 
 ##Level 4 The Mail of Modularity
 ```
 Learn how to organize code and protect data with a simple Module pattern.
 ```
 
-[link to source]()
+[Global Imports](https://github.com/tsvetkovpro/js/blob/master/courses/codeschool/js-best%20practices/level-4/index.html)
+
+[Number Nonsense](https://github.com/tsvetkovpro/js/blob/master/courses/codeschool/js-best%20practices/level-4/index-2.html)
+
+[Exception Handling](https://github.com/tsvetkovpro/js/blob/master/courses/codeschool/js-best%20practices/level-4/index-3.html)
+
+[Augmentation](https://github.com/tsvetkovpro/js/blob/master/courses/codeschool/js-best%20practices/level-4/index-4.html)
+
 
 
 
