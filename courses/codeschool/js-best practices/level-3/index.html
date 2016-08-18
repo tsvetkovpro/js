@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <script>
+
+    // careful comparisons
+    console.log('4' == 4); //=> true;
+    console.log('4' === 4); //=> false;
+    console.log(true == 1); //=> true;
+    console.log(true === 1); //=> false;
+    console.log(true === 1); //=> false;
+    console.log(false == 0); //=> true;
+    console.log(false === 0); //=> fasle;
+    console.log(`\n \n \t` == 0); //=> true;
+
+
+
+
+
+
+    function LeatherArmor(bodyStyle, numBuckles, numSpaulders) {
+      this.bodyStyle = bodyStyle;
+      this.numBuckles = numBuckles;
+      this.numSpaulders = numSpaulders;
+    }
+
+    LeatherArmor.prototype = Object.create(Armor.prototype);
+
+    function ChainMail(metal, linkDiameter, hasHood, skirtLength) {
+      this.metal = metal;
+      this.linkDiameter = linkDiameter;
+      this.hasHood = hasHood;
+      this.skirtLength = skirtLength;
+    }
+
+    ChainMail.prototype = Object.create(Armor.prototype);
+
+    function Armor (location) {
+      this.location = location
+    }
+
+    Armor.prototype = {
+      putOn: function() {
+        alert("Your armor is on.");
+      }
+    };
+
+    function assignKnightArmor (knights, armorAvail) {
+      var x = knights.length;
+      var y = armorAvail.length;
+      for (var i = 0; i < x; i++) {
+        for (var j = 0; j < y; j++) {
+          // Assign knights ChainMail
+          if (amorAvail[j] instanceof ChainMail) {
+            knights[i].armor = armorAvail.splice(j, 1)[0];
+            y--; //modify our cached length
+            break;
+          }
+        }
+      }
+    }
+
+    var kingsMail = new ChainMail("gold", 2, true, 36);
+    console.log('\n');
+    console.log(kingsMail instanceof Armor); //true
+
+
+
+  </script>
+</head>
+<body>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
