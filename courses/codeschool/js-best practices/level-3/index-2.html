@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+
+</head>
+<body>
+
+<h1>The King's</h1>
+<h2>Members</h2>
+<ul id="hof"></ul>
+<button onclick="HOFMASTER.displayHOF();">Click me</button>
+
+<h2>Selection</h2>
+<ul id="reqs"></ul>
+
+<script>
+
+  var HOFMASTER = {
+    list: ["Jar Tween", "Maximo Rarter", "Pol Grist"],
+    hof: document.getElementById("hof"),
+    fragment: document.createDocumentFragment(),
+    element: undefined,
+    displayHOF: function () {
+      for (var i = 0, x = this.list.length; i < x; i++) {
+        this.element = document.createElement("li");
+        this.element.appendChild(documentCreateTextNode(this.list[i]));
+        this.fragment.appendChild(this.element);
+      }
+
+      this.hof.appendChild(this.fragment);
+    }
+  };
+
+  console.log(HOFMASTER.list);
+
+</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
