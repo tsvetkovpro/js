@@ -3,8 +3,11 @@
 
 ##Level 1 The Sword of Syntax
 [ternary conditionals](https://github.com/tsvetkovpro/js/blob/master/courses/codeschool/js-best%20practices/level-1/index.html)
+
 [assignments with logical operators OR](https://github.com/tsvetkovpro/js/blob/master/courses/codeschool/js-best%20practices/level-1/index-2.html)
+
 [assignments with logical operators &&](https://github.com/tsvetkovpro/js/blob/master/courses/codeschool/js-best%20practices/level-1/index-3.html)
+
 [a conditional for multiple possibilities](https://github.com/tsvetkovpro/js/blob/master/courses/codeschool/js-best%20practices/level-1/index-4.html)
 ```
 Discover useful alternate syntax for conditionals and assignment.
