@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <script>
+
+    // Number Nonsense
+
+    // JS uses Binary Floating point numbers for decimals (more performant)
+
+    console.log(0.1 + 0.2); //0.300000000000004
+    console.log(0.1 + 0.2 + 0.3); //0.600000000000001
+
+    //toFixed()
+    var num = 0.1 + 0.2;
+    console.log(num.toFixed(1)); //0.3
+
+    function tax(price, percent) {
+      return (price*percent/100).toFixed(2);
+    }
+    console.log(tax(9.85, 7.5));
+
+    //but the above returns a string...
+    //use parseFloat();
+
+    function tax(price, percent) {
+      return parseFloat((price*percent/100).toFixed(2));
+    }
+
+    //the above returns a number
+
+    //caution with parseInt();
+    //1. always rounds down if passed a float number
+    //2. always add radix value (what base the number being passed is in)
+    parseInt("021", 10);
+
+    //Parse Int if passed a string will return a number even if it's
+    // a sentence that starts with a number
+    parseInt("88 keys on a piano"); //88
+
+    parseInt("Help there were 18 killer penguins"); // NaN
+
+    typeof NaN; //"number"
+
+    console.log(NaN === NaN); //false
+
+    isNaN("42"); //false
+
+    function isThisActuallyANumberDontLie(data) {
+      return (typeof data === "number" && !isNaN(data));
+    }
+
+    //Parse Data for leniency or form data
+    // Check both typeof and isNaN
+
+  </script>
+</head>
+<body>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
