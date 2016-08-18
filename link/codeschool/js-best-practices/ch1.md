@@ -28,9 +28,7 @@ Explore techniques to improve execution speed and measure performance.
 
 [use a prototype for shared stuff](https://github.com/tsvetkovpro/js/blob/master/courses/codeschool/js-best%20practices/level-2/index-4.html)
 
-[codeschool - js best practices 2/5 - end
-
-measuring performance II](https://github.com/tsvetkovpro/js/blob/master/courses/codeschool/js-best%20practices/level-2/index-5.html)
+[measuring performance II](https://github.com/tsvetkovpro/js/blob/master/courses/codeschool/js-best%20practices/level-2/index-5.html)
 
 
 
