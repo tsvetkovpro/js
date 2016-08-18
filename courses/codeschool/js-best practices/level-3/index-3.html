@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <script>
+
+    // Stuff That (Sometimes) Sucks
+
+    // Avoid the with keyword
+    // Instead - cache objects where possible instead of using the width statement
+
+    // Avoid the eval keyword - there are other ways to do this like with array methods or JSON parse
+    var regimentsJSON = '{' +
+            '"regiment1": { "motto": "The King\'s Own",' +
+            '"numMembers": 46,' +
+            '"captain": "Jar Treen" },' +
+            '"regiment2": { "motto": "The Best of the Best",' +
+            '"numMembers": 40,' +
+            '"captain": "Maximo Rarter" },' +
+            '}';
+
+    var regiments = JSON.parse(regimentsJSON);
+    console.log(regiments);
+
+
+    // Avoid leaving off '{}'!!!
+
+    if (isKing) {
+      weapon = "Excalibur";
+    } else {
+      weapon = "Broad Sword";
+    }
+
+  </script>
+</head>
+<body>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
