@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <script>
+
+    // Augmentation
+
+    //ARMORY.JS
+    var wartime = true;
+    var ARMORY = (function (war) {
+
+      //should be private
+      var weaponList = [/*List of weapon Objects*/];
+      var armorList = [/*List of armor Objects*/];
+      //private
+      var removeWeapon = function () {};
+      var replaceWeapon = function () {};
+      var removeArmor = function () {};
+      var replaceArmor = function () {};
+
+      return {
+        //public
+        makeWeaponRequest: function () {
+          if (war) {
+            //allow civilians
+          }
+        },
+        makeArmorRequest: function () {},
+      }
+    })(wartime); //the magic to pass parameters
+
+    //WARCHEST.JS - Augment the ARMORY
+    ARMORY = (function (oldNS) {
+      var oilBarrels = 1000;
+      var catapults = ["Stoneslinger", "Rockrain", "The Giant's Arm"];
+
+      //public method
+      oldNS.assignCatapult = function (regiment) {
+        //hooks up a regiment with a sweet catapult
+        // and some oil barrels
+      };
+
+      return oldNS;
+    })(ARMORY);
+
+  </script>
+</head>
+<body>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
