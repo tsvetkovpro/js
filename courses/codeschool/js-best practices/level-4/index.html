@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <script>
+
+    // Global Imports
+
+    // Standard Global use with the module pattern causes 2 problems
+
+    var wartime = true;
+    var ARMORY = (function () {
+
+      //should be private
+      var weaponList = [/*List of weapon Objects*/];
+      var armorList = [/*List of armor Objects*/];
+      //private
+      var removeWeapon = function () {};
+      var replaceWeapon = function () {};
+      var removeArmor = function () {};
+      var replaceArmor = function () {};
+
+      return {
+
+        //public
+        makeWeaponRequest: function () {
+          if (wartime) { //this is very expensive if there are multiple references or nested namespaces
+            //allow civilians
+          }
+        },
+        makeArmorRequest: function () {},
+      }
+    })();
+    // 1) When non-local variables are referenced in a module, the entire length of the scope chain is checked. 2) Lengthy namespaces mean the global variables have unclear scope, leading to code that is tough to manage.
+    // We should be using GLOBAL IMPORTS
+
+    // While devs may still need to review code, importing globals creates faster local variables that are more clear in source.
+
+    var wartime = true;
+    var ARMORY = (function (war) {
+
+      //should be private
+      var weaponList = [/*List of weapon Objects*/];
+      var armorList = [/*List of armor Objects*/];
+      //private
+      var removeWeapon = function () {};
+      var replaceWeapon = function () {};
+      var removeArmor = function () {};
+      var replaceArmor = function () {};
+
+      return {
+        //public
+        makeWeaponRequest: function () {
+          if (war) {
+            //allow civilians
+          }
+        },
+        makeArmorRequest: function () {},
+      }
+    })(wartime); //the magic to pass parameters
+    // An imported global variable becomes another piece of data, boxed up in the module  's closure.
+
+  </script>
+</head>
+<body>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
