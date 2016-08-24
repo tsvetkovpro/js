@@ -4,6 +4,15 @@
 
 &nbsp;
 
+##### Learn.JavaScript.Ru:
+* [JavaScript - dom, интерфейсы](link/others/learn.javascript/ch1.md)
+&nbsp;
+* [JavaScript - node.js]()
+&nbsp;
+* [Webpack]
+
+&nbsp;
+
 ##### CodeSchool:
 * [JavaScript trip - 1](link/codeschool/js-road-trip-1/ch1.md)
 * [JavaScript trip - 2](link/codeschool/js-road-trip-2/ch1.md)
