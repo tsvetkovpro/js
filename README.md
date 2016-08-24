@@ -7,7 +7,7 @@
 ##### Learn.JavaScript.Ru:
 * [JavaScript - Dom, интерфейсы](link/others/learn.javascript/ch1.md)
 &nbsp;
-* [JavaScript - Node.js]()
+* [JavaScript - Node.js](./)
 &nbsp;
 * [Webpack]
 
