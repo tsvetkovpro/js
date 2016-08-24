@@ -5,9 +5,9 @@
 &nbsp;
 
 ##### Learn.JavaScript.Ru:
-* [JavaScript - dom, интерфейсы](link/others/learn.javascript/ch1.md)
+* [JavaScript - Dom, интерфейсы](link/others/learn.javascript/ch1.md)
 &nbsp;
-* [JavaScript - node.js]()
+* [JavaScript - Node.js]()
 &nbsp;
 * [Webpack]
 
