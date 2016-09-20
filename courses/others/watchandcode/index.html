@@ -28,6 +28,12 @@
 	}
 	changeTodo(4, 'changed-todo');
 
+	function deleteTodo(position) {
+		todos.splice(position, 1);
+		displayTodos();
+	}
+	deleteTodo(0);
+
 </script>
 </body>
 </html>
