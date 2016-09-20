@@ -22,6 +22,12 @@
 	}
 	addTodos('my-todo');
 
+	function changeTodo(position, newValue) {
+		todos[position] = newValue;
+		displayTodos();
+	}
+	changeTodo(4, 'changed-todo');
+
 </script>
 </body>
 </html>
