@@ -10,10 +10,17 @@
 <script>
 
 	var todos = ['item1', 'item2', 'item3', 'item4'];
+
 	function displayTodos() {
 		console.log('Список дел: ' + todos);
 	}
 	displayTodos();
+
+	function addTodos(todo) {
+		todos.push(todo);
+		displayTodos();
+	}
+	addTodos('my-todo');
 
 </script>
 </body>
