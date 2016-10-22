@@ -99,6 +99,38 @@ console.log(star('abcdhklmalh', 'h'));
 
 
 
+// Вернуть середину строки js
+
+// 1
+function getMiddle(str) {
+	return str.substr((Math.ceil(str.length / 2) - 1), (2 - str.length % 2));
+}
+
+console.log(getMiddle("test"));
+console.log(getMiddle("testing"));
+console.log(getMiddle("middle"));
+console.log(getMiddle("A"));
+
+
+// 2
+function getMiddle(str) {
+	var arr = str.split("");
+	while (arr.length > 2) {
+		arr.pop();
+		arr.shift();
+	}
+	return arr.join("");
+}
+
+console.log(getMiddle("test"));
+console.log(getMiddle("testing"));
+console.log(getMiddle("middle"));
+console.log(getMiddle("A"));
+
+
+
+
+
 
 
 
