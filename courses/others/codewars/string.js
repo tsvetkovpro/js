@@ -78,6 +78,26 @@ console.dir(str2.toJadenCase2());
 
 
 
+// Нужно написать функцию на Javascript которая бы вставляла символ...
+function star(string, token) {
+	return string.replace(new RegExp(token, 'g'), '*'+token+'*');
+}
+
+console.log(star('abcabcbbahebbb', 'bb'));
+console.log(star('abcdhklmalh', 'h'));
+
+
+// Либо - разбить строку на подстроки по разделителю token и сложить обратно с другим разделителем *token*:
+function star(string, token) {
+	return string.split(token).join('*'+token+'*');
+}
+
+console.log(star('abcabcbbahebbb', 'bb'));
+console.log(star('abcdhklmalh', 'h'));
+
+
+
+
 
 
 
