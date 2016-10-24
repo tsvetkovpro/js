@@ -131,6 +131,63 @@ function getMiddle(s) {
 
 
 
+// Finding the Most Frequent String in a JavaScript Array
+
+console.clear();
+
+function mostFreqStr(arr) {
+	//ERROR HANDLING
+	//more than one argument passed
+	if (arguments.length > 1) {
+		return "Sorry, you may only pass one array of strings to mostFreqStr."
+	}
+	//the argument is not an array OR if it's empty
+	if (!Array.isArray(arr) || arr.length < 1) {
+		return "Sorry, you may only pass an array of strings to mostFreqStr."
+	}
+	//an element in arr is not a string
+	for (var i = 0; i < arr.length; i++) {
+		if (typeof arr[i] !== "string") {
+			return `Sorry, element at index ${i} is not a string.`
+		}
+	}
+
+	var obj = {}, mostFreq = 0, which = [];
+
+	arr.forEach(ea => {
+		if (!obj[ea]) {
+			obj[ea] = 1;
+		} else {
+			obj[ea]++;
+		}
+
+		if (obj[ea] > mostFreq) {
+			mostFreq = obj[ea];
+			which = [ea];
+		} else if (obj[ea] === mostFreq) {
+			which.push(ea);
+		}
+	});
+
+	if (which.length > 1) {
+		which = `"${which.join(`" and "`)}" are the most frequent strings in the array.`
+	} else {
+		which = `"${which}" is the most frequent string in the array.`
+	}
+
+	return which;
+}
+
+mostFreqStr(["x", "y", "z", "z"], ["x", "x", "y", "z", "z"]); //Sorry, you may only pass one array of strings to mostFreqStr.
+mostFreqStr(); //Sorry, you may only pass an array of strings to mostFreqStr.
+mostFreqStr([]); //Sorry, you may only pass an array of strings to mostFreqStr.
+mostFreqStr("x, y, z"); //Sorry, you may only pass an array of strings to mostFreqStr.
+mostFreqStr(["x", "x", 1, 1, 1, "z"]); //Sorry, element at index 2 is not a string.
+mostFreqStr(["x", "x", "y", "y", "y", "z"]); //"y" is the most frequent string in the array.
+mostFreqStr(["x", "x", "x", "y", "y", "y", "z"]); //"x" and "y" are the most frequent strings in the array.
+
+
+
 
 
 
