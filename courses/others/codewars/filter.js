@@ -19,12 +19,12 @@ console.log(searchNames(arr));
 
 
 
-// удалении из массива всех чисел одинаковых с последующими аргументами функции и возвращении этого результата.
+// 1 удалении из массива всех чисел одинаковых с последующими аргументами функции и возвращении этого результата.
 const destroyer = (arr, ...nums) => arr.filter(n => !nums.includes(n));
 console.info(destroyer([1, 2, 3, 1, 2, 3], 2, 3));
 
 
-// С arguments:
+// 2 С arguments:
 function destroyer2() {
 	let arr = arguments[0],
 		nums = Array.from(arguments).splice(1);
@@ -32,3 +32,18 @@ function destroyer2() {
 	return arr.filter(n => !nums.includes(n));
 }
 console.info(destroyer2([1, 2, 3, 1, 2, 3], 2, 3));
+
+
+// 3 
+function destroyer3(a /*, ...*/) {
+	var index = Array.prototype.indexOf.bind(arguments);
+	return a.filter(function (x) {
+		return index(x, 1) === -1;
+	});
+}
+
+console.log(destroyer3([1, 2, 3, 1, 2, 3], 2, 3));
+
+var a = [1, 2, 3];
+a[1] = a;
+console.log(destroyer3(a, 3));
