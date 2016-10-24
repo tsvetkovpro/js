@@ -48,6 +48,9 @@ const output = input.replace(/`/g, () => {
 console.log('\n');
 
 
+
+
+
 // Not Jaden-Cased: "How can mirrors be real if our eyes aren't real"
 // Jaden-Cased:     "How Can Mirrors Be Real If Our Eyes Aren't Real"
 String.prototype.toJadenCase = function () {
@@ -86,6 +89,9 @@ function star(string, token) {
 
 console.log(star('abcabcbbahebbb', 'bb'));
 console.log(star('abcdhklmalh', 'h'));
+
+
+
 
 
 // Вернуть середину строки js
