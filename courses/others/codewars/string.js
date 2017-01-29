@@ -133,7 +133,7 @@ function getMiddle(s) {
 
 // Finding the Most Frequent String in a JavaScript Array
 
-console.clear();
+//console.clear();
 
 function mostFreqStr(arr) {
 	//ERROR HANDLING
@@ -185,6 +185,34 @@ mostFreqStr("x, y, z"); //Sorry, you may only pass an array of strings to mostFr
 mostFreqStr(["x", "x", 1, 1, 1, "z"]); //Sorry, element at index 2 is not a string.
 mostFreqStr(["x", "x", "y", "y", "y", "z"]); //"y" is the most frequent string in the array.
 mostFreqStr(["x", "x", "x", "y", "y", "y", "z"]); //"x" and "y" are the most frequent strings in the array.
+
+
+
+
+
+
+
+
+
+// В качестве альтернативного решения, можно использовать регулярное выражение в методе replace.
+// Выделить в нем две группы - символы для замены на номера, и символы для замены на пустую строку.
+// В самой функции замены проверить к какому диапазону относится символ, большие или маленькие буквы, и в соответствии с этим вывести нужный номер
+function alphabetPosition(text) {
+	var length = text.length,
+		ACode = 65,
+		aCode = 97,
+		map = {
+			true: aCode - 1,
+			false: ACode - 1
+		};
+	return text.replace(/([a-z])|([^a-z])/ig, function($0, char) {
+		if (!char) return '';
+		var charCode = char.charCodeAt(0);
+		return (charCode - map[charCode >= aCode]) + ' ';
+	}).trim();
+}
+
+console.log(alphabetPosition("The sunset sets at twelve o' clock"));
 
 
 
