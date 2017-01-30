@@ -43,6 +43,7 @@
 * [Codecademy - JavaScript](link/others/codeacademy/ch1.md)
 * [Laracasts - Es6-cliffsnotes](link/others/laracasts/ch1.md)
 * [Es6-for-humans RU | EN](link/others/es6/)
+* [Codewars](link/others/codewars/)
 
 
 &nbsp;
