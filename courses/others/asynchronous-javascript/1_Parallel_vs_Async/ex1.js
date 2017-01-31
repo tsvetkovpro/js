@@ -22,9 +22,29 @@ function output(text) {
 
 function getFile(file) {
 	fakeAjax(file,function(text){
-		
+		handleResponse(file, text);
 	});
 }
+
+function handleResponse(filename, contents) {
+	if (!(filename in responses)) {
+		responses[filename] = contents;
+	}
+	var filenames = ["file1", "file2", "file3"];
+	for (var i=0; i<filenames.length; i++) {
+		if (filenames[i] in responses) {
+			if (typeof responses[filenames[i]] == "string") {
+				output(responses[filenames[i]]);
+				responses[filenames[i]] = false;
+			}
+		} else {
+			return;
+		}
+	}
+	output("Сделано...")
+}
+
+var responses = {};
 
 // request all files at once in "parallel"
 getFile("file1");
