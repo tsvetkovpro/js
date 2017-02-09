@@ -42,7 +42,7 @@
 * [Laracasts - Es6-cliffsnotes](link/others/laracasts/ch1.md)
 * [Es6-for-humans RU | EN](link/others/es6/)
 * [Codewars](link/others/codewars/ch1.md)
-* []()
+* [Asynchronous](link/others/asynchronous/ch1.md)
 
 
 &nbsp;
