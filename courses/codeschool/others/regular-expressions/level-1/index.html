@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+
+	<script>
+	// var str = '123-4444-44';
+	// var regexp = /123/;
+
+	var str = 'ship and boat';
+	var regexp = /ship|boat/;
+
+	function compare(a) {
+		if (str.match(a)) {
+			console.log('yes!');
+		} else {
+			console.log('no');
+		}
+	}
+
+	compare(regexp);
+
+
+
+
+
+	</script>
+</body>
+</html>
