@@ -6,11 +6,23 @@
 </head>
 <body>
 
+
+
+	<input id="test" type="text">
+	<button id="go">Check</button>
+	<div id="result"></div>
+
+
+	<script
+	src="https://code.jquery.com/jquery-3.1.1.min.js"
+	integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+	crossorigin="anonymous"></script>
+
 	<script>
 	// var str = '123-4444-44';
 	// var regexp = /123/;
 
-	var str = 'ship and boat';
+	var str = 'ships and boats';
 	var regexp = /ship|boat/;
 
 	function compare(a) {
@@ -24,9 +36,36 @@
 	compare(regexp);
 
 
+	/*----- 2 part*/
+
+
+	function unacceptable(pwd){
+		var unforgivable = [
+		"smitty",
+		"n@me",
+		"jameson",
+		"captain-hook",
+		"i_want_to_sail",
+		"asdfg 3st"
+		];
+		var re = new RegExp(unforgivable.join("|"), "i");
+		return(pwd.match(re) != null);
+	}
+
+	$("#go").click(function() {
+		var bad = unacceptable($("#test").val());
+		var output = bad ? "bad" : "good";
+		$("#result").html(output);
+	});
 
 
 
-	</script>
+
+
+</script>
+
+
+
+
 </body>
 </html>
