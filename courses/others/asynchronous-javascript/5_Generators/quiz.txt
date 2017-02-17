@@ -1,0 +1,12 @@
+1. What is "callback hell" ? Why do callbacks suffer from "inversion of control" and "unreasonability"
+We don't have anythings else, but a callbacks.
+
+2. What is a Promise ? How does it solve inversion of control issues ?
+ - It is future cheesburger.
+ - Callback manager
+
+3. How do you pause a generator ? How do you resume it ?
+yield, .next()
+
+4. How do we combine generators and promises for flow control ?
+yielding a promise. --> promise resume the generator
