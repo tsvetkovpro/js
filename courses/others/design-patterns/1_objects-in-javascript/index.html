@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+
+
+<script>
+
+	var obj = {};
+
+	obj.param = 'value';
+	console.log(obj.param);
+
+	obj['param2'] = 'new value';
+	console.log(obj.param2);
+
+	var val = 'new string';
+	obj[val] = '1111111';
+	console.log(obj[val]);
+	console.log(obj);
+
+
+
+	var nextObj = Object.create(Object.prototype);
+
+
+
+	var lastObj = new Object();
+
+</script>
+</body>
+</html>
