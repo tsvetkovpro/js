@@ -25,7 +25,7 @@
 &nbsp;
 * [Real-time Web with Node.js]
 
-&nbsp;
+&nbsp; 
 
 ##### Spec:
 * [Уровень 1. Основы веб - программирования](link/specialist/level-1/ch1.md)
@@ -35,7 +35,7 @@
 * [Уровень 3в. Node.js](link/specialist/level-5/ch1.md)
 * [Уровень 3г. HTML5 API ]
 
-&nbsp;
+&nbsp; 
 
 ##### Исходные коды:
 * [Codecademy - JavaScript](link/others/codeacademy/ch1.md)
@@ -45,7 +45,7 @@
 * [Asynchronous](link/others/asynchronous/ch1.md)
 
 
-&nbsp;
+&nbsp; 
 
 #### Ресурсы
 - [Awesome JavaScript](https://github.com/sorrycc/awesome-javascript) - A collection of awesome browser-side JavaScript libraries.
