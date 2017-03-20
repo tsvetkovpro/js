@@ -11,7 +11,7 @@
 &nbsp;
 * [Webpack]
 
-&nbsp;
+&nbsp; 
 
 ##### CodeSchool:
 * [JavaScript trip - 1](link/codeschool/js-road-trip-1/ch1.md)
