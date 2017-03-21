@@ -4,11 +4,12 @@
 ### [learn.javascript.ru:](https://learn.javascript.ru/) 
 > Современный учебник Javascript
 - [x] [dom, интерфейсы](link/others/learn.javascript/ch1.md)
-- [ ] [node.js]()
-- [ ] [webpack]()
+- [ ] [node.js]
+- [ ] [webpack]
 
 
-### [codeschool:](https://www.codeschool.com/learn/javascript)
+### [codeschool.com:](https://www.codeschool.com/learn/javascript)
+> Learn to code by doing
 - [x] [trip - 1](link/codeschool/js-road-trip-1/ch1.md)
 - [x] [trip - 2](link/codeschool/js-road-trip-2/ch1.md)
 - [x] [trip - 3](link/codeschool/js-road-trip-3/ch1.md)
@@ -18,24 +19,36 @@
 - [ ] [jquery: the return flight]
 - [ ] [real-time web with node.js]
 
+
+### [specialist.ru:](http://www.specialist.ru/courses)
+> Курсы повышения квалификации
+- [x] [основы веб - программирования](link/specialist/level-1/ch1.md)
+- [x] [расширенные возможности](link/specialist/level-2/ch1.md)
+- [x] [jquery](link/specialist/level-3/ch1.md)
+- [x] [ajax](link/specialist/level-4/ch1.md)
+- [x] [node.js](link/specialist/level-5/ch1.md)
+- [ ] [html5 api]
+
+
+### остальное:
+- [x] [hexlet](link/others/hexlet-io/ch1.md)
+- [x] [codecademy](link/others/codeacademy/ch1.md)
+- [x] [geekbrains](link/others/geekbrains-ru/ch1.md)
+- [ ] [watchandcode]
+
+
+---
 &nbsp; 
+---
 
-##### spec:
-* [уровень 1. основы веб - программирования](link/specialist/level-1/ch1.md)
-* [уровень 2. расширенные возможности](link/specialist/level-2/ch1.md)
-* [уровень 3а. jquery](link/specialist/level-3/ch1.md)
-* [уровень 3б. ajax](link/specialist/level-4/ch1.md)
-* [уровень 3в. node.js](link/specialist/level-5/ch1.md)
-* [уровень 3г. html5 api ]
 
-&nbsp; 
+## Скринкасты:
 
-##### исходные коды:
-* [codecademy - javascript](link/others/codeacademy/ch1.md)
-* [laracasts - es6-cliffsnotes](link/others/laracasts/ch1.md)
-* [es6-for-humans ru | en](link/others/es6/)
+### продвинутый уровень:
 * [codewars](link/others/codewars/ch1.md)
 * [asynchronous](link/others/asynchronous/ch1.md)
+* [es6-for-humans ru | en](link/others/es6/)
+* [es6-cliffsnotes](link/others/laracasts/ch1.md)
 
 
 &nbsp; 
