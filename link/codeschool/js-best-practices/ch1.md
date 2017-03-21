@@ -67,7 +67,7 @@ Learn how to organize code and protect data with a simple Module pattern.
 
 
 <br />
----
+<hr />
 <br />
 
 
