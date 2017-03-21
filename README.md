@@ -1,7 +1,7 @@
 ## Базовый уровень, основы, фундаментальные знания:
 
 
-### [learn.javascript.ru:](https://learn.javascript.ru/)
+### [learn.javascript.ru:](https://learn.javascript.ru/) - Современный учебник Javascript
 - [x] [dom, интерфейсы](link/others/learn.javascript/ch1.md)
 - [ ] [node.js]()
 - [ ] [webpack]()
@@ -13,11 +13,9 @@
 - [x] [trip - 3](link/codeschool/js-road-trip-3/ch1.md)
 - [x] [es2015](link/codeschool/js-es6/ch1.md)
 - [x] [best practices](link/codeschool/js-best-practices/ch1.md)
-&nbsp;
-- [x] [try jquery]
-- [x] [jquery: the return flight]
-&nbsp;
-- [x] [real-time web with node.js]
+- [ ] [try jquery]
+- [ ] [jquery: the return flight]
+- [ ] [real-time web with node.js]
 
 &nbsp; 
 
