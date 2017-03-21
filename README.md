@@ -30,7 +30,7 @@
 - [ ] [html5 api]
 
 
-### остальное:
+### основы js, остальное:
 - [x] [hexlet](link/others/hexlet-io/ch1.md)
 - [x] [codecademy](link/others/codeacademy/ch1.md)
 - [x] [geekbrains](link/others/geekbrains-ru/ch1.md)
@@ -38,22 +38,28 @@
 
 
 ---
+
 &nbsp; 
+
 ---
 
 
 ## Скринкасты:
 
 ### продвинутый уровень:
-* [codewars](link/others/codewars/ch1.md)
-* [asynchronous](link/others/asynchronous/ch1.md)
-* [es6-for-humans ru | en](link/others/es6/)
-* [es6-cliffsnotes](link/others/laracasts/ch1.md)
+- [ ] [codewars](link/others/codewars/ch1.md)
+- [x] [starter](link/others/starter/ch1.md)
+> patterns
+- [x] [asynchronous](link/others/asynchronous/ch1.md)
+- [x] [design-patterns](link/others/design-patterns/ch1.md)
+> es6
+- [x] [es6-for-humans ru | en](link/others/es6/)
+- [x] [es6-cliffsnotes](link/others/laracasts/ch1.md)
 
 
 &nbsp; 
 
-#### ресурсы
+### справочная информация:
 - [awesome javascript](https://github.com/sorrycc/awesome-javascript) - a collection of awesome browser-side javascript libraries.
 - [современный учебник javascript](http://learn.javascript.ru/) - учебник по javascript, javascript/dom.
 - [книги и учебные ресурсы по javascript](http://ru.stackoverflow.com/questions/474385/%d0%9a%d0%bd%d0%b8%d0%b3%d0%b8-%d0%b8-%d1%83%d1%87%d0%b5%d0%b1%d0%bd%d1%8b%d0%b5-%d1%80%d0%b5%d1%81%d1%83%d1%80%d1%81%d1%8b-%d0%bf%d0%be-javascript) - рекомендуемая литература, документация и курсы по javascript.
