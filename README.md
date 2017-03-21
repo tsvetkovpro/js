@@ -1,13 +1,10 @@
 #### Базовый уровень, основы, фундаментальные знания:
 
+##### [learn.javascript.ru:](https://learn.javascript.ru/?map)
 &nbsp;
-
-##### learn.javascript.ru:
-* [javascript - dom, интерфейсы](link/others/learn.javascript/ch1.md)
-&nbsp;
-* [javascript - node.js](./)
-&nbsp;
-* [webpack]
+- [x] [javascript - dom, интерфейсы](link/others/learn.javascript/ch1.md)
+- [x] [javascript - node.js](./)
+- [ ] [webpack]
 
 &nbsp; 
 
