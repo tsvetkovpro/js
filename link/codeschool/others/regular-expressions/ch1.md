@@ -25,11 +25,11 @@ Searching:
 ## Level 2
 [Crew Emails](https://github.com/tsvetkovpro/js/blob/master/courses/codeschool/others/regular-expressions/level-2/index.html)
 ```
-Matching Full Words 										> +
-Escaping a Character in a Pattern 							> \.
-Grouping Together TLDs 										> ()
-Need to Ignore Characters Before and After a Subject		> i
-Introducing Anchors 										> /^learnbydoing$/
+> +:  Matching Full Words
+> \.: Escaping a Character in a Pattern
+> (): Grouping Together TLDs
+> i:  Need to Ignore Characters Before and After a Subject
+> /^learnbydoing$/: Introducing Anchors 							
 ```
 
 ## Level 3
