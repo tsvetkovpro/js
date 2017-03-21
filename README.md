@@ -1,7 +1,8 @@
 ## Базовый уровень, основы, фундаментальные знания:
 
 
-### [learn.javascript.ru:](https://learn.javascript.ru/) - Современный учебник Javascript
+### [learn.javascript.ru:](https://learn.javascript.ru/) 
+> Современный учебник Javascript
 - [x] [dom, интерфейсы](link/others/learn.javascript/ch1.md)
 - [ ] [node.js]()
 - [ ] [webpack]()
