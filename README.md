@@ -1,6 +1,5 @@
 ## Базовый уровень, основы, фундаментальные знания:
 
-&nbsp;
 
 ### [learn.javascript.ru:](https://learn.javascript.ru/?map)
 - [x] [dom, интерфейсы](link/others/learn.javascript/ch1.md)
