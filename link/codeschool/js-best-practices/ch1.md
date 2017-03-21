@@ -66,8 +66,9 @@ Learn how to organize code and protect data with a simple Module pattern.
 [Augmentation](https://github.com/tsvetkovpro/js/blob/master/courses/codeschool/js-best%20practices/level-4/index-4.html)
 
 
+<br />
 ---
-&npsb;
+<br />
 
 
 * [pdf cource description](https://github.com/tsvetkovpro/js/blob/master/courses/codeschool/js-best%20practices/course.pdf)
