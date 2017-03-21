@@ -60,6 +60,6 @@
 &nbsp; 
 
 ### справочная информация:
-- [awesome javascript](https://github.com/sorrycc/awesome-javascript) - a collection of awesome browser-side javascript libraries.
-- [современный учебник javascript](http://learn.javascript.ru/) - учебник по javascript, javascript/dom.
-- [книги и учебные ресурсы по javascript](http://ru.stackoverflow.com/questions/474385/%d0%9a%d0%bd%d0%b8%d0%b3%d0%b8-%d0%b8-%d1%83%d1%87%d0%b5%d0%b1%d0%bd%d1%8b%d0%b5-%d1%80%d0%b5%d1%81%d1%83%d1%80%d1%81%d1%8b-%d0%bf%d0%be-javascript) - рекомендуемая литература, документация и курсы по javascript.
+- [awesome](https://github.com/sorrycc/awesome-javascript) - a collection of awesome browser-side javascript libraries.
+- [современный учебник](http://learn.javascript.ru/) - учебник по javascript/dom.
+- [книги и ресурсы](http://ru.stackoverflow.com/questions/474385/%d0%9a%d0%bd%d0%b8%d0%b3%d0%b8-%d0%b8-%d1%83%d1%87%d0%b5%d0%b1%d0%bd%d1%8b%d0%b5-%d1%80%d0%b5%d1%81%d1%83%d1%80%d1%81%d1%8b-%d0%bf%d0%be-javascript) - рекомендуемая литература, документация и курсы по javascript.
