@@ -15,6 +15,7 @@
 - [x] [trip - 3](link/codeschool/js-road-trip-3/ch1.md)
 - [x] [es2015](link/codeschool/js-es6/ch1.md)
 - [x] [best practices](link/codeschool/js-best-practices/ch1.md)
+- [ ] [regular expressions](link/codeschool/others/regular-expressions/ch1.md)
 - [ ] [try jquery]
 - [ ] [jquery: the return flight]
 - [ ] [real-time web with node.js]
@@ -22,15 +23,15 @@
 
 ### [specialist.ru:](http://www.specialist.ru/courses)
 > Курсы повышения квалификации
-- [x] [основы веб - программирования](link/specialist/level-1/ch1.md)
-- [x] [расширенные возможности](link/specialist/level-2/ch1.md)
+- [x] [основы](link/specialist/level-1/ch1.md)
+- [x] [расширенная информация](link/specialist/level-2/ch1.md)
 - [x] [jquery](link/specialist/level-3/ch1.md)
 - [x] [ajax](link/specialist/level-4/ch1.md)
 - [x] [node.js](link/specialist/level-5/ch1.md)
 - [ ] [html5 api]
 
 
-### основы js, остальное:
+### [основы js, остальное:]()
 - [x] [hexlet](link/others/hexlet-io/ch1.md)
 - [x] [codecademy](link/others/codeacademy/ch1.md)
 - [x] [geekbrains](link/others/geekbrains-ru/ch1.md)
