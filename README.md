@@ -1,24 +1,23 @@
 ## Базовый уровень, основы, фундаментальные знания:
 
 
-### [learn.javascript.ru:](https://learn.javascript.ru/?map)
+### [learn.javascript.ru:](https://learn.javascript.ru/)
 - [x] [dom, интерфейсы](link/others/learn.javascript/ch1.md)
 - [ ] [node.js]()
 - [ ] [webpack]()
 
-&nbsp; 
 
-##### codeschool:
-* [javascript trip - 1](link/codeschool/js-road-trip-1/ch1.md)
-* [javascript trip - 2](link/codeschool/js-road-trip-2/ch1.md)
-* [javascript trip - 3](link/codeschool/js-road-trip-3/ch1.md)
-* [es2015: the shape of javascript to come](link/codeschool/js-es6/ch1.md)
-* [javascript best practices](link/codeschool/js-best-practices/ch1.md)
+### [codeschool:](https://www.codeschool.com/learn/javascript)
+- [x] [trip - 1](link/codeschool/js-road-trip-1/ch1.md)
+- [x] [trip - 2](link/codeschool/js-road-trip-2/ch1.md)
+- [x] [trip - 3](link/codeschool/js-road-trip-3/ch1.md)
+- [x] [es2015](link/codeschool/js-es6/ch1.md)
+- [x] [best practices](link/codeschool/js-best-practices/ch1.md)
 &nbsp;
-* [try jquery]
-* [jquery: the return flight]
+- [x] [try jquery]
+- [x] [jquery: the return flight]
 &nbsp;
-* [real-time web with node.js]
+- [x] [real-time web with node.js]
 
 &nbsp; 
 
