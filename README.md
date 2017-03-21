@@ -38,16 +38,16 @@
 - [ ] [watchandcode]
 
 
----
 
-&nbsp; 
-
----
+<br />
+<hr />
+<br />
 
 
 ## Скринкасты:
 
 ### продвинутый уровень:
+> commons
 - [x] [30 days](link/others/starter/ch1.md)
 - [ ] [codewars](link/others/codewars/ch1.md)
 > patterns
@@ -57,8 +57,6 @@
 - [x] [es6-for-humans ru | en](link/others/es6/)
 - [x] [es6-cliffsnotes](link/others/laracasts/ch1.md)
 
-
-&nbsp; 
 
 ### справочная информация:
 - [awesome](https://github.com/sorrycc/awesome-javascript) - a collection of awesome browser-side javascript libraries.
