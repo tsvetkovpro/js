@@ -47,8 +47,8 @@
 ## Скринкасты:
 
 ### продвинутый уровень:
+- [x] [30 days](link/others/starter/ch1.md)
 - [ ] [codewars](link/others/codewars/ch1.md)
-- [x] [starter](link/others/starter/ch1.md)
 > patterns
 - [x] [asynchronous](link/others/asynchronous/ch1.md)
 - [x] [design-patterns](link/others/design-patterns/ch1.md)
