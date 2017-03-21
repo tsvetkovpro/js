@@ -1,7 +1,7 @@
 > become a more informed, conscientious user of JavaScript as you explore time-tested, useful techniques that will improve legibility, performance quality, and safety in your scripts.
 
 
-## Level 1 The Sword of Syntax
+#### Level 1 The Sword of Syntax
 
 ```
 Discover useful alternate syntax for conditionals and assignment.
@@ -17,7 +17,7 @@ Discover useful alternate syntax for conditionals and assignment.
 
 
 
-## Level 2 The Pendant of Performance
+#### Level 2 The Pendant of Performance
 
 ```
 Explore techniques to improve execution speed and measure performance.
@@ -35,7 +35,7 @@ Explore techniques to improve execution speed and measure performance.
 
 
 
-## Level 3 The Crystal of Caution
+#### Level 3 The Crystal of Caution
 
 ```
 Examine common JavaScript pitfalls and the best ways to avoid them.
@@ -51,7 +51,7 @@ Examine common JavaScript pitfalls and the best ways to avoid them.
 
 
 
-## Level 4 The Mail of Modularity
+#### Level 4 The Mail of Modularity
 
 ```
 Learn how to organize code and protect data with a simple Module pattern.
