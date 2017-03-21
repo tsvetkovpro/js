@@ -6,13 +6,14 @@
 What Are Regular Expressions Used For?
 
 Common uses include:
- - Validations
+
+Validations:
  - Phone numbers
  - Email
  - Passwords
  - Domain names
 
-Searching
+Searching:
  - Words in a sentence
  - Unwanted characters
  - Extracting sections
