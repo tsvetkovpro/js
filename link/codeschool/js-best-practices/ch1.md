@@ -1,4 +1,4 @@
-#### Become a more informed, conscientious user of JavaScript as you explore time-tested, useful techniques that will improve legibility, performance quality, and safety in your scripts.
+> become a more informed, conscientious user of JavaScript as you explore time-tested, useful techniques that will improve legibility, performance quality, and safety in your scripts.
 
 
 ## Level 1 The Sword of Syntax
@@ -66,6 +66,8 @@ Learn how to organize code and protect data with a simple Module pattern.
 [Augmentation](https://github.com/tsvetkovpro/js/blob/master/courses/codeschool/js-best%20practices/level-4/index-4.html)
 
 
+---
+&npsb;
 
 
 * [pdf cource description](https://github.com/tsvetkovpro/js/blob/master/courses/codeschool/js-best%20practices/course.pdf)
