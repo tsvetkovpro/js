@@ -3,8 +3,8 @@
 &nbsp;
 
 ##### [learn.javascript.ru:](https://learn.javascript.ru/?map)
-- [x] [javascript - dom, интерфейсы](link/others/learn.javascript/ch1.md)
-- [x] [javascript - node.js](./)
+- [x] [dom, интерфейсы](link/others/learn.javascript/ch1.md)
+- [ ] [node.js]()
 - [ ] [webpack]
 
 &nbsp; 
