@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+
+
+
+	<input id="test" type="text">
+	<button id="go">Check</button>
+	<div id="result"></div>
+
+
+	<script
+	src="https://code.jquery.com/jquery-3.1.1.min.js"
+	integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+	crossorigin="anonymous"></script>
+
+	<script>
+	var str = 'sure'; //Okay, sure, yes, y, answer by itself, ignore other text
+	var regexp = /\b(ok(ay)?|sure|y(es)?)\b/i;
+
+	function compare(a) {
+		if (str.match(a)) {
+			console.log('yes!');
+		} else {
+			console.log('no');
+		}
+	}
+
+	compare(regexp);
+	</script>
+
+
+
+
+</body>
+</html>
