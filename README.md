@@ -5,7 +5,7 @@
 > Современный учебник Javascript
 - [x] [dom, интерфейсы](link/others/learn.javascript/ch1.md)
 - [ ] [node.js]
-- [ ] [webpack]
+- [ ] [webpack]  
 
 
 ### [codeschool.com:](https://www.codeschool.com/learn/javascript)
