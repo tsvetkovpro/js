@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script>
+		var consoleStyles = {
+			'h3': 'font: 1.2em/1 Arial; color: olivedrab;',
+			'h4': 'font: 1.2em/1 Consolas; color: #247BA0;'
+		};
+		function log(msg, style) {
+			if (!style || !consoleStyles[style]) {
+				style = 'bold';
+			}
+			console.log('%c' + msg, consoleStyles[style]);
+		}
+
+		log('i\'m js');
+
+
+		var admin, name;
+		name = 'John';
+		admin = name;
+		log(admin, 'h3');
+
+
+		let ourPlanetName = 'Earth';
+		let currentUserName = 'John';
+
+
+		//let age = prompt('how old are you?', 50)
+		//log(age);
+
+
+		log(result = (1 + 2 < 4) ? 'bellow' : 'over');
+
+		login = 'Employee';
+		log(result = (login == 'Employee') ? 'Hello' :
+				(login == 'Director') ? 'Greetings' :
+						(login == '') ? 'no login' : '');
+
+
+		log(null || 2 || undefined);
+		log(null || 2 && 3 || 4);
+		
+
+
+	</script>
